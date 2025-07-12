@@ -14,6 +14,8 @@ namespace Quinn
 		private float JumpHeight = 3.2f;
 
 		public bool IsJumping { get; private set; }
+		public bool IsDashing { get; private set; }
+		public bool IsCrouched { get; private set; }
 
 		private float _jumpInitY;
 
