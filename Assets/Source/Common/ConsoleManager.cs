@@ -43,7 +43,7 @@ namespace Quinn
 		}
 
 		[Command("help", "Lists all the commands that the console supports.")]
-		protected void Help()
+		protected void Help_Cmd()
 		{
 			var builder = new StringBuilder();
 			builder.AppendLine("Available commands:");
@@ -62,7 +62,7 @@ namespace Quinn
 			Debug.Log(builder.ToString());
 		}
 		[Command("help", "Lists information about a specific command.")]
-		protected void Help([CommandName]string command)
+		protected void Help_Cmd([CommandName]string command)
 		{
 			CommandData foundCommand = QuantumConsoleProcessor.GetUniqueCommands().First(cmd => cmd.CommandName.Equals(command, System.StringComparison.CurrentCultureIgnoreCase));
 
@@ -75,7 +75,7 @@ namespace Quinn
 			Debug.Log($"{foundCommand.CommandName}{description}");
 		}
 		[Command("cls", "Clears the console of all text.")]
-		protected void Clear()
+		protected void Clear_Cmd()
 		{
 			Console.ClearConsole();
 		}
