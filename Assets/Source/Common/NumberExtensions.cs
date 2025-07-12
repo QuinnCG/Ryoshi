@@ -35,6 +35,11 @@ namespace Quinn
 			value = Mathf.Max(value, min);
 		}
 
+		public static void MakeLessThan(this ref float value, float max)
+		{
+			value = Mathf.Min(value, max);
+		}
+
 		public static bool IsEven(this int value)
 		{
 			return value % 2 == 0;

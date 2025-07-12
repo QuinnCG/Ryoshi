@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Quinn
@@ -20,6 +21,23 @@ namespace Quinn
 		private void Awake()
 		{
 			Instance = this;
+
+			Cursor.visible = false;
+			Cursor.lockState = CursorLockMode.Locked;
+		}
+
+		private void Update()
+		{
+			if (_cursorStateHandles.Any(x => x.ForceShowCursor))
+			{
+				Cursor.visible = true;
+				Cursor.lockState = CursorLockMode.Confined;
+			}
+			else
+			{
+				Cursor.visible = false;
+				Cursor.lockState = CursorLockMode.Locked;
+			}
 		}
 
 		private void OnDestroy()
