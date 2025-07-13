@@ -9,6 +9,7 @@ namespace Quinn.MovementSystem
 	/// </summary>
 	public class CharacterMovement : Locomotion
 	{
+		// The FMOD global parameter; what surface the player is currently standing on.
 		public const string PlayerSurfaceMatKey = "player-surface-material";
 
 		[SerializeField, Unit(Units.MetersPerSecondSquared)]

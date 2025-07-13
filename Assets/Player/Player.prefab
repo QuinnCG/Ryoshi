@@ -230,7 +230,7 @@ MonoBehaviour:
   MaxFallSpeed: 64
   DefaultMoveSpeed: 5
   JumpSpeed: 14
-  JumpHeight: 2.7
+  JumpHeight: 2
   IdleAnim: {fileID: 2195382558344662133, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
   MoveAnim: {fileID: -2883626450286218148, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
   FootstepSound:
@@ -264,8 +264,8 @@ MonoBehaviour:
     PushVelocity: {x: 16, y: 0}
     PushDecayRate: 32
     DashVelocity: {x: 12, y: 0}
-    MinDashDistance: 1
-    MaxDashDistance: 4
+    MinDashDistance: 0.5
+    MaxDashDistance: 2
   - Mode: 2
     Animation: {fileID: 0}
     ChargeAnim: {fileID: 1853158460280590155, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
@@ -275,6 +275,6 @@ MonoBehaviour:
     Cost: 1
     PushVelocity: {x: 12, y: 0}
     PushDecayRate: 32
-    DashVelocity: {x: 24, y: -8}
+    DashVelocity: {x: 24, y: 0}
     MinDashDistance: 3
     MaxDashDistance: 6

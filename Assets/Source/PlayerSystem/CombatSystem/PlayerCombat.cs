@@ -173,8 +173,10 @@ namespace Quinn.CombatSystem
 				_dashStartPos = transform.position;
 				_dashMinDst = attack.MinDashDistance;
 				_dashMaxDst = attack.MaxDashDistance;
-				_dashVel = attack.DashVelocity;
 				_attackAnim = attack.AttackAnim;
+
+				_dashVel = attack.DashVelocity;
+				_dashVel.x *= _player.FacingDirection;
 			}
 		}
 
