@@ -225,11 +225,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87f5e53cad997ee47ab435bb183df247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FallSpeed: 16
+  FallSpeed: 14
+  InitialFallSpeed: 4
   MaxFallSpeed: 64
   DefaultMoveSpeed: 5
   JumpSpeed: 14
-  JumpHeight: 2.5
+  JumpHeight: 2.7
   IdleAnim: {fileID: 2195382558344662133, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
   MoveAnim: {fileID: -2883626450286218148, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
   FootstepSound:
@@ -265,3 +266,15 @@ MonoBehaviour:
     DashVelocity: {x: 12, y: 0}
     MinDashDistance: 1
     MaxDashDistance: 4
+  - Mode: 2
+    Animation: {fileID: 0}
+    ChargeAnim: {fileID: 1853158460280590155, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
+    AttackAnim: {fileID: -6935343434242428099, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
+    Type: 0
+    Stance: 2
+    Cost: 1
+    PushVelocity: {x: 12, y: 0}
+    PushDecayRate: 32
+    DashVelocity: {x: 24, y: -8}
+    MinDashDistance: 3
+    MaxDashDistance: 6

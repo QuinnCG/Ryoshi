@@ -1,6 +1,8 @@
 using FMODUnity;
 using Quinn.MovementSystem;
 using Sirenix.OdinInspector;
+using System;
+using TMPro;
 using UnityEngine;
 
 namespace Quinn
@@ -8,6 +10,8 @@ namespace Quinn
 	[RequireComponent(typeof(PlayableAnimator))]
 	public class PlayerMovement : CharacterMovement
 	{
+		[Space]
+
 		[SerializeField, Unit(Units.MetersPerSecond)]
 		private float DefaultMoveSpeed = 4f;
 		[SerializeField, Unit(Units.MetersPerSecond)]
@@ -44,6 +48,7 @@ namespace Quinn
 
 			if (IsJumping)
 			{
+				ResetGravity();
 				float heightDelta = Mathf.Abs(transform.position.y - _jumpInitY);
 
 				if (heightDelta > JumpHeight || IsTouchingCeiling)
@@ -79,6 +84,8 @@ namespace Quinn
 			{
 				IsJumping = true;
 				_jumpInitY = transform.position.y;
+
+				BlockGravity(this);
 			}
 		}
 
@@ -87,6 +94,7 @@ namespace Quinn
 			if (IsJumping)
 			{
 				IsJumping = false;
+				UnblockGravity(this);
 			}
 		}
 

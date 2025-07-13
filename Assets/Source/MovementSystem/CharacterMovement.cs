@@ -13,6 +13,8 @@ namespace Quinn.MovementSystem
 
 		[SerializeField, Unit(Units.MetersPerSecondSquared)]
 		private float FallSpeed = 12f;
+		[SerializeField, Unit(Units.MetersPerSecond)]
+		private float InitialFallSpeed = 12f;
 		[SerializeField, Unit(Units.MetersPerSecondSquared)]
 		private float MaxFallSpeed = 64f;
 
@@ -47,6 +49,7 @@ namespace Quinn.MovementSystem
 		public bool IsMovingIntoWall { get; private set; }
 
 		private readonly HashSet<SpeedFactor> _moveSpeedFactors = new();
+		private readonly HashSet<object> _blockGravity = new();
 
 		private float _fallSpeed;
 
@@ -54,17 +57,39 @@ namespace Quinn.MovementSystem
 		{
 			ProcessContacts();
 
-			_fallSpeed += FallSpeed * Time.deltaTime;
-			_fallSpeed.MakeLessThan(MaxFallSpeed);
-
-			if (IsTouchingGround)
+			if (_blockGravity.Count > 0)
 			{
 				_fallSpeed = 0f;
 			}
 			else
 			{
-				AddVelocity(_fallSpeed * Vector2.down);
+				if (IsTouchingGround)
+				{
+					_fallSpeed = 0f;
+				}
+				else
+				{
+					_fallSpeed += FallSpeed * Time.deltaTime;
+					_fallSpeed.MakeAtLeast(InitialFallSpeed);
+					_fallSpeed.MakeLessThan(MaxFallSpeed);
+
+					AddVelocity(_fallSpeed * Vector2.down);
+				}
 			}
+		}
+
+		public void ResetGravity()
+		{
+			_fallSpeed = 0f;
+		}
+
+		public void BlockGravity(object key)
+		{
+			_blockGravity.Add(key);
+		}
+		public void UnblockGravity(object key)
+		{
+			_blockGravity.Remove(key);
 		}
 
 		public SpeedFactor CreateMoveSpeedFactor()

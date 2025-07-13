@@ -51,6 +51,7 @@ namespace Quinn.CombatSystem
 		{
 			if (_mode is AttackMode.Continuous && _phase is AttackPhase.Charging)
 			{
+				_movement.BlockGravity(this);
 				_movement.SetVelocity(_dashVel);
 
 				float dst = transform.position.DistanceTo(_dashStartPos);
@@ -67,6 +68,10 @@ namespace Quinn.CombatSystem
 
 					_attackEndTime = Time.time + _attackAnim.length;
 				}
+			}
+			else
+			{
+				_movement.UnblockGravity(this);
 			}
 
 			if (Time.time > _attackEndTime && (_mode is not AttackMode.Continuous || _phase is not AttackPhase.Charging))
@@ -144,9 +149,10 @@ namespace Quinn.CombatSystem
 		private void ExecuteAttack(AttackDefinition attack)
 		{
 			_phase = AttackPhase.Charging;
-			_attackPoints = Mathf.Max(_attackPoints - attack.Cost, 0);
-
 			_mode = attack.Mode;
+
+			_attackPoints = Mathf.Max(_attackPoints - attack.Cost, 0);
+			_movement.StopJump();
 
 			if (attack.Mode is AttackMode.Stationary or AttackMode.Instant)
 			{
