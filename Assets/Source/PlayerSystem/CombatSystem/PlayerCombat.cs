@@ -2,6 +2,8 @@ using UnityEngine;
 
 namespace Quinn.CombatSystem
 {
+	[RequireComponent(typeof(Player))]
+	[RequireComponent(typeof(PlayableAnimator))]
 	[RequireComponent(typeof(PlayerMovement))]
 	public class PlayerCombat : MonoBehaviour
 	{
@@ -11,14 +13,28 @@ namespace Quinn.CombatSystem
 		[SerializeField]
 		private AttackDefinition[] Moveset;
 
+		/// <summary>
+		/// Is the player's attack phase charging, attacking, or recovery? If any of those, then they are "attacking".
+		/// </summary>
+		public bool IsAttacking => _phase is not AttackPhase.None;
+
+		private Player _player;
+		private PlayableAnimator _animator;
 		private PlayerMovement _movement;
+
 		/// <summary>
 		/// Attacks consume points. The number of current points, also dictates whether the attack will be a starter, chain, or finisher type.
 		/// </summary>
 		private int _attackPoints;
 
+		private float _attackEndTime;
+
+		private AttackPhase _phase = AttackPhase.None;
+
 		private void Awake()
 		{
+			_player = GetComponent<Player>();
+			_animator = GetComponent<PlayableAnimator>();
 			_movement = GetComponent<PlayerMovement>();
 
 			ReplenishPoints();
@@ -26,18 +42,24 @@ namespace Quinn.CombatSystem
 
 		private void Update()
 		{
-			
+			if (Time.time > _attackEndTime)
+			{
+				_phase = AttackPhase.None;
+				ReplenishPoints();
+			}
 		}
 
-		public void TriggerAttack()
+		public void Attack()
 		{
-			// 1) Collect state (e.g. crouched).
-			// 2) Search for best attack from moveset.
-			// 3) Execute attack.
+			if (_phase is not (AttackPhase.None or AttackPhase.Recovering))
+				return;
 
 			var stance = GetPlayerStance();
-			var attack = SearchForAttack(stance);
-			ExecuteAttack(attack);
+			
+			if (TrySearchForAttack(stance, out var attack))
+			{
+				ExecuteAttack(attack);
+			}
 		}
 
 		private AttackStanceType GetPlayerStance()
@@ -60,7 +82,7 @@ namespace Quinn.CombatSystem
 			}
 		}
 
-		private AttackDefinition SearchForAttack(AttackStanceType stance)
+		private bool TrySearchForAttack(AttackStanceType stance, out AttackDefinition result)
 		{
 			foreach (var attack in Moveset)
 			{
@@ -70,23 +92,50 @@ namespace Quinn.CombatSystem
 				if (attack.Cost > DefaultAttackPoints)
 					continue;
 
-				// TODO: Check if the attack should be a starter, chain, or finisher type.
+				if (_attackPoints == DefaultAttackPoints && attack.Type is not AttackType.Starter)
+					continue;
 
-				return attack;
+				if (_attackPoints == attack.Cost && attack.Type is not AttackType.Finisher)
+					continue;
+
+				result = attack;
+				return true;
 			}
 
-			Log.Warning("Failed to find a valid attack for the player to execute!");
-			return default;
+			result = default;
+			return false;
 		}
 
 		private void ExecuteAttack(AttackDefinition attack)
 		{
 			_attackPoints = Mathf.Max(_attackPoints - attack.Cost, 0);
+			_animator.PlayOnce(attack.Animation);
+
+			_attackEndTime = Time.time + attack.Animation.length;
+
+			attack.PushVelocity.x *= _player.FacingDirection;
+			_movement.Push(attack.PushVelocity, attack.PushDecayRate, true);
 		}
 
 		private void ReplenishPoints()
 		{
 			_attackPoints = DefaultAttackPoints;
+			Log.Info("Replenished attack points!");
+		}
+
+
+		/* ANIMATION EVENTS */
+
+		protected void AttackingPhase()
+		{
+			Log.Info("Attack phase!");
+			_phase = AttackPhase.Attacking;
+		}
+
+		protected void RecoveringPhase()
+		{
+			Log.Info("Recovery phase!");
+			_phase = AttackPhase.Recovering;
 		}
 	}
 }

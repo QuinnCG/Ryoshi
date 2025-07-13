@@ -57,7 +57,7 @@ MonoBehaviour:
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
-    FieldOfView: 65
+    FieldOfView: 55
     OrthographicSize: 7.5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -104,6 +104,6 @@ MonoBehaviour:
   Damping: {x: 1, y: 1, z: 1}
   Lookahead:
     Enabled: 1
-    Time: 0.267
-    Smoothing: 4.5
+    Time: 0.5
+    Smoothing: 4
     IgnoreY: 1

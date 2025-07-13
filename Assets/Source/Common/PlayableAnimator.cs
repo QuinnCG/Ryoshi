@@ -18,6 +18,11 @@ namespace Quinn
 
 		private void Awake()
 		{
+			if (TryGetComponent(out Animator a))
+			{
+				DestroyImmediate(a);
+			}
+
 			var animator = gameObject.AddComponent<Animator>();
 
 			_graph = PlayableGraph.Create("Playable Animator Graph");
@@ -48,8 +53,11 @@ namespace Quinn
 
 		public void PlayLooped(AnimationClip anim)
 		{
-			_loopingAnim = anim;
-			PlayAnimClip(anim);
+			if (_loopingAnim != anim)
+			{
+				_loopingAnim = anim;
+				PlayAnimClip(anim);
+			}
 		}
 
 		public void PlayOnce(AnimationClip anim)
@@ -65,6 +73,11 @@ namespace Quinn
 			_graph.Stop();
 			_loopingAnim = null;
 			_isOneShotPlaying = false;
+		}
+
+		public void StopOneShot()
+		{
+			_nextOneShotEndTime = -1f;
 		}
 
 		private void PlayAnimClip(AnimationClip anim)

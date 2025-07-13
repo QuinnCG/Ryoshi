@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Quinn.CombatSystem
@@ -12,5 +13,11 @@ namespace Quinn.CombatSystem
 		public AttackType Type;
 		public AttackStanceType Stance;
 		public int Cost = 1;
+
+		[Space]
+
+		public Vector2 PushVelocity;
+		[Unit(Units.MetersPerMinute)]
+		public float PushDecayRate = 32f;
 	}
 }

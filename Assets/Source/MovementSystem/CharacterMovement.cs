@@ -82,7 +82,7 @@ namespace Quinn.MovementSystem
 		/// <param name="velocity">The initial speed and direction.</param>
 		/// <param name="decayRate">How much speed should be subtracted every second.</param>
 		/// <param name="overrideVelocity">If true, the velocity will be reset before applying this value.</param>
-		public void ApplyKnockback(Vector2 velocity, float decayRate, bool overrideVelocity = false)
+		public void Push(Vector2 velocity, float decayRate, bool overrideVelocity = false)
 		{
 			if (overrideVelocity)
 			{
