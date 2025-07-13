@@ -15,6 +15,7 @@ namespace Quinn
 		private AnimationClip _loopingAnim;
 		private float _nextOneShotEndTime;
 		private bool _isOneShotPlaying;
+		private bool _holdOneShotEndFrame;
 
 		private void Awake()
 		{
@@ -31,7 +32,7 @@ namespace Quinn
 
 		private void Update()
 		{
-			if (_isOneShotPlaying && Time.time >= _nextOneShotEndTime)
+			if (_isOneShotPlaying && Time.time >= _nextOneShotEndTime && !_holdOneShotEndFrame)
 			{
 				_isOneShotPlaying = false;
 				
@@ -60,12 +61,13 @@ namespace Quinn
 			}
 		}
 
-		public void PlayOnce(AnimationClip anim)
+		public void PlayOnce(AnimationClip anim, bool holdEndFrame = false)
 		{
 			_nextOneShotEndTime = Time.time + anim.length;
 			PlayAnimClip(anim);
 
 			_isOneShotPlaying = true;
+			_holdOneShotEndFrame = holdEndFrame;
 		}
 
 		public void Stop()
@@ -73,11 +75,13 @@ namespace Quinn
 			_graph.Stop();
 			_loopingAnim = null;
 			_isOneShotPlaying = false;
+			_holdOneShotEndFrame = false;
 		}
 
 		public void StopOneShot()
 		{
 			_nextOneShotEndTime = -1f;
+			_holdOneShotEndFrame = false;
 		}
 
 		private void PlayAnimClip(AnimationClip anim)

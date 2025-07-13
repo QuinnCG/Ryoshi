@@ -10,7 +10,7 @@ namespace Quinn
 		// HACK: These should use [Conditional("DEVELOPMENT")] or similar, but there isn't any built in "DEVELOPMENT" define in Unity.
 
 		[HideInCallstack]
-		public static void Info(string message)
+		public static void Info(object message)
 		{
 			if (Debug.isDebugBuild || Application.isEditor)
 			{
@@ -19,7 +19,7 @@ namespace Quinn
 		}
 
 		[HideInCallstack]
-		public static void Notice(string message)
+		public static void Notice(object message)
 		{
 			if (Debug.isDebugBuild || Application.isEditor)
 			{
@@ -28,7 +28,7 @@ namespace Quinn
 		}
 
 		[HideInCallstack]
-		public static void Warning(string message)
+		public static void Warning(object message)
 		{
 			if (Debug.isDebugBuild || Application.isEditor)
 			{
@@ -37,7 +37,7 @@ namespace Quinn
 		}
 
 		[HideInCallstack]
-		public static void Error(string message)
+		public static void Error(object message)
 		{
 			if (Debug.isDebugBuild || Application.isEditor)
 			{
@@ -46,7 +46,7 @@ namespace Quinn
 		}
 
 		[HideInCallstack]
-		public static void Fatal(string message)
+		public static void Fatal(object message)
 		{
 			if (Debug.isDebugBuild || Application.isEditor)
 			{

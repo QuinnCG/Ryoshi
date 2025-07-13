@@ -28,8 +28,15 @@ namespace Quinn.CombatSystem
 		private int _attackPoints;
 
 		private float _attackEndTime;
-
 		private AttackPhase _phase = AttackPhase.None;
+
+		private AttackMode _mode;
+		private Vector2 _dashVel;
+		private Vector2 _dashStartPos;
+		private float _dashMinDst, _dashMaxDst;
+		private AnimationClip _attackAnim;
+
+		private bool _wantsToAttack;
 
 		private void Awake()
 		{
@@ -42,10 +49,31 @@ namespace Quinn.CombatSystem
 
 		private void Update()
 		{
-			if (Time.time > _attackEndTime)
+			if (_mode is AttackMode.Continuous && _phase is AttackPhase.Charging)
+			{
+				_movement.SetVelocity(_dashVel);
+
+				float dst = transform.position.DistanceTo(_dashStartPos);
+
+				bool maxDstReached = dst > _dashMaxDst;
+				bool shouldEndDashEarly = !_wantsToAttack && dst > _dashMinDst;
+
+				if (maxDstReached || shouldEndDashEarly)
+				{
+					_phase = AttackPhase.Attacking;
+					_animator.StopOneShot();
+					_animator.PlayOnce(_attackAnim);
+					_wantsToAttack = false;
+
+					_attackEndTime = Time.time + _attackAnim.length;
+				}
+			}
+
+			if (Time.time > _attackEndTime && (_mode is not AttackMode.Continuous || _phase is not AttackPhase.Charging))
 			{
 				_phase = AttackPhase.None;
 				ReplenishPoints();
+				_wantsToAttack = false;
 			}
 		}
 
@@ -54,12 +82,19 @@ namespace Quinn.CombatSystem
 			if (_phase is not (AttackPhase.None or AttackPhase.Recovering))
 				return;
 
+			_wantsToAttack = true;
+
 			var stance = GetPlayerStance();
-			
+
 			if (TrySearchForAttack(stance, out var attack))
 			{
 				ExecuteAttack(attack);
 			}
+		}
+
+		public void ReleaseAttack()
+		{
+			_wantsToAttack = false;
 		}
 
 		private AttackStanceType GetPlayerStance()
@@ -109,21 +144,37 @@ namespace Quinn.CombatSystem
 		private void ExecuteAttack(AttackDefinition attack)
 		{
 			_phase = AttackPhase.Charging;
-
 			_attackPoints = Mathf.Max(_attackPoints - attack.Cost, 0);
-			_animator.PlayOnce(attack.Animation);
 
-			_attackEndTime = Time.time + attack.Animation.length;
+			_mode = attack.Mode;
 
-			var pushVel = attack.PushVelocity;
-			pushVel.x *= _player.FacingDirection;
-			_movement.Push(attack.PushVelocity, attack.PushDecayRate, true);
+			if (attack.Mode is AttackMode.Stationary or AttackMode.Instant)
+			{
+				_animator.PlayOnce(attack.Animation);
+				_attackEndTime = Time.time + attack.Animation.length;
+
+				if (attack.Mode is AttackMode.Instant)
+				{
+					var pushVel = attack.PushVelocity;
+					pushVel.x *= _player.FacingDirection;
+					_movement.Push(attack.PushVelocity, attack.PushDecayRate, true);
+				}
+			}
+			else
+			{
+				_animator.PlayOnce(attack.ChargeAnim, holdEndFrame: true);
+
+				_dashStartPos = transform.position;
+				_dashMinDst = attack.MinDashDistance;
+				_dashMaxDst = attack.MaxDashDistance;
+				_dashVel = attack.DashVelocity;
+				_attackAnim = attack.AttackAnim;
+			}
 		}
 
 		private void ReplenishPoints()
 		{
 			_attackPoints = DefaultAttackPoints;
-			Log.Info("Replenished attack points!");
 		}
 
 
@@ -136,13 +187,11 @@ namespace Quinn.CombatSystem
 
 		protected void AttackingPhase()
 		{
-			Log.Info("Attack phase!");
 			_phase = AttackPhase.Attacking;
 		}
 
 		protected void RecoveringPhase()
 		{
-			Log.Info("Recovery phase!");
 			_phase = AttackPhase.Recovering;
 		}
 	}

@@ -116,12 +116,14 @@ namespace Quinn.MovementSystem
 				sum += handle.Velocity;
 
 				float mag = handle.Velocity.magnitude;
+				Vector2 dir = handle.Velocity.normalized;
+
 				mag -= Time.deltaTime * handle.DecayRate;
 				mag.MakeAtLeast(0f);
 
-				handle.Velocity = handle.Velocity.normalized * mag;
+				handle.Velocity = dir * mag;
 
-				if (handle.Velocity.sqrMagnitude < 0.01f)
+				if (handle.Velocity.sqrMagnitude == 0f)
 				{
 					toRemove.Add(handle);
 				}

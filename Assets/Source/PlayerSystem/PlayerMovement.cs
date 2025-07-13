@@ -90,6 +90,11 @@ namespace Quinn
 			}
 		}
 
+		public new void SetVelocity(Vector2 vel)
+		{
+			base.SetVelocity(vel);
+		}
+
 		private void UpdateFacingDir(float xDir)
 		{
 			// TODO: In dueling fights, override this to always face boss opponent.

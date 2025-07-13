@@ -253,9 +253,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DefaultAttackPoints: 5
   Moveset:
-  - Animation: {fileID: -6991963136438923244, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
+  - Mode: 2
+    Animation: {fileID: 0}
+    ChargeAnim: {fileID: 1853158460280590155, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
+    AttackAnim: {fileID: -6935343434242428099, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
     Type: 0
     Stance: 0
     Cost: 1
-    PushVelocity: {x: 4, y: 0}
+    PushVelocity: {x: 16, y: 0}
     PushDecayRate: 32
+    DashVelocity: {x: 12, y: 0}
+    MinDashDistance: 1
+    MaxDashDistance: 4
