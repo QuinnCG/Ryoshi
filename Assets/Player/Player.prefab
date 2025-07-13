@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 8508295708139993541}
   - component: {fileID: 7573702492132094022}
   - component: {fileID: 920196059477125167}
+  - component: {fileID: 2469332701858867894}
+  - component: {fileID: 2308525669728052288}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -270,3 +272,29 @@ MonoBehaviour:
     DashVelocity: {x: 12, y: 0}
     MinDashDistance: 0.5
     MaxDashDistance: 2
+--- !u!114 &2469332701858867894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7460032228790228316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fbbac075d5363749a3de201273514c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Type>k__BackingField: 2
+--- !u!114 &2308525669728052288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7460032228790228316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76caccf7eccef0b4c8a98eaf4548e15f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Default: 5
