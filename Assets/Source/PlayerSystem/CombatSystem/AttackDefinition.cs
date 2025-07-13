@@ -17,7 +17,7 @@ namespace Quinn.CombatSystem
 		[Space]
 
 		public Vector2 PushVelocity;
-		[Unit(Units.MetersPerMinute)]
+		[Unit(Units.MetersPerSecond)]
 		public float PushDecayRate = 32f;
 	}
 }

@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{06939da5-203b-4fe5-9dc2-83971fedbf37}">
 		<property name="assetPath">
-			<value>Footsteps/Healing Pool/Liquid Water Water Footstep Single Step In Puddle 05.wav</value>
+			<value>SFX/Footsteps/Healing Pool/Liquid Water Water Footstep Single Step In Puddle 05.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>

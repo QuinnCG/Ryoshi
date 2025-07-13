@@ -108,12 +108,15 @@ namespace Quinn.CombatSystem
 
 		private void ExecuteAttack(AttackDefinition attack)
 		{
+			_phase = AttackPhase.Charging;
+
 			_attackPoints = Mathf.Max(_attackPoints - attack.Cost, 0);
 			_animator.PlayOnce(attack.Animation);
 
 			_attackEndTime = Time.time + attack.Animation.length;
 
-			attack.PushVelocity.x *= _player.FacingDirection;
+			var pushVel = attack.PushVelocity;
+			pushVel.x *= _player.FacingDirection;
 			_movement.Push(attack.PushVelocity, attack.PushDecayRate, true);
 		}
 
@@ -125,6 +128,11 @@ namespace Quinn.CombatSystem
 
 
 		/* ANIMATION EVENTS */
+
+		protected void SFX(string eventName)
+		{
+			Audio.Play(eventName, transform.position);
+		}
 
 		protected void AttackingPhase()
 		{

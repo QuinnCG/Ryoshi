@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{da7480ad-bf2a-490e-b000-5fc9490ced6e}">
+		<property name="assetPath">
+			<value>SFX/Footsteps/Grass/Footsteps, Human, Grass, Run SND62074 5.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>96</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.71781249999999996</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{306fffe2-e2e7-4d6a-8b82-34da77b5f9da}</destination>
+		</relationship>
+	</object>
+</objects>

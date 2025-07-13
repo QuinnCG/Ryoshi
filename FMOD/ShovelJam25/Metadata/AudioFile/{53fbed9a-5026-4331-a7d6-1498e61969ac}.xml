@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{53fbed9a-5026-4331-a7d6-1498e61969ac}">
+		<property name="assetPath">
+			<value>SFX/Generic Attack Grunt/AttackGrunt_11.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.007732426303855</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{306fffe2-e2e7-4d6a-8b82-34da77b5f9da}</destination>
+		</relationship>
+	</object>
+</objects>

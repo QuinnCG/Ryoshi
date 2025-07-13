@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{6aeb508c-78cd-4c48-8664-9d5e1d540e84}">
 		<property name="assetPath">
-			<value>Footsteps/Healing Pool/Inst_Footstep_HealingPool_04.ogg</value>
+			<value>SFX/Footsteps/Healing Pool/Inst_Footstep_HealingPool_04.ogg</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>32</value>
