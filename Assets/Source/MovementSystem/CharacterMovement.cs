@@ -9,6 +9,8 @@ namespace Quinn.MovementSystem
 	/// </summary>
 	public class CharacterMovement : Locomotion
 	{
+		public const string PlayerSurfaceMatKey = "player-surface-material";
+
 		[SerializeField, Unit(Units.MetersPerSecondSquared)]
 		private float FallSpeed = 12f;
 		[SerializeField, Unit(Units.MetersPerSecondSquared)]
@@ -33,6 +35,8 @@ namespace Quinn.MovementSystem
 				return speed;
 			}
 		}
+
+		public SoundMaterialType LastFloorMaterial { get; protected set; }
 
 		public bool IsTouchingGround { get; private set; }
 		public bool IsTouchingCeiling { get; private set; }
@@ -111,8 +115,13 @@ namespace Quinn.MovementSystem
 			IsTouchingCeiling = false;
 			IsTouchingWall = false;
 
+			bool processedFloorAnyContact = false;
+
 			foreach (var contact in contacts)
 			{
+				if (contact.collider.gameObject.layer != LayerMask.NameToLayer("Obstacle"))
+					continue;
+
 				Vector2 normal = contact.normal;
 
 				// Vertical
@@ -121,6 +130,14 @@ namespace Quinn.MovementSystem
 					if (normal.y > 0f)
 					{
 						IsTouchingGround = true;
+
+						if (!processedFloorAnyContact && contact.collider.TryGetComponent(out SoundMaterial mat))
+						{
+							LastFloorMaterial = mat.Material;
+							Audio.SetGlobalParameter(PlayerSurfaceMatKey, LastFloorMaterial.ToString());
+						}
+
+						processedFloorAnyContact = true;
 					}
 					else if (normal.y < 0f)
 					{

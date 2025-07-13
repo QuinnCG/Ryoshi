@@ -28,6 +28,8 @@ namespace Quinn
 		private PlayableAnimator _animator;
 		private float _jumpInitY;
 
+		private float _lastMoveInput;
+
 		protected override void Awake()
 		{
 			base.Awake();
@@ -61,6 +63,14 @@ namespace Quinn
 			UpdateFacingDir(xDir);
 
 			_animator.PlayLooped((xDir != 0f) ? MoveAnim : IdleAnim);
+
+			// Play starting footstep.
+			if (xDir != 0f && _lastMoveInput == 0f)
+			{
+				OnFootstep();
+			}
+
+			_lastMoveInput = xDir;
 		}
 
 		public void Jump()

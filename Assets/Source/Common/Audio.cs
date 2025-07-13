@@ -90,5 +90,22 @@ namespace Quinn
 			// Master bus channel is obtained via only looking up "bus:/".
 			return GetBus(string.Empty);
 		}
+
+		public static void SetGlobalParameter(string name, float value, bool ignoreSeedSpeed = false)
+		{
+			RuntimeManager.StudioSystem.setParameterByName(name, value, ignoreSeedSpeed);
+		}
+		public static void SetGlobalParameter(string name, int value, bool ignoreSeedSpeed = false)
+		{
+			RuntimeManager.StudioSystem.setParameterByName(name, value, ignoreSeedSpeed);
+		}
+		public static void SetGlobalParameter(string name, bool value, bool ignoreSeedSpeed = false)
+		{
+			RuntimeManager.StudioSystem.setParameterByName(name, value ? 1f : 0f, ignoreSeedSpeed);
+		}
+		public static void SetGlobalParameter(string name, string value, bool ignoreSeedSpeed = false)
+		{
+			RuntimeManager.StudioSystem.setParameterByNameWithLabel(name, value, ignoreSeedSpeed);
+		}
 	}
 }
