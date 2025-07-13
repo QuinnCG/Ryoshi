@@ -23,7 +23,7 @@ namespace Quinn.CombatSystem
 
 		[ShowIf(nameof(Mode), AttackMode.Continuous), Tooltip("Use a slow recovery animation variant, if the dash is at least a certain distance (normalized).")]
 		public bool UseSlowRecovery;
-		[ShowIf(nameof(Mode), AttackMode.Continuous), EnableIf(nameof(UseSlowRecovery))]
+		[ShowIf(nameof(Mode), AttackMode.Continuous), EnableIf(nameof(UseSlowRecovery)), Range(0f, 1f)]
 		public float SlowRecoveryAfterDashDstNorm = 0.7f;
 		[ShowIf(nameof(Mode), AttackMode.Continuous), EnableIf(nameof(UseSlowRecovery))]
 		public AnimationClip SlowRecoveryAnim;

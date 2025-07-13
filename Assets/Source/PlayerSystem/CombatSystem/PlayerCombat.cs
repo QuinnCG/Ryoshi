@@ -29,19 +29,21 @@ namespace Quinn.CombatSystem
 		private int _attackPoints;
 
 		// The end time of the entire attack. This is set delayed, for the continuous mode.
-		private float _attackEndTime;
+		private float _entireAttackEndTime;
+		private bool _wantsToAttack;
+
 		private AttackPhase _phase = AttackPhase.None;
 		private AttackMode _mode;
 
+		// Used by continuous mode.
 		private Vector2 _dashVel;
 		private Vector2 _dashStartPos;
 		private float _dashMinDst, _dashMaxDst;
 
+		// Used by continuous mode.
 		private float _attackPhaseEndTime;
 		private AnimationClip _attackAnim, _recoveryAnim;
 		private AttackDefinition _attackDef;
-
-		private bool _wantsToAttack;
 
 		private void Awake()
 		{
@@ -55,39 +57,41 @@ namespace Quinn.CombatSystem
 		private void Update()
 		{
 			UpdateExecutingAttack();
-			UpdateAttackPointRegen();
+			UpdateAttackEndTime();
 		}
 
 		private void UpdateExecutingAttack()
 		{
-			if (_mode is AttackMode.Continuous && _phase is AttackPhase.Charging)
+			if (_mode is AttackMode.Continuous)
 			{
-				_movement.BlockGravity(this);
-				_movement.SetVelocity(_dashVel);
-
-				float dst = transform.position.DistanceTo(_dashStartPos);
-
-				bool maxDstReached = dst > _dashMaxDst;
-				bool shouldEndDashEarly = !_wantsToAttack && dst > _dashMinDst;
-
-				if (maxDstReached || shouldEndDashEarly)
+				if (_phase is AttackPhase.Charging)
 				{
-					_phase = AttackPhase.Attacking;
-					_wantsToAttack = false;
+					_movement.BlockGravity(this);
+					_movement.SetVelocity(_dashVel);
 
-					_animator.StopOneShot();
-					_animator.PlayOnce(_attackAnim);
+					float dst = transform.position.DistanceTo(_dashStartPos);
 
-					_attackPhaseEndTime = Time.time + _attackAnim.length;
+					bool maxDstReached = dst > _dashMaxDst;
+					bool shouldEndDashEarly = !_wantsToAttack && dst > _dashMinDst;
 
-					_recoveryAnim = GetRecoveryAnim(_attackDef);
-					_attackEndTime = Time.time + _attackAnim.length + _recoveryAnim.length;
+					if (maxDstReached || shouldEndDashEarly)
+					{
+						_phase = AttackPhase.Attacking;
+						_wantsToAttack = false;
+
+						_animator.StopOneShot();
+						_animator.PlayOnce(_attackAnim);
+
+						_recoveryAnim = GetRecoveryAnim(_attackDef);
+						_attackPhaseEndTime = Time.time + _attackAnim.length;
+						_entireAttackEndTime = _attackPhaseEndTime + _recoveryAnim.length;
+					}
 				}
-			}
-			else if (_phase is AttackPhase.Attacking && Time.time >= _attackPhaseEndTime)
-			{
-				_animator.PlayOnce(_recoveryAnim);
-				_phase = AttackPhase.Recovering;
+				else if (_phase == AttackPhase.Attacking && Time.time >= _attackPhaseEndTime)
+				{
+					_phase = AttackPhase.Recovering;
+					_animator.PlayOnce(_recoveryAnim);
+				}
 			}
 			else
 			{
@@ -95,13 +99,20 @@ namespace Quinn.CombatSystem
 			}
 		}
 
-		private void UpdateAttackPointRegen()
+		private void UpdateAttackEndTime()
 		{
-			if (Time.time > _attackEndTime && (_mode is not AttackMode.Continuous || _phase is not AttackPhase.Charging))
+			bool attackEndTime = Time.time > _entireAttackEndTime;
+			bool isContinuousDashChargeActive = _mode is AttackMode.Continuous && _phase is AttackPhase.Charging;
+
+			// If we are not in continuous mode, respect the attackEndTime value. Otherwise, wait for us to not be in charging phase, before respecting the value.
+			// At the end of charging phase (while in continuous mode), the attackEndTime is updated to match the variable length of the charge; it's not valid for continuous mode, until the end of the charging phase.
+			if (attackEndTime && !isContinuousDashChargeActive)
 			{
+				_mode = AttackMode.Stationary;
 				_phase = AttackPhase.None;
-				ReplenishPoints();
+
 				_wantsToAttack = false;
+				ReplenishPoints();
 			}
 		}
 
@@ -180,7 +191,7 @@ namespace Quinn.CombatSystem
 			if (attack.Mode is AttackMode.Stationary or AttackMode.Instant)
 			{
 				_animator.PlayOnce(attack.Animation);
-				_attackEndTime = Time.time + attack.Animation.length;
+				_entireAttackEndTime = Time.time + attack.Animation.length;
 
 				if (attack.Mode is AttackMode.Instant)
 				{
@@ -209,6 +220,7 @@ namespace Quinn.CombatSystem
 			_attackPoints = DefaultAttackPoints;
 		}
 
+		/// <returns>The regular recovery animation, or the slow variant, if applicable.</returns>
 		private AnimationClip GetRecoveryAnim(AttackDefinition attack)
 		{
 			if (_mode is not AttackMode.Continuous)
@@ -231,12 +243,26 @@ namespace Quinn.CombatSystem
 
 		protected void AttackingPhase()
 		{
-			_phase = AttackPhase.Attacking;
+			if (_mode is not AttackMode.Continuous)
+			{
+				_phase = AttackPhase.Attacking;
+			}
+			else
+			{
+				Log.Warning($"Active animation '{_attackAnim}' has events to set the attacking phase. This shouldn't happen with continuous mode attacks.");
+			}
 		}
 
 		protected void RecoveringPhase()
 		{
-			_phase = AttackPhase.Recovering;
+			if (_mode is not AttackMode.Continuous)
+			{
+				_phase = AttackPhase.Recovering;
+			}
+			else
+			{
+				Log.Warning($"Active animation '{_attackAnim}' has events to set the recovery phase. This shouldn't happen with continuous mode attacks.");
+			}
 		}
 	}
 }
