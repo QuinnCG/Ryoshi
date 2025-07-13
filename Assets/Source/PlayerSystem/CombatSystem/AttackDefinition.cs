@@ -6,7 +6,7 @@ namespace Quinn.CombatSystem
 	[System.Serializable]
 	public record AttackDefinition
 	{
-		[Title("@GetTitle()")]
+		[Title("@ToString()")]
 		public AttackMode Mode = AttackMode.Stationary;
 
 		[Space, HideIf(nameof(Mode), AttackMode.Continuous)]
@@ -16,6 +16,17 @@ namespace Quinn.CombatSystem
 		public AnimationClip ChargeAnim;
 		[ShowIf(nameof(Mode), AttackMode.Continuous)]
 		public AnimationClip AttackAnim;
+		[ShowIf(nameof(Mode), AttackMode.Continuous)]
+		public AnimationClip RecoveryAnim;
+
+		[Space]
+
+		[ShowIf(nameof(Mode), AttackMode.Continuous), Tooltip("Use a slow recovery animation variant, if the dash is at least a certain distance (normalized).")]
+		public bool UseSlowRecovery;
+		[ShowIf(nameof(Mode), AttackMode.Continuous), EnableIf(nameof(UseSlowRecovery))]
+		public float SlowRecoveryAfterDashDstNorm = 0.7f;
+		[ShowIf(nameof(Mode), AttackMode.Continuous), EnableIf(nameof(UseSlowRecovery))]
+		public AnimationClip SlowRecoveryAnim;
 
 		[Space]
 
@@ -35,7 +46,7 @@ namespace Quinn.CombatSystem
 		[ShowIf(nameof(Mode), AttackMode.Continuous)]
 		public float MaxDashDistance = 2f;
 
-		private string GetTitle()
+		public override string ToString()
 		{
 #if UNITY_EDITOR
 			string title;

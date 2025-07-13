@@ -1,3 +1,4 @@
+using FMOD;
 using UnityEngine;
 
 namespace Quinn.CombatSystem
@@ -27,14 +28,18 @@ namespace Quinn.CombatSystem
 		/// </summary>
 		private int _attackPoints;
 
+		// The end time of the entire attack. This is set delayed, for the continuous mode.
 		private float _attackEndTime;
 		private AttackPhase _phase = AttackPhase.None;
-
 		private AttackMode _mode;
+
 		private Vector2 _dashVel;
 		private Vector2 _dashStartPos;
 		private float _dashMinDst, _dashMaxDst;
-		private AnimationClip _attackAnim;
+
+		private float _attackPhaseEndTime;
+		private AnimationClip _attackAnim, _recoveryAnim;
+		private AttackDefinition _attackDef;
 
 		private bool _wantsToAttack;
 
@@ -49,6 +54,12 @@ namespace Quinn.CombatSystem
 
 		private void Update()
 		{
+			UpdateExecutingAttack();
+			UpdateAttackPointRegen();
+		}
+
+		private void UpdateExecutingAttack()
+		{
 			if (_mode is AttackMode.Continuous && _phase is AttackPhase.Charging)
 			{
 				_movement.BlockGravity(this);
@@ -62,18 +73,30 @@ namespace Quinn.CombatSystem
 				if (maxDstReached || shouldEndDashEarly)
 				{
 					_phase = AttackPhase.Attacking;
-					_animator.StopOneShot();
-					_animator.PlayOnce(_attackAnim);
 					_wantsToAttack = false;
 
-					_attackEndTime = Time.time + _attackAnim.length;
+					_animator.StopOneShot();
+					_animator.PlayOnce(_attackAnim);
+
+					_attackPhaseEndTime = Time.time + _attackAnim.length;
+
+					_recoveryAnim = GetRecoveryAnim(_attackDef);
+					_attackEndTime = Time.time + _attackAnim.length + _recoveryAnim.length;
 				}
+			}
+			else if (_phase is AttackPhase.Attacking && Time.time >= _attackPhaseEndTime)
+			{
+				_animator.PlayOnce(_recoveryAnim);
+				_phase = AttackPhase.Recovering;
 			}
 			else
 			{
 				_movement.UnblockGravity(this);
 			}
+		}
 
+		private void UpdateAttackPointRegen()
+		{
 			if (Time.time > _attackEndTime && (_mode is not AttackMode.Continuous || _phase is not AttackPhase.Charging))
 			{
 				_phase = AttackPhase.None;
@@ -174,6 +197,7 @@ namespace Quinn.CombatSystem
 				_dashMinDst = attack.MinDashDistance;
 				_dashMaxDst = attack.MaxDashDistance;
 				_attackAnim = attack.AttackAnim;
+				_attackDef = attack;
 
 				_dashVel = attack.DashVelocity;
 				_dashVel.x *= _player.FacingDirection;
@@ -185,6 +209,18 @@ namespace Quinn.CombatSystem
 			_attackPoints = DefaultAttackPoints;
 		}
 
+		private AnimationClip GetRecoveryAnim(AttackDefinition attack)
+		{
+			if (_mode is not AttackMode.Continuous)
+			{
+				return attack.RecoveryAnim;
+			}
+
+			float dst = transform.position.DistanceTo(_dashStartPos);
+			float dstNorm = dst / attack.MaxDashDistance;
+
+			return (dstNorm >= attack.SlowRecoveryAfterDashDstNorm) ? attack.SlowRecoveryAnim : attack.RecoveryAnim;
+		}
 
 		/* ANIMATION EVENTS */
 

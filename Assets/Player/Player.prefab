@@ -88,10 +88,10 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.8125, y: 1.1875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &3698084549441383056
@@ -155,7 +155,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.2584616, y: 0}
     oldSize: {x: 0.8125, y: 1.1875}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 0.8125, y: 1.1875}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -258,6 +258,10 @@ MonoBehaviour:
     Animation: {fileID: 0}
     ChargeAnim: {fileID: 1853158460280590155, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
     AttackAnim: {fileID: -6935343434242428099, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
+    RecoveryAnim: {fileID: 1061367298777338554, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
+    UseSlowRecovery: 1
+    SlowRecoveryAfterDashDstNorm: 0.8
+    SlowRecoveryAnim: {fileID: -5542189986238105116, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
     Type: 0
     Stance: 0
     Cost: 1
@@ -266,15 +270,3 @@ MonoBehaviour:
     DashVelocity: {x: 12, y: 0}
     MinDashDistance: 0.5
     MaxDashDistance: 2
-  - Mode: 2
-    Animation: {fileID: 0}
-    ChargeAnim: {fileID: 1853158460280590155, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
-    AttackAnim: {fileID: -6935343434242428099, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
-    Type: 0
-    Stance: 2
-    Cost: 1
-    PushVelocity: {x: 12, y: 0}
-    PushDecayRate: 32
-    DashVelocity: {x: 24, y: 0}
-    MinDashDistance: 3
-    MaxDashDistance: 6
