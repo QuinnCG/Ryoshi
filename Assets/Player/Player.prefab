@@ -731,7 +731,7 @@ MonoBehaviour:
     DashVelocity: {x: 12, y: 0}
     MinDashDistance: 1
     MaxDashDistance: 2
-  - Mode: 1
+  - Mode: 0
     Animation: {fileID: 2206746778723631558, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
     ChargeAnim: {fileID: 0}
     AttackAnim: {fileID: 0}
