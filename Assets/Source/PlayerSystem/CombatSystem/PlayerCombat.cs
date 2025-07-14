@@ -212,6 +212,9 @@ namespace Quinn.CombatSystem
 
 		private void ExecuteAttack(AttackDefinition attack)
 		{
+			_movement.StopJump();
+			_movement.Uncrouch();
+
 			_lastAttack = attack;
 			_animator.StopOneShot();
 

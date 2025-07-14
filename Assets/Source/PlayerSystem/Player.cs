@@ -33,6 +33,9 @@ namespace Quinn
 
 		private void Update()
 		{
+			if (ConsoleManager.IsOpen)
+				return;
+
 			if (Input.GetMouseButtonDown(0))
 			{
 				_combat.Attack();
@@ -59,6 +62,15 @@ namespace Quinn
 				else if (Input.GetKeyUp(KeyCode.Space))
 				{
 					_movement.StopJump();
+				}
+
+				if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.C))
+				{
+					_movement.Crouch();
+				}
+				else if (Input.GetKeyUp(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.C))
+				{
+					_movement.Uncrouch();
 				}
 			}
 		}

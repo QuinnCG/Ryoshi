@@ -2,8 +2,6 @@ using FMODUnity;
 using Quinn.CombatSystem;
 using Quinn.MovementSystem;
 using Sirenix.OdinInspector;
-using System;
-using TMPro;
 using UnityEngine;
 
 namespace Quinn
@@ -11,6 +9,7 @@ namespace Quinn
 	[RequireComponent(typeof(SpriteRenderer))]
 	[RequireComponent(typeof(PlayableAnimator))]
 	[RequireComponent(typeof(PlayerCombat))]
+	[RequireComponent(typeof(BoxCollider2D))]
 	public class PlayerMovement : CharacterMovement
 	{
 		[Space]
@@ -18,12 +17,24 @@ namespace Quinn
 		[SerializeField, Unit(Units.MetersPerSecond)]
 		private float DefaultMoveSpeed = 4f;
 		[SerializeField, Unit(Units.MetersPerSecond)]
+		private float CrouchMoveSpeed = 2f;
+
+		[Space]
+
+		[SerializeField]
+		private Vector2 CrouchHitboxOffset;
+		[SerializeField]
+		private Vector2 CrouchHitboxSize;
+
+		[Space]
+
+		[SerializeField, Unit(Units.MetersPerSecond)]
 		private float JumpSpeed = 10f;
 		[SerializeField, Unit(Units.Meter)]
 		private float JumpHeight = 3.2f;
 
-		[SerializeField, FoldoutGroup("Animations")]
-		private AnimationClip IdleAnim, MoveAnim, JumpingAnim, FallingAnim;
+		[SerializeField, FoldoutGroup("Animations"), Required]
+		private AnimationClip IdleAnim, MoveAnim, CrouchedIdleAnim, CrouchedMoveAnim, JumpingAnim, FallingAnim;
 
 		[SerializeField, FoldoutGroup("SFX")]
 		private EventReference FootstepSound, JumpSound, LandSound;
@@ -35,7 +46,9 @@ namespace Quinn
 		private SpriteRenderer _renderer;
 		private PlayableAnimator _animator;
 		private PlayerCombat _combat;
+		private BoxCollider2D _hitbox;
 
+		private Vector2 _initHitboxOffset, _initHitboxSize;
 		private float _jumpInitY;
 		private float _lastMoveInput;
 
@@ -46,6 +59,10 @@ namespace Quinn
 			_renderer = GetComponent<SpriteRenderer>();
 			_animator = GetComponent<PlayableAnimator>();
 			_combat = GetComponent<PlayerCombat>();
+			_hitbox = GetComponent<BoxCollider2D>();
+
+			_initHitboxOffset = _hitbox.offset;
+			_initHitboxSize = _hitbox.size;
 
 			MoveSpeed = DefaultMoveSpeed;
 		}
@@ -81,7 +98,14 @@ namespace Quinn
 
 			if (IsTouchingGround)
 			{
-				_animator.PlayLooped((xDir != 0f) ? MoveAnim : IdleAnim);
+				if (xDir == 0f)
+				{
+					_animator.PlayLooped(IsCrouched ? CrouchedIdleAnim : IdleAnim);
+				}
+				else
+				{
+					_animator.PlayLooped(IsCrouched ? CrouchedMoveAnim : MoveAnim);
+				}
 			}
 
 			if (!_combat.IsAttacking)
@@ -102,6 +126,8 @@ namespace Quinn
 		{
 			if (!IsJumping && IsTouchingGround)
 			{
+				Uncrouch();
+
 				IsJumping = true;
 				_jumpInitY = transform.position.y;
 
@@ -123,6 +149,30 @@ namespace Quinn
 				IsJumping = false;
 				UnblockGravity(this);
 				StartFalling();
+			}
+		}
+
+		public void Crouch()
+		{
+			if (!IsCrouched && IsTouchingGround)
+			{
+				IsCrouched = true;
+				MoveSpeed = CrouchMoveSpeed;
+
+				//_hitbox.offset = CrouchHitboxOffset;
+				//_hitbox.size = CrouchHitboxSize;
+			}
+		}
+
+		public void Uncrouch()
+		{
+			if (IsCrouched && !IsTouchingCeiling)
+			{
+				IsCrouched = false;
+				MoveSpeed = DefaultMoveSpeed;
+
+				//_hitbox.offset = _initHitboxOffset;
+				//_hitbox.size = _initHitboxSize;
 			}
 		}
 
@@ -150,5 +200,4 @@ namespace Quinn
 			Audio.Play(FootstepSound);
 		}
 	}
-
 }

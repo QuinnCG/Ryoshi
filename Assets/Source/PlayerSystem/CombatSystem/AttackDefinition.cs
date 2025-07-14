@@ -66,26 +66,33 @@ namespace Quinn.CombatSystem
 		public override string ToString()
 		{
 #if UNITY_EDITOR
-			var title = string.Empty;
+			try
+			{
+				var title = string.Empty;
 
-			if (Animation == null && ChargeAnim == null)
+				if (Animation == null && ChargeAnim == null)
+				{
+					return "Attack";
+				}
+
+				if (Mode is AttackMode.Continuous && ChargeAnim != null)
+				{
+					title = ChargeAnim.name;
+					title = title.Remove(title.IndexOf("_Charge"), "_Charge".Length);
+				}
+				else if (Animation != null)
+				{
+					title = Animation.name;
+				}
+
+				title = title.Remove(title.IndexOf("Player_"), "Player_".Length);
+
+				return UnityEditor.ObjectNames.NicifyVariableName(title);
+			}
+			catch (System.Exception)
 			{
 				return "Attack";
 			}
-
-			if (Mode is AttackMode.Continuous && ChargeAnim != null)
-			{
-				title = ChargeAnim.name;
-				title = title.Remove(title.IndexOf("_Charge"), "_Charge".Length);
-			}
-			else if (Animation != null)
-			{
-				title = Animation.name;
-			}
-
-			title = title.Remove(title.IndexOf("Player_"), "Player_".Length);
-
-			return UnityEditor.ObjectNames.NicifyVariableName(title);
 #else
 			return string.Empty;
 #endif

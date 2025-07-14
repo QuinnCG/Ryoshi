@@ -54,6 +54,9 @@ namespace Quinn
 
 		public void PlayLooped(AnimationClip anim, bool overrideOneShot = false)
 		{
+			if (anim == null)
+				Log.Error("Can't play null animation!");
+
 			if (overrideOneShot)
 			{
 				StopOneShot();
@@ -68,6 +71,9 @@ namespace Quinn
 
 		public void PlayOnce(AnimationClip anim, bool holdEndFrame = false)
 		{
+			if (anim == null)
+				Log.Error("Can't play null animation!");
+
 			_nextOneShotEndTime = Time.time + anim.length;
 			PlayAnimClip(anim);
 
