@@ -377,7 +377,7 @@ SpriteRenderer:
   m_SortingLayerID: -1390403797
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1927195962252387, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
+  m_Sprite: {fileID: 4428893975656469833, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -519,12 +519,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87f5e53cad997ee47ab435bb183df247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FallSpeed: 14
-  InitialFallSpeed: 4
-  MaxFallSpeed: 64
+  FallSpeed: 48
+  InitialFallSpeed: -4
+  MaxFallSpeed: 24
   DefaultMoveSpeed: 5
-  JumpSpeed: 14
-  JumpHeight: 2
+  JumpSpeed: 6
+  JumpHeight: 1.5
   IdleAnim: {fileID: 2195382558344662133, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
   MoveAnim: {fileID: -2883626450286218148, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
   FootstepSound:
@@ -593,6 +593,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DefaultAttackPoints: 5
+  AttackChainEndCooldown: 0.5
   Moveset:
   - Mode: 2
     Animation: {fileID: 0}
@@ -603,10 +604,45 @@ MonoBehaviour:
     SlowRecoveryAfterDashDstNorm: 0.8
     SlowRecoveryAnim: {fileID: -5542189986238105116, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
     Type: 0
+    CanBeRepeated: 1
     Stance: 0
     Cost: 1
     PushVelocity: {x: 16, y: 0}
     PushDecayRate: 32
     DashVelocity: {x: 12, y: 0}
     MinDashDistance: 0.5
+    MaxDashDistance: 2
+  - Mode: 1
+    Animation: {fileID: 2922559791266698393, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
+    ChargeAnim: {fileID: 0}
+    AttackAnim: {fileID: 0}
+    RecoveryAnim: {fileID: 0}
+    UseSlowRecovery: 0
+    SlowRecoveryAfterDashDstNorm: 0.7
+    SlowRecoveryAnim: {fileID: 0}
+    Type: 1
+    CanBeRepeated: 0
+    Stance: 0
+    Cost: 1
+    PushVelocity: {x: 12, y: 0}
+    PushDecayRate: 32
+    DashVelocity: {x: 12, y: 0}
+    MinDashDistance: 1
+    MaxDashDistance: 2
+  - Mode: 1
+    Animation: {fileID: 2206746778723631558, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
+    ChargeAnim: {fileID: 0}
+    AttackAnim: {fileID: 0}
+    RecoveryAnim: {fileID: 0}
+    UseSlowRecovery: 0
+    SlowRecoveryAfterDashDstNorm: 0.7
+    SlowRecoveryAnim: {fileID: 0}
+    Type: 1
+    CanBeRepeated: 1
+    Stance: 0
+    Cost: 1
+    PushVelocity: {x: 12, y: 0}
+    PushDecayRate: 32
+    DashVelocity: {x: 12, y: 0}
+    MinDashDistance: 1
     MaxDashDistance: 2

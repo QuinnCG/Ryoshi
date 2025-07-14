@@ -33,16 +33,25 @@ namespace Quinn
 
 		private void Update()
 		{
+			if (Input.GetMouseButtonDown(0))
+			{
+				_combat.Attack();
+			}
+			else if (Input.GetMouseButtonUp(0))
+			{
+				_combat.ReleaseAttack();
+			}
+
+			var inputDir = Input.GetAxisRaw("Horizontal");
+			_movement.Move(inputDir);
+
+			if (inputDir != 0f)
+			{
+				FacingDirection = Mathf.Sign(inputDir);
+			}
+
 			if (!_combat.IsAttacking)
 			{
-				var inputDir = Input.GetAxisRaw("Horizontal");
-				_movement.Move(inputDir);
-
-				if (inputDir != 0f)
-				{
-					FacingDirection = Mathf.Sign(inputDir);
-				}
-
 				if (Input.GetKeyDown(KeyCode.Space))
 				{
 					_movement.Jump();
@@ -51,15 +60,6 @@ namespace Quinn
 				{
 					_movement.StopJump();
 				}
-
-				if (Input.GetMouseButtonDown(0))
-				{
-					_combat.Attack();
-				}
-			}
-			else if (Input.GetMouseButtonUp(0))
-			{
-				_combat.ReleaseAttack();
 			}
 		}
 

@@ -10,6 +10,8 @@ namespace Quinn.CombatSystem
 	{
 		[SerializeField]
 		private int DefaultAttackPoints = 5;
+		[SerializeField, Tooltip("Cooldown penality to encourage chaining attacks.")]
+		private float AttackChainEndCooldown = 0.8f;
 
 		[SerializeField]
 		private AttackDefinition[] Moveset;
@@ -35,6 +37,9 @@ namespace Quinn.CombatSystem
 		private AttackPhase _phase = AttackPhase.None;
 		private AttackMode _mode;
 
+		private float _nextAttackChainCooldownEndTime;
+		private AttackDefinition _lastAttack;
+
 		// Used by continuous mode.
 		private Vector2 _dashVel;
 		private Vector2 _dashStartPos;
@@ -57,7 +62,7 @@ namespace Quinn.CombatSystem
 		private void Update()
 		{
 			UpdateExecutingAttack();
-			UpdateAttackEndTime();
+			UpdateAttackChainEndTime();
 		}
 
 		private void UpdateExecutingAttack()
@@ -99,25 +104,40 @@ namespace Quinn.CombatSystem
 			}
 		}
 
-		private void UpdateAttackEndTime()
+		private void UpdateAttackChainEndTime()
 		{
-			bool attackEndTime = Time.time > _entireAttackEndTime;
+			bool attackIsComplete = Time.time > _entireAttackEndTime;
 			bool isContinuousDashChargeActive = _mode is AttackMode.Continuous && _phase is AttackPhase.Charging;
 
 			// If we are not in continuous mode, respect the attackEndTime value. Otherwise, wait for us to not be in charging phase, before respecting the value.
 			// At the end of charging phase (while in continuous mode), the attackEndTime is updated to match the variable length of the charge; it's not valid for continuous mode, until the end of the charging phase.
-			if (attackEndTime && !isContinuousDashChargeActive)
+			if (attackIsComplete && !isContinuousDashChargeActive && _phase is not AttackPhase.None)
 			{
-				_mode = AttackMode.Stationary;
-				_phase = AttackPhase.None;
-
-				_wantsToAttack = false;
-				ReplenishPoints();
+				EndChain();
 			}
+
+			if (_attackPoints == 0)
+			{
+				EndChain();
+			}
+		}
+
+		private void EndChain()
+		{
+			_mode = AttackMode.Stationary;
+			_phase = AttackPhase.None;
+
+			_wantsToAttack = false;
+			ReplenishPoints();
+
+			_nextAttackChainCooldownEndTime = Time.time + AttackChainEndCooldown;
 		}
 
 		public void Attack()
 		{
+			if (Time.time < _nextAttackChainCooldownEndTime)
+				return;
+
 			if (_phase is not (AttackPhase.None or AttackPhase.Recovering))
 				return;
 
@@ -163,13 +183,23 @@ namespace Quinn.CombatSystem
 				if (attack.Stance != stance)
 					continue;
 
-				if (attack.Cost > DefaultAttackPoints)
+				// Do not repeat chain attacks that have disabled such functionality.
+				if (attack.Type is AttackType.Chain && !attack.CanBeRepeated && _lastAttack == attack)
+					continue;
+
+				if (attack.Cost > _attackPoints)
 					continue;
 
 				if (_attackPoints == DefaultAttackPoints && attack.Type is not AttackType.Starter)
 					continue;
 
+				if (_attackPoints != DefaultAttackPoints && attack.Type is AttackType.Starter)
+					continue;
+
 				if (_attackPoints == attack.Cost && attack.Type is not AttackType.Finisher)
+					continue;
+
+				if (_attackPoints != attack.Cost && attack.Type is AttackType.Finisher)
 					continue;
 
 				result = attack;
@@ -182,6 +212,9 @@ namespace Quinn.CombatSystem
 
 		private void ExecuteAttack(AttackDefinition attack)
 		{
+			_lastAttack = attack;
+			_animator.StopOneShot();
+
 			_phase = AttackPhase.Charging;
 			_mode = attack.Mode;
 
@@ -241,6 +274,10 @@ namespace Quinn.CombatSystem
 			Audio.Play(eventName, transform.position);
 		}
 
+		/// <summary>
+		/// Called by attacks that aren't of the continuous mode.<br/>
+		/// Continuous mode attacks break up the animation into a part for each phase, so there is no need to call an event to indicate a phase change.
+		/// </summary>
 		protected void AttackingPhase()
 		{
 			if (_mode is not AttackMode.Continuous)
@@ -253,6 +290,10 @@ namespace Quinn.CombatSystem
 			}
 		}
 
+		/// <summary>
+		/// Called by attacks that aren't of the continuous mode.<br/>
+		/// Continuous mode attacks break up the animation into a part for each phase, so there is no need to call an event to indicate a phase change.
+		/// </summary>
 		protected void RecoveringPhase()
 		{
 			if (_mode is not AttackMode.Continuous)

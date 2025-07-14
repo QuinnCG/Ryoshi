@@ -1,4 +1,5 @@
 using FMODUnity;
+using Quinn.CombatSystem;
 using Quinn.MovementSystem;
 using Sirenix.OdinInspector;
 using System;
@@ -8,6 +9,7 @@ using UnityEngine;
 namespace Quinn
 {
 	[RequireComponent(typeof(PlayableAnimator))]
+	[RequireComponent(typeof(PlayerCombat))]
 	public class PlayerMovement : CharacterMovement
 	{
 		[Space]
@@ -30,8 +32,9 @@ namespace Quinn
 		public bool IsCrouched { get; private set; }
 
 		private PlayableAnimator _animator;
-		private float _jumpInitY;
+		private PlayerCombat _combat;
 
+		private float _jumpInitY;
 		private float _lastMoveInput;
 
 		protected override void Awake()
@@ -39,6 +42,8 @@ namespace Quinn
 			base.Awake();
 
 			_animator = GetComponent<PlayableAnimator>();
+			_combat = GetComponent<PlayerCombat>();
+
 			MoveSpeed = DefaultMoveSpeed;
 		}
 
@@ -64,15 +69,18 @@ namespace Quinn
 
 		public void Move(float xDir)
 		{
-			AddVelocity(MoveSpeed * xDir * Vector2.right);
 			UpdateFacingDir(xDir);
-
 			_animator.PlayLooped((xDir != 0f) ? MoveAnim : IdleAnim);
 
-			// Play starting footstep.
-			if (xDir != 0f && _lastMoveInput == 0f)
+			if (!_combat.IsAttacking)
 			{
-				OnFootstep();
+				AddVelocity(MoveSpeed * xDir * Vector2.right);
+
+				// Play starting footstep.
+				if (xDir != 0f && _lastMoveInput == 0f)
+				{
+					OnFootstep();
+				}
 			}
 
 			_lastMoveInput = xDir;

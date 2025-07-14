@@ -3049,7 +3049,7 @@ GameObject:
   - component: {fileID: 1906656268}
   - component: {fileID: 1906656267}
   m_Layer: 3
-  m_Name: Stone (1)
+  m_Name: Wood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3082,7 +3082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 310a26d20c8c1d34faf9d85361d12b91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Material>k__BackingField: 1
+  <Material>k__BackingField: 4
 --- !u!61 &1906656268
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3174,7 +3174,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.1, g: 0.1, b: 0.1, a: 1}
+  m_Color: {r: 0.20784314, g: 0.14001448, b: 0.10196078, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3403,6 +3403,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1483798063153642824, guid: cc25611e5c951384697add580b86314d, type: 3}
+      propertyPath: field of view
+      value: 45
+      objectReference: {fileID: 0}
     - target: {fileID: 2460804428202487903, guid: cc25611e5c951384697add580b86314d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
