@@ -748,3 +748,20 @@ MonoBehaviour:
     DashVelocity: {x: 12, y: 0}
     MinDashDistance: 1
     MaxDashDistance: 2
+  - Mode: 1
+    Animation: {fileID: -4639349512770019431, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
+    ChargeAnim: {fileID: 0}
+    AttackAnim: {fileID: 0}
+    RecoveryAnim: {fileID: 0}
+    UseSlowRecovery: 0
+    SlowRecoveryAfterDashDstNorm: 0.7
+    SlowRecoveryAnim: {fileID: 0}
+    Type: 0
+    CanBeRepeated: 0
+    Stance: 2
+    Cost: 2
+    PushVelocity: {x: 12, y: -12}
+    PushDecayRate: 32
+    DashVelocity: {x: 12, y: 0}
+    MinDashDistance: 1
+    MaxDashDistance: 2
