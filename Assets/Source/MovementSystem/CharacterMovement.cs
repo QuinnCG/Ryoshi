@@ -19,6 +19,9 @@ namespace Quinn.MovementSystem
 		[SerializeField, Unit(Units.MetersPerSecondSquared)]
 		private float MaxFallSpeed = 64f;
 
+		[Space, SerializeField]
+		private bool StartGrounded = true;
+
 		public float MoveSpeed { get; protected set; }
 		/// <summary>
 		/// The move speed, accounting for any factors from status effects or the like.
@@ -54,10 +57,14 @@ namespace Quinn.MovementSystem
 
 		private float _fallSpeed;
 
+		protected override void Awake()
+		{
+			base.Awake();
+			IsTouchingGround = StartGrounded;
+		}
+
 		protected virtual void Update()
 		{
-			ProcessContacts();
-
 			if (_blockGravity.Count > 0)
 			{
 				_fallSpeed = 0f;
@@ -71,12 +78,13 @@ namespace Quinn.MovementSystem
 				else
 				{
 					_fallSpeed += FallSpeed * Time.deltaTime;
-					_fallSpeed.MakeAtLeast(InitialFallSpeed);
 					_fallSpeed.MakeLessThan(MaxFallSpeed);
 
 					AddVelocity(_fallSpeed * Vector2.down);
 				}
 			}
+
+			ProcessContacts();
 		}
 
 		public void ResetGravity()
@@ -188,9 +196,15 @@ namespace Quinn.MovementSystem
 				// Not touching now, but was last frame.
 				else
 				{
+					StartFalling();
 					OnLeaveGround();
 				}
 			}
+		}
+
+		protected void StartFalling()
+		{
+			_fallSpeed = InitialFallSpeed;
 		}
 	}
 }

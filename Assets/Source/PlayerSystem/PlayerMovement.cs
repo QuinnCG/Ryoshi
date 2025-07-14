@@ -8,6 +8,7 @@ using UnityEngine;
 
 namespace Quinn
 {
+	[RequireComponent(typeof(SpriteRenderer))]
 	[RequireComponent(typeof(PlayableAnimator))]
 	[RequireComponent(typeof(PlayerCombat))]
 	public class PlayerMovement : CharacterMovement
@@ -22,15 +23,16 @@ namespace Quinn
 		private float JumpHeight = 3.2f;
 
 		[SerializeField, FoldoutGroup("Animations")]
-		private AnimationClip IdleAnim, MoveAnim;
+		private AnimationClip IdleAnim, MoveAnim, JumpingAnim, FallingAnim;
 
-		[SerializeField]
-		private EventReference FootstepSound;
+		[SerializeField, FoldoutGroup("SFX")]
+		private EventReference FootstepSound, JumpSound, LandSound;
 
 		public bool IsJumping { get; private set; }
 		public bool IsDashing { get; private set; }
 		public bool IsCrouched { get; private set; }
 
+		private SpriteRenderer _renderer;
 		private PlayableAnimator _animator;
 		private PlayerCombat _combat;
 
@@ -41,6 +43,7 @@ namespace Quinn
 		{
 			base.Awake();
 
+			_renderer = GetComponent<SpriteRenderer>();
 			_animator = GetComponent<PlayableAnimator>();
 			_combat = GetComponent<PlayerCombat>();
 
@@ -65,12 +68,21 @@ namespace Quinn
 					AddVelocity(JumpSpeed * Vector2.up);
 				}
 			}
+
+			if (!IsTouchingGround)
+			{
+				_animator.PlayLooped(IsJumping ? JumpingAnim : FallingAnim);
+			}
 		}
 
 		public void Move(float xDir)
 		{
 			UpdateFacingDir(xDir);
-			_animator.PlayLooped((xDir != 0f) ? MoveAnim : IdleAnim);
+
+			if (IsTouchingGround)
+			{
+				_animator.PlayLooped((xDir != 0f) ? MoveAnim : IdleAnim);
+			}
 
 			if (!_combat.IsAttacking)
 			{
@@ -94,7 +106,14 @@ namespace Quinn
 				_jumpInitY = transform.position.y;
 
 				BlockGravity(this);
+
+				Audio.Play(JumpSound);
 			}
+		}
+
+		protected override void OnTouchGround()
+		{
+			Audio.Play(LandSound);
 		}
 
 		public void StopJump()
@@ -103,6 +122,7 @@ namespace Quinn
 			{
 				IsJumping = false;
 				UnblockGravity(this);
+				StartFalling();
 			}
 		}
 
@@ -117,9 +137,11 @@ namespace Quinn
 
 			if (xDir != 0f)
 			{
-				var scale = transform.localScale;
-				scale.x = Mathf.Abs(scale.x) * Mathf.Sign(xDir);
-				transform.localScale = scale;
+				//var scale = transform.localScale;
+				//scale.x = Mathf.Abs(scale.x) * Mathf.Sign(xDir);
+				//transform.localScale = scale;
+
+				_renderer.flipX = xDir < 0f;
 			}
 		}
 
