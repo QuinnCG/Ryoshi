@@ -52,9 +52,14 @@ namespace Quinn
 			_graph.Destroy();
 		}
 
-		public void PlayLooped(AnimationClip anim)
+		public void PlayLooped(AnimationClip anim, bool overrideOneShot = false)
 		{
-			if (_loopingAnim != anim)
+			if (overrideOneShot)
+			{
+				StopOneShot();
+			}
+
+			if (_loopingAnim != anim && !_isOneShotPlaying)
 			{
 				_loopingAnim = anim;
 				PlayAnimClip(anim);

@@ -230,7 +230,7 @@ namespace Quinn.CombatSystem
 				{
 					var pushVel = attack.PushVelocity;
 					pushVel.x *= _player.FacingDirection;
-					_movement.Push(attack.PushVelocity, attack.PushDecayRate, true);
+					_movement.Push(pushVel, attack.PushDecayRate, true);
 				}
 			}
 			else
