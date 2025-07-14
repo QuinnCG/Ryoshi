@@ -1,4 +1,5 @@
 using FMOD;
+using Newtonsoft.Json.Converters;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -100,7 +101,7 @@ namespace Quinn.CombatSystem
 
 		public void Block()
 		{
-			if (!IsBlocking && !_movement.IsJumping && _movement.IsTouchingGround)
+			if (!IsBlocking && !_movement.IsJumping && _movement.IsTouchingGround && !_movement.IsDashing)
 			{
 				IsBlocking = true;
 			}
@@ -184,6 +185,7 @@ namespace Quinn.CombatSystem
 
 		private AttackStanceType GetPlayerStance()
 		{
+			// Dashing takes priority over airborne.
 			if (_movement.IsDashing)
 			{
 				return AttackStanceType.Dashing;
@@ -240,6 +242,7 @@ namespace Quinn.CombatSystem
 		{
 			_movement.StopJump();
 			_movement.Uncrouch();
+			_movement.StopDash();
 
 			Unblock();
 
@@ -287,7 +290,7 @@ namespace Quinn.CombatSystem
 		/// <returns>The regular recovery animation, or the slow variant, if applicable.</returns>
 		private AnimationClip GetRecoveryAnim(AttackDefinition attack)
 		{
-			if (_mode is not AttackMode.Continuous)
+			if (_mode is not AttackMode.Continuous || attack.SlowRecoveryAnim == null)
 			{
 				return attack.RecoveryAnim;
 			}

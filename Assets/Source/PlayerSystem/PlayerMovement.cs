@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace Quinn
 {
+	[RequireComponent(typeof(Player))]
 	[RequireComponent(typeof(SpriteRenderer))]
 	[RequireComponent(typeof(PlayableAnimator))]
 	[RequireComponent(typeof(PlayerCombat))]
@@ -33,36 +34,46 @@ namespace Quinn
 		[SerializeField, Unit(Units.Meter)]
 		private float JumpHeight = 3.2f;
 
+		[Space]
+
+		[SerializeField]
+		private float DashSpeed = 12f;
+		[SerializeField]
+		private float DashDistance = 3f;
+		[SerializeField]
+		private float DashCooldown = 0.5f;
+
 		[SerializeField, FoldoutGroup("Animations"), Required]
-		private AnimationClip IdleAnim, MoveAnim, CrouchedIdleAnim, CrouchedMoveAnim, JumpingAnim, FallingAnim;
+		private AnimationClip IdleAnim, MoveAnim, CrouchedIdleAnim, CrouchedMoveAnim, JumpingAnim, FallingAnim, DashingAnim;
 
 		[SerializeField, FoldoutGroup("SFX")]
-		private EventReference FootstepSound, JumpSound, LandSound;
+		private EventReference FootstepSound, JumpSound, LandSound, DashSound;
 
 		public bool IsJumping { get; private set; }
 		public bool IsDashing { get; private set; }
 		public bool IsCrouched { get; private set; }
 
+		private Player _player;
 		private SpriteRenderer _renderer;
 		private PlayableAnimator _animator;
 		private PlayerCombat _combat;
 		private BoxCollider2D _hitbox;
 
-		private Vector2 _initHitboxOffset, _initHitboxSize;
 		private float _jumpInitY;
 		private float _lastMoveInput;
+
+		private float _nextAllowedDashTime;
+		private float _dashEndTime;
 
 		protected override void Awake()
 		{
 			base.Awake();
 
+			_player = GetComponent<Player>();
 			_renderer = GetComponent<SpriteRenderer>();
 			_animator = GetComponent<PlayableAnimator>();
 			_combat = GetComponent<PlayerCombat>();
 			_hitbox = GetComponent<BoxCollider2D>();
-
-			_initHitboxOffset = _hitbox.offset;
-			_initHitboxSize = _hitbox.size;
 
 			MoveSpeed = DefaultMoveSpeed;
 		}
@@ -90,6 +101,19 @@ namespace Quinn
 			{
 				_animator.PlayLooped(IsJumping ? JumpingAnim : FallingAnim);
 			}
+
+			if (IsDashing)
+			{
+				ResetGravity();
+				SetVelocity(DashSpeed * _player.FacingDirection * Vector2.right);
+
+				if (Time.time > _dashEndTime)
+				{
+					IsDashing = false;
+				}
+
+				_animator.PlayLooped(DashingAnim, true);
+			}
 		}
 
 		public void Move(float xDir)
@@ -100,7 +124,7 @@ namespace Quinn
 			if (_combat.IsBlocking)
 				return;
 
-			if (IsTouchingGround)
+			if (IsTouchingGround && !IsDashing && !IsJumping)
 			{
 				if (xDir == 0f)
 				{
@@ -177,6 +201,27 @@ namespace Quinn
 
 				//_hitbox.offset = _initHitboxOffset;
 				//_hitbox.size = _initHitboxSize;
+			}
+		}
+
+		public void Dash()
+		{
+			if (!IsDashing && Time.time >= _nextAllowedDashTime)
+			{
+				IsDashing = true;
+				_dashEndTime = Time.time + (DashDistance / DashSpeed);
+				_nextAllowedDashTime = _dashEndTime + DashCooldown;
+
+				Audio.Play(DashSound);
+			}
+		}
+
+		public void StopDash()
+		{
+			if (IsDashing)
+			{
+				IsDashing = false;
+				_nextAllowedDashTime = Time.time + DashCooldown;
 			}
 		}
 

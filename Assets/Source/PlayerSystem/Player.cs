@@ -5,7 +5,6 @@ using Quinn.DamageSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.VFX;
 
 namespace Quinn
 {
@@ -52,12 +51,15 @@ namespace Quinn
 				_combat.ReleaseAttack();
 			}
 
-			var inputDir = Input.GetAxisRaw("Horizontal");
-			_movement.Move(inputDir);
-
-			if (inputDir != 0f)
+			if (!_movement.IsDashing)
 			{
-				FacingDirection = Mathf.Sign(inputDir);
+				var inputDir = Input.GetAxisRaw("Horizontal");
+				_movement.Move(inputDir);
+
+				if (inputDir != 0f)
+				{
+					FacingDirection = Mathf.Sign(inputDir);
+				}
 			}
 
 			if (!_combat.IsAttacking || _combat.IsRecovering)
@@ -72,7 +74,7 @@ namespace Quinn
 				}
 			}
 
-			if (!_combat.IsAttacking)
+			if (!_combat.IsAttacking && !_movement.IsDashing)
 			{
 				if (Input.GetKeyDown(KeyCode.Space))
 				{
@@ -90,6 +92,11 @@ namespace Quinn
 				else
 				{
 					_movement.Uncrouch();
+				}
+
+				if (Input.GetKeyDown(KeyCode.LeftShift))
+				{
+					_movement.Dash();
 				}
 			}
 		}
