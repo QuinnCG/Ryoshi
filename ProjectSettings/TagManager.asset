@@ -44,8 +44,14 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BackVFX
+    uniqueID: 778373919
+    locked: 0
   - name: Character
     uniqueID: 2904563499
+    locked: 0
+  - name: FrontVFX
+    uniqueID: 2477219387
     locked: 0
   - name: Foreground
     uniqueID: 3984637619

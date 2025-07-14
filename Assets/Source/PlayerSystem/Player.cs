@@ -1,10 +1,10 @@
 using QFSW.QC;
 using Quinn.CombatSystem;
 using Quinn.DamageSystem;
-using System;
-using Unity.VisualScripting;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.VFX;
 
 namespace Quinn
 {
@@ -14,6 +14,9 @@ namespace Quinn
 	[RequireComponent(typeof(Health))]
 	public class Player : MonoBehaviour
 	{
+		[SerializeField, Required, Tooltip("Not a prefab."), ChildGameObjectsOnly]
+		private ParticleSystem BlockDamageVFX;
+
 		public float FacingDirection { get; private set; } = 1f;
 
 		private PlayableAnimator _animator;
@@ -29,6 +32,7 @@ namespace Quinn
 			_health = GetComponent<Health>();
 
 			_health.OnDeath += OnDeath;
+			_health.AllowDamage = AllowDamage;
 		}
 
 		private void Update()
@@ -91,6 +95,37 @@ namespace Quinn
 		{
 			Log.Notice("Player Death!");
 			await SceneManager.LoadSceneAsync(0);
+		}
+
+		private bool AllowDamage(DamageInfo info)
+		{
+			// Ignore damage if we are blocking in the opposing direction.
+			if (_combat.IsBlocking)
+			{
+				bool blockingDmg = false;
+
+				if (info.Direction.x > 0f && FacingDirection < 0f)
+					blockingDmg = true;
+
+				if (info.Direction.x < 0f && FacingDirection > 0f)
+					blockingDmg = true;
+
+				if (blockingDmg)
+				{
+					Vector2 dir = info.Direction;
+					dir.y += 1f;
+					dir.Normalize();
+					float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+					BlockDamageVFX.transform.rotation = Quaternion.AngleAxis(angle - 45f, Vector3.forward);
+					BlockDamageVFX.Play();
+
+					// Do not allow damage.
+					return false;
+				}
+			}
+
+			return true;
 		}
 
 		[Command("hurt", "Hurts the player.")]

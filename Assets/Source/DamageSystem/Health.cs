@@ -30,6 +30,8 @@ namespace Quinn.DamageSystem
 
 		public bool IsDead => Current <= 0f;
 
+		public System.Func<DamageInfo, bool> AllowDamage { private get; set; }
+
 		public event System.Action<DamageInfo> OnDamage;
 		public event System.Action OnDeath;
 
@@ -53,6 +55,10 @@ namespace Quinn.DamageSystem
 				return false;
 
 			if (info.TeamType == _team.Type)
+				return false;
+
+			bool? allowed = AllowDamage?.Invoke(info);
+			if (!allowed.HasValue || !allowed.Value)
 				return false;
 
 			_lastDamageDir = info.Direction.normalized;
