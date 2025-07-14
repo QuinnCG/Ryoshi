@@ -1,4 +1,5 @@
 using FMOD;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Quinn.CombatSystem
@@ -12,6 +13,8 @@ namespace Quinn.CombatSystem
 		private int DefaultAttackPoints = 5;
 		[SerializeField, Tooltip("Cooldown penality to encourage chaining attacks.")]
 		private float AttackChainEndCooldown = 0.8f;
+		[SerializeField, Required]
+		private AnimationClip BlockAnim;
 
 		[SerializeField]
 		private AttackDefinition[] Moveset;
@@ -20,6 +23,8 @@ namespace Quinn.CombatSystem
 		/// Is the player's attack phase charging, attacking, or recovery? If any of those, then they are "attacking".
 		/// </summary>
 		public bool IsAttacking => _phase is not AttackPhase.None;
+		public bool IsRecovering => _phase is AttackPhase.Recovering;
+		public bool IsBlocking { get; private set; }
 
 		private Player _player;
 		private PlayableAnimator _animator;
@@ -63,6 +68,50 @@ namespace Quinn.CombatSystem
 		{
 			UpdateExecutingAttack();
 			UpdateAttackChainEndTime();
+
+			if (IsBlocking)
+			{
+				_animator.PlayLooped(BlockAnim, overrideOneShot: true);
+			}
+		}
+
+		public void Attack()
+		{
+			if (Time.time < _nextAttackChainCooldownEndTime)
+				return;
+
+			if (_phase is not (AttackPhase.None or AttackPhase.Recovering))
+				return;
+
+			_wantsToAttack = true;
+
+			var stance = GetPlayerStance();
+
+			if (TrySearchForAttack(stance, out var attack))
+			{
+				ExecuteAttack(attack);
+			}
+		}
+
+		public void ReleaseAttack()
+		{
+			_wantsToAttack = false;
+		}
+
+		public void Block()
+		{
+			if (!IsBlocking && !_movement.IsJumping && _movement.IsTouchingGround)
+			{
+				IsBlocking = true;
+			}
+		}
+
+		public void Unblock()
+		{
+			if (IsBlocking)
+			{
+				IsBlocking = false;
+			}
 		}
 
 		private void UpdateExecutingAttack()
@@ -133,29 +182,6 @@ namespace Quinn.CombatSystem
 			_nextAttackChainCooldownEndTime = Time.time + AttackChainEndCooldown;
 		}
 
-		public void Attack()
-		{
-			if (Time.time < _nextAttackChainCooldownEndTime)
-				return;
-
-			if (_phase is not (AttackPhase.None or AttackPhase.Recovering))
-				return;
-
-			_wantsToAttack = true;
-
-			var stance = GetPlayerStance();
-
-			if (TrySearchForAttack(stance, out var attack))
-			{
-				ExecuteAttack(attack);
-			}
-		}
-
-		public void ReleaseAttack()
-		{
-			_wantsToAttack = false;
-		}
-
 		private AttackStanceType GetPlayerStance()
 		{
 			if (_movement.IsDashing)
@@ -214,6 +240,8 @@ namespace Quinn.CombatSystem
 		{
 			_movement.StopJump();
 			_movement.Uncrouch();
+
+			Unblock();
 
 			_lastAttack = attack;
 			_animator.StopOneShot();

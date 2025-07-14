@@ -96,6 +96,10 @@ namespace Quinn
 		{
 			UpdateFacingDir(xDir);
 
+			// Can only change facing direction, while blocking.
+			if (_combat.IsBlocking)
+				return;
+
 			if (IsTouchingGround)
 			{
 				if (xDir == 0f)

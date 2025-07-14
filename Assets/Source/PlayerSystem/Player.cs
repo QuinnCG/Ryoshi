@@ -53,6 +53,18 @@ namespace Quinn
 				FacingDirection = Mathf.Sign(inputDir);
 			}
 
+			if (!_combat.IsAttacking || _combat.IsRecovering)
+			{
+				if (Input.GetMouseButton(1))
+				{
+					_combat.Block();
+				}
+				else
+				{
+					_combat.Unblock();
+				}
+			}
+
 			if (!_combat.IsAttacking)
 			{
 				if (Input.GetKeyDown(KeyCode.Space))
@@ -64,11 +76,11 @@ namespace Quinn
 					_movement.StopJump();
 				}
 
-				if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.C))
+				if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.C))
 				{
 					_movement.Crouch();
 				}
-				else if (Input.GetKeyUp(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.C))
+				else
 				{
 					_movement.Uncrouch();
 				}
