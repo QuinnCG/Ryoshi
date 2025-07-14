@@ -594,6 +594,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockDamageVFX: {fileID: 5439599828935633487}
+  BlockDamageSound:
+    Guid:
+      Data1: 722857107
+      Data2: 1227667348
+      Data3: -1757145681
+      Data4: -1606077
+    Path: event:/Player/BlockDamage
 --- !u!114 &7573702492132094022
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using FMODUnity;
 using QFSW.QC;
 using Quinn.CombatSystem;
 using Quinn.DamageSystem;
@@ -16,6 +17,8 @@ namespace Quinn
 	{
 		[SerializeField, Required, Tooltip("Not a prefab."), ChildGameObjectsOnly]
 		private ParticleSystem BlockDamageVFX;
+		[SerializeField]
+		private EventReference BlockDamageSound;
 
 		public float FacingDirection { get; private set; } = 1f;
 
@@ -119,6 +122,8 @@ namespace Quinn
 
 					BlockDamageVFX.transform.rotation = Quaternion.AngleAxis(angle - 45f, Vector3.forward);
 					BlockDamageVFX.Play();
+
+					Audio.Play(BlockDamageSound);
 
 					// Do not allow damage.
 					return false;
