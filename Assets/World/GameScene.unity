@@ -955,7 +955,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: -876546973899608171, guid: 6f7a11b7afe6db64f8f690b54ceb4734, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2386,7 +2386,7 @@ MonoBehaviour:
 
     M1 (Hold) - Extend some attacks
 
-    
+
 
     Space
     - Jump
@@ -2395,12 +2395,12 @@ MonoBehaviour:
 
     Ctrl - Crouch
 
-    
 
-    Try attacking while
-    jumping, dashing (hold M1), or crouching (hold M1)
 
-    
+    Try attacking while jumping,
+    dashing (hold M1), or crouching (hold M1)
+
+
 
     M2 - Block'
   m_isRightToLeft: 0

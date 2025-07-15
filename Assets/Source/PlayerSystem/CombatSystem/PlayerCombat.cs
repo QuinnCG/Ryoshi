@@ -2,8 +2,6 @@ using DG.Tweening;
 using FMODUnity;
 using Quinn.DamageSystem;
 using Sirenix.OdinInspector;
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Quinn.CombatSystem

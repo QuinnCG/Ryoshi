@@ -188,10 +188,17 @@ namespace Quinn.MovementSystem
 
 			foreach (var contact in contacts)
 			{
-				if (contact.collider.gameObject.layer != LayerMask.NameToLayer("Obstacle"))
+				int layer = contact.collider.gameObject.layer;
+
+				if (layer != LayerMask.NameToLayer(Layers.ObstacleName))
 					continue;
 
 				Vector2 normal = contact.normal;
+
+				if (!OnContact(contact.collider, normal, layer))
+				{
+					break;
+				}
 
 				// Vertical
 				if (normal.IsVertical())
@@ -235,6 +242,17 @@ namespace Quinn.MovementSystem
 					OnLeaveGround();
 				}
 			}
+		}
+
+		/// <summary>
+		/// Called for each collision contact.
+		/// </summary>
+		/// <param name="normal">The normal of the contact.</param>
+		/// <param name="layer">The physics layer of the contact.</param>
+		/// <returns>True, if we should continue looking for contacts this frame.</returns>
+		protected virtual bool OnContact(Collider2D collider, Vector2 normal, int layer)
+		{
+			return true;
 		}
 
 		protected void StartFalling()
