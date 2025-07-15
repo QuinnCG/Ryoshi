@@ -14,6 +14,7 @@ namespace Quinn.MovementSystem
 		}
 
 		public bool HasAnyVelocity => Velocity.sqrMagnitude > 0f;
+		public float DecayRateFactor { get; set; } = 1f;
 
 		public Vector2 Velocity
 		{
@@ -118,7 +119,7 @@ namespace Quinn.MovementSystem
 				float mag = handle.Velocity.magnitude;
 				Vector2 dir = handle.Velocity.normalized;
 
-				mag -= Time.deltaTime * handle.DecayRate;
+				mag -= Time.deltaTime * handle.DecayRate * DecayRateFactor;
 				mag.MakeAtLeast(0f);
 
 				handle.Velocity = dir * mag;

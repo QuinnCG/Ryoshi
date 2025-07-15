@@ -109,6 +109,9 @@ namespace Quinn.MovementSystem
 			{
 				AddVelocity(_animWalkDir * _animWalkSpeed * Vector2.right);
 			}
+
+			// HACK: Magic number.
+			DecayRateFactor = IsTouchingGround ? 5f : 1f;
 		}
 
 		public void ResetGravity()

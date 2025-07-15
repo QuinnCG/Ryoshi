@@ -18,6 +18,16 @@ namespace Quinn
 			_instance = null;
 		}
 
+		public static float GetFactor(object key)
+		{
+			if (_instance._factors.TryGetValue(key, out float value))
+			{
+				return value;
+			}
+
+			return 1f;
+		}
+
 		/// <summary>
 		/// Add or update a factor.
 		/// </summary>

@@ -1,6 +1,8 @@
+using DG.Tweening;
 using FMODUnity;
 using Quinn.DamageSystem;
 using Sirenix.OdinInspector;
+using System.Collections;
 using UnityEngine;
 
 namespace Quinn.CombatSystem
@@ -16,6 +18,8 @@ namespace Quinn.CombatSystem
 		private int DefaultAttackPoints = 5;
 		[SerializeField, Tooltip("Cooldown penality to encourage chaining attacks.")]
 		private float AttackChainEndCooldown = 0.8f;
+		[SerializeField]
+		private float HitTimeSlowDecayRate = 10f;
 
 		[Space]
 
@@ -243,19 +247,36 @@ namespace Quinn.CombatSystem
 				Vector2 size = _attackDef.DamageBoxSize;
 
 				var colliders = Physics2D.OverlapBoxAll(center, size, 0f);
+				bool hitAny = false;
 
 				foreach (var collider in colliders)
 				{
 					if (collider.TryGetComponent(out IDamageable dmg))
 					{
-						dmg.TakeDamage(new DamageInfo()
+						bool success = dmg.TakeDamage(new DamageInfo()
 						{
 							Damage = _attackDef.Damage,
 							Direction = Vector2.right * _movement.FacingDirection,
 							TeamType = TeamType.Player,
 							Knockback = _attackDef.KnockbackVelocity
 						});
+
+						if (success)
+							hitAny = true;
 					}
+				}
+
+				if (hitAny)
+				{
+					TimeManager.ApplyFactor(this, 0f);
+
+					this.DOKill();
+
+					DOTween.To(() => TimeManager.GetFactor(this), t => TimeManager.ApplyFactor(this, t), 1f, 0.03f)
+						.SetTarget(this)
+						.SetUpdate(true)
+						.SetEase(Ease.InCubic)
+						.OnComplete(() => TimeManager.RemoveFactor(this));
 				}
 			}
 		}
