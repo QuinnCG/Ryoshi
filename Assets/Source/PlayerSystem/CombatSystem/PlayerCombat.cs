@@ -50,6 +50,7 @@ namespace Quinn.CombatSystem
 		private Vector2 _dashVel;
 		private Vector2 _dashStartPos;
 		private float _dashMinDst, _dashMaxDst;
+		private float _dashAttackForceEndTime;
 
 		// Used by continuous mode.
 		private float _attackPhaseEndTime;
@@ -117,8 +118,32 @@ namespace Quinn.CombatSystem
 
 		private void UpdateExecutingAttack()
 		{
+			void GoToAttack()
+			{
+				_phase = AttackPhase.Attacking;
+				_wantsToAttack = false;
+
+				_animator.StopOneShot();
+				_animator.PlayOnce(_attackAnim);
+
+				_recoveryAnim = GetRecoveryAnim(_attackDef);
+				_attackPhaseEndTime = Time.time + _attackAnim.length;
+				_entireAttackEndTime = _attackPhaseEndTime + _recoveryAnim.length;
+			}
+
+			void GoToRecovery()
+			{
+				_phase = AttackPhase.Recovering;
+				_animator.PlayOnce(_recoveryAnim);
+			}
+
 			if (_mode is AttackMode.Continuous)
 			{
+				if (Time.time >= _dashAttackForceEndTime && _phase is AttackPhase.Charging)
+				{
+					GoToAttack();
+				}
+
 				if (_phase is AttackPhase.Charging)
 				{
 					_movement.BlockGravity(this);
@@ -131,21 +156,12 @@ namespace Quinn.CombatSystem
 
 					if (maxDstReached || shouldEndDashEarly)
 					{
-						_phase = AttackPhase.Attacking;
-						_wantsToAttack = false;
-
-						_animator.StopOneShot();
-						_animator.PlayOnce(_attackAnim);
-
-						_recoveryAnim = GetRecoveryAnim(_attackDef);
-						_attackPhaseEndTime = Time.time + _attackAnim.length;
-						_entireAttackEndTime = _attackPhaseEndTime + _recoveryAnim.length;
+						GoToAttack();
 					}
 				}
 				else if (_phase == AttackPhase.Attacking && Time.time >= _attackPhaseEndTime)
 				{
-					_phase = AttackPhase.Recovering;
-					_animator.PlayOnce(_recoveryAnim);
+					GoToRecovery();
 				}
 			}
 			else
@@ -276,6 +292,7 @@ namespace Quinn.CombatSystem
 				_dashMaxDst = attack.MaxDashDistance;
 				_attackAnim = attack.AttackAnim;
 				_attackDef = attack;
+				_dashAttackForceEndTime = Time.time + (attack.MaxDashDistance / attack.DashVelocity.x);
 
 				_dashVel = attack.DashVelocity;
 				_dashVel.x *= _player.FacingDirection;

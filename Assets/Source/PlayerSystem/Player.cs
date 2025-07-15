@@ -51,7 +51,7 @@ namespace Quinn
 				_combat.ReleaseAttack();
 			}
 
-			if (!_movement.IsDashing)
+			if (!_movement.IsDashing && (!_combat.IsAttacking || _combat.IsRecovering))
 			{
 				var inputDir = Input.GetAxisRaw("Horizontal");
 				_movement.Move(inputDir);

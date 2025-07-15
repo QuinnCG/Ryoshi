@@ -150,7 +150,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3524616735505358909, guid: b221ce7159386d84b82c3b07cd858d98, type: 3}
       propertyPath: field of view
-      value: 55
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 3524616735505358909, guid: b221ce7159386d84b82c3b07cd858d98, type: 3}
       propertyPath: orthographic size

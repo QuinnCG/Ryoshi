@@ -16,12 +16,12 @@ MonoBehaviour:
   m_AutoSaveLastSaveLocation: 0
   m_SaveFolder: 
   m_UseSeparateSaveFolders: 1
-  m_SaveFolderAction: Source/BehaviorTree/Actions
-  m_SaveFolderModifier: Source/BehaviorTree/Modifiers
-  m_SaveFolderFlow: Source/BehaviorTree/Flows
-  m_SaveFolderCondition: Source/BehaviorTree/Conditions
-  m_SaveFolderEventChannels: Source/BehaviorTree/Channels
-  m_SaveFolderEnum: Source/BehaviorTree/Enums
+  m_SaveFolderAction: Source/AI/BehaviorTree/Actions
+  m_SaveFolderModifier: Source/AI/BehaviorTree/Modifiers
+  m_SaveFolderFlow: Source/AI/BehaviorTree/Flows
+  m_SaveFolderCondition: Source/AI/BehaviorTree/Conditions
+  m_SaveFolderEventChannels: Source/AI/BehaviorTree/Channels
+  m_SaveFolderEnum: Source/AI/BehaviorTree/Enums
   m_AutoOpenNodeScriptsInExternalEditor: 1
   m_Namespace: 
   m_AllowDisabledAgentDebugging: 0

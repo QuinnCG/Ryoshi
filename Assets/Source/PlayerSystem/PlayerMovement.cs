@@ -176,7 +176,11 @@ namespace Quinn
 			{
 				IsJumping = false;
 				UnblockGravity(this);
-				StartFalling();
+				
+				if (!IsTouchingGround)
+				{
+					StartFalling();
+				}
 			}
 		}
 
