@@ -12,6 +12,8 @@ namespace Quinn.MovementSystem
 		// The FMOD global parameter; what surface the player is currently standing on.
 		public const string PlayerSurfaceMatKey = "player-surface-material";
 
+		// HACK: Shouldn't set this surface mat key for anyone but the player's movement script.
+
 		[SerializeField, Unit(Units.MetersPerSecondSquared)]
 		private float FallSpeed = 12f;
 		[SerializeField, Unit(Units.MetersPerSecond)]
@@ -21,6 +23,8 @@ namespace Quinn.MovementSystem
 
 		[Space, SerializeField]
 		private bool StartGrounded = true;
+		[SerializeField]
+		private float AnimatedWalkSpeed = 2f;
 
 		public float MoveSpeed { get; protected set; }
 		/// <summary>
@@ -52,10 +56,16 @@ namespace Quinn.MovementSystem
 		/// </summary>
 		public bool IsMovingIntoWall { get; private set; }
 
+		public float FacingDirection { get; private set; } = 1f;
+
 		private readonly HashSet<SpeedFactor> _moveSpeedFactors = new();
 		private readonly HashSet<object> _blockGravity = new();
 
 		private float _fallSpeed;
+
+		private bool _isAnimatingWalk;
+		private float _animWalkDir;
+		private float _animWalkSpeed;
 
 		protected override void Awake()
 		{
@@ -85,6 +95,11 @@ namespace Quinn.MovementSystem
 			}
 
 			ProcessContacts();
+
+			if (_isAnimatingWalk)
+			{
+				AddVelocity(_animWalkDir * _animWalkSpeed * Vector2.right);
+			}
 		}
 
 		public void ResetGravity()
@@ -133,6 +148,14 @@ namespace Quinn.MovementSystem
 		public void CeaseMomentum()
 		{
 			ResetVelocity(true);
+		}
+
+		public void SetFacingDir(float xDir)
+		{
+			if (xDir != 0f)
+			{
+				FacingDirection = Mathf.Sign(xDir);
+			}
 		}
 
 		protected virtual void OnLeaveGround() { }
@@ -205,6 +228,21 @@ namespace Quinn.MovementSystem
 		protected void StartFalling()
 		{
 			_fallSpeed = InitialFallSpeed;
+		}
+
+		/* ANIMATION EVENTS */
+
+		// 'dir' is relative to facing dir.
+		protected void Walk(int dir)
+		{
+			_isAnimatingWalk = true;
+			_animWalkDir = Mathf.Sign(dir) * FacingDirection;
+			_animWalkSpeed = AnimatedWalkSpeed;
+		}
+
+		protected void StopWalk()
+		{
+			_isAnimatingWalk = false;
 		}
 	}
 }

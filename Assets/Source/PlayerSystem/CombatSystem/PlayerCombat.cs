@@ -1,11 +1,12 @@
-using FMOD;
-using Newtonsoft.Json.Converters;
+using FMODUnity;
+using Quinn.DamageSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Quinn.CombatSystem
 {
 	[RequireComponent(typeof(Player))]
+	[RequireComponent(typeof(Health))]
 	[RequireComponent(typeof(PlayableAnimator))]
 	[RequireComponent(typeof(PlayerMovement))]
 	public class PlayerCombat : MonoBehaviour
@@ -14,8 +15,15 @@ namespace Quinn.CombatSystem
 		private int DefaultAttackPoints = 5;
 		[SerializeField, Tooltip("Cooldown penality to encourage chaining attacks.")]
 		private float AttackChainEndCooldown = 0.8f;
+
+		[Space]
+
 		[SerializeField, Required]
-		private AnimationClip BlockAnim;
+		private AnimationClip BlockAnim, StaggerAnim;
+		[SerializeField, Required, Tooltip("Not a prefab."), ChildGameObjectsOnly]
+		private ParticleSystem BlockDamageVFX;
+		[SerializeField]
+		private EventReference BlockDamageSound;
 
 		[SerializeField]
 		private AttackDefinition[] Moveset;
@@ -26,10 +34,14 @@ namespace Quinn.CombatSystem
 		public bool IsAttacking => _phase is not AttackPhase.None;
 		public bool IsRecovering => _phase is AttackPhase.Recovering;
 		public bool IsBlocking { get; private set; }
+		public bool IsStaggered => Time.time < _staggerEndTime;
 
 		private Player _player;
+		private Health _health;
 		private PlayableAnimator _animator;
 		private PlayerMovement _movement;
+
+		private float _staggerEndTime;
 
 		/// <summary>
 		/// Attacks consume points. The number of current points, also dictates whether the attack will be a starter, chain, or finisher type.
@@ -60,9 +72,11 @@ namespace Quinn.CombatSystem
 		private void Awake()
 		{
 			_player = GetComponent<Player>();
+			_health = GetComponent<Health>();
 			_animator = GetComponent<PlayableAnimator>();
 			_movement = GetComponent<PlayerMovement>();
 
+			_health.AllowDamage = AllowDamage;
 			ReplenishPoints();
 		}
 
@@ -85,6 +99,9 @@ namespace Quinn.CombatSystem
 			if (_phase is not (AttackPhase.None or AttackPhase.Recovering))
 				return;
 
+			if (IsStaggered)
+				return;
+
 			_wantsToAttack = true;
 
 			var stance = GetPlayerStance();
@@ -102,7 +119,7 @@ namespace Quinn.CombatSystem
 
 		public void Block()
 		{
-			if (!IsBlocking && !_movement.IsJumping && _movement.IsTouchingGround && !_movement.IsDashing)
+			if (!IsBlocking && !_movement.IsJumping && _movement.IsTouchingGround && !_movement.IsDashing && !IsStaggered)
 			{
 				IsBlocking = true;
 			}
@@ -114,6 +131,47 @@ namespace Quinn.CombatSystem
 			{
 				IsBlocking = false;
 			}
+		}
+
+		// Damage blocking.
+		private bool AllowDamage(DamageInfo info)
+		{
+			// Ignore damage if we are blocking in the opposing direction.
+			if (IsBlocking)
+			{
+				bool blockingDmg = false;
+
+				if (info.Direction.x > 0f && _player.FacingDirection < 0f)
+					blockingDmg = true;
+
+				if (info.Direction.x < 0f && _player.FacingDirection > 0f)
+					blockingDmg = true;
+
+				if (blockingDmg)
+				{
+					Vector2 dir = info.Direction;
+					// Upward bias.
+					dir.y += 1f;
+					dir.Normalize();
+					float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+					// -45f is needed because default angle is not 0f.
+					BlockDamageVFX.transform.rotation = Quaternion.AngleAxis(angle - 45f, Vector3.forward);
+					BlockDamageVFX.Play();
+
+					Audio.Play(BlockDamageSound);
+
+					_staggerEndTime = Time.time + StaggerAnim.length;
+
+					Unblock();
+					_animator.PlayOnce(StaggerAnim);
+
+					// Do not allow damage.
+					return false;
+				}
+			}
+
+			return true;
 		}
 
 		private void UpdateExecutingAttack()
