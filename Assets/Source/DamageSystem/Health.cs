@@ -1,5 +1,7 @@
 using DG.Tweening;
+using FMOD.Studio;
 using FMODUnity;
+using Quinn.MovementSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.VFX;
@@ -37,6 +39,8 @@ namespace Quinn.DamageSystem
 
 		// Renderer may be null.
 		private SpriteRenderer _renderer;
+		// Locomotion may be null.
+		private Locomotion _locomotion;
 		private Team _team;
 
 		private Vector2 _lastDamageDir;
@@ -44,6 +48,7 @@ namespace Quinn.DamageSystem
 		private void Awake()
 		{
 			TryGetComponent(out _renderer);
+			TryGetComponent(out _locomotion);
 			_team = GetComponent<Team>();
 
 			Current = Max = Default;
@@ -58,7 +63,7 @@ namespace Quinn.DamageSystem
 				return false;
 
 			bool? allowed = AllowDamage?.Invoke(info);
-			if (!allowed.HasValue || !allowed.Value)
+			if (allowed.HasValue && !allowed.Value)
 				return false;
 
 			_lastDamageDir = info.Direction.normalized;
@@ -79,6 +84,12 @@ namespace Quinn.DamageSystem
 			}
 
 			FlashSequence();
+
+			if (info.Knockback.sqrMagnitude > 0f && _locomotion != null)
+			{
+				// HACK: DecayRate shouldn't be a magic number.
+				_locomotion.AddDecayingVelocity(info.Knockback, 32f);
+			}
 
 			if (Current <= 0f)
 			{

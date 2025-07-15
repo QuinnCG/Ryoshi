@@ -83,7 +83,7 @@ namespace Quinn.MovementSystem
 		/// </summary>
 		/// <param name="velocity">The initial speed and direction.</param>
 		/// <param name="decayRate">How much speed should be subtracted every second.</param>
-		protected void AddDecayingVelocity(Vector2 velocity, float decayRate)
+		public void AddDecayingVelocity(Vector2 velocity, float decayRate)
 		{
 			_decayingVelocities.Add(new DecayingVelocity()
 			{

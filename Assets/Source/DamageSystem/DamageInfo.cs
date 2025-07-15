@@ -7,5 +7,6 @@ namespace Quinn.DamageSystem
 		public float Damage = 1f;
 		public Vector2 Direction;
 		public TeamType TeamType;
+		public Vector2 Knockback;
 	}
 }

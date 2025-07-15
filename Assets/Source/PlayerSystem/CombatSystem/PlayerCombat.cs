@@ -9,6 +9,7 @@ namespace Quinn.CombatSystem
 	[RequireComponent(typeof(Health))]
 	[RequireComponent(typeof(PlayableAnimator))]
 	[RequireComponent(typeof(PlayerMovement))]
+	[RequireComponent(typeof(BoxCollider2D))]
 	public class PlayerCombat : MonoBehaviour
 	{
 		[SerializeField]
@@ -40,6 +41,7 @@ namespace Quinn.CombatSystem
 		private Health _health;
 		private PlayableAnimator _animator;
 		private PlayerMovement _movement;
+		private BoxCollider2D _hitbox;
 
 		private float _staggerEndTime;
 
@@ -64,10 +66,12 @@ namespace Quinn.CombatSystem
 		private float _dashMinDst, _dashMaxDst;
 		private float _dashAttackForceEndTime;
 
+		private bool _hasEnteredAttackPhase;
+		private AttackDefinition _attackDef;
+
 		// Used by continuous mode.
 		private float _attackPhaseEndTime;
 		private AnimationClip _attackAnim, _recoveryAnim;
-		private AttackDefinition _attackDef;
 
 		private void Awake()
 		{
@@ -75,6 +79,7 @@ namespace Quinn.CombatSystem
 			_health = GetComponent<Health>();
 			_animator = GetComponent<PlayableAnimator>();
 			_movement = GetComponent<PlayerMovement>();
+			_hitbox = GetComponent<BoxCollider2D>();
 
 			_health.AllowDamage = AllowDamage;
 			ReplenishPoints();
@@ -226,6 +231,33 @@ namespace Quinn.CombatSystem
 			{
 				_movement.UnblockGravity(this);
 			}
+
+			if (_phase is AttackPhase.Attacking && !_hasEnteredAttackPhase)
+			{
+				_hasEnteredAttackPhase = true;
+
+				Vector2 offset = _attackDef.DamageBoxOffset;
+				offset.x *= _movement.FacingDirection;
+
+				Vector2 center = (Vector2)_hitbox.bounds.center + offset;
+				Vector2 size = _attackDef.DamageBoxSize;
+
+				var colliders = Physics2D.OverlapBoxAll(center, size, 0f);
+
+				foreach (var collider in colliders)
+				{
+					if (collider.TryGetComponent(out IDamageable dmg))
+					{
+						dmg.TakeDamage(new DamageInfo()
+						{
+							Damage = _attackDef.Damage,
+							Direction = Vector2.right * _movement.FacingDirection,
+							TeamType = TeamType.Player,
+							Knockback = _attackDef.KnockbackVelocity
+						});
+					}
+				}
+			}
 		}
 
 		private void UpdateAttackChainEndTime()
@@ -318,6 +350,10 @@ namespace Quinn.CombatSystem
 			_movement.Uncrouch();
 			_movement.StopDash();
 
+			_attackDef = attack;
+
+			_hasEnteredAttackPhase = false;
+
 			Unblock();
 
 			_lastAttack = attack;
@@ -349,7 +385,6 @@ namespace Quinn.CombatSystem
 				_dashMinDst = attack.MinDashDistance;
 				_dashMaxDst = attack.MaxDashDistance;
 				_attackAnim = attack.AttackAnim;
-				_attackDef = attack;
 				_dashAttackForceEndTime = Time.time + (attack.MaxDashDistance / attack.DashVelocity.x);
 
 				_dashVel = attack.DashVelocity;

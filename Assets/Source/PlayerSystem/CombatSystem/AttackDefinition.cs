@@ -46,6 +46,15 @@ namespace Quinn.CombatSystem
 		[FoldoutGroup("Data")]
 		public int Cost = 1;
 
+		[Space]
+
+		[FoldoutGroup("Data")]
+		public Vector2 DamageBoxOffset, DamageBoxSize;
+		[FoldoutGroup("Data")]
+		public float Damage = 10f;
+		[FoldoutGroup("Data")]
+		public Vector2 KnockbackVelocity;
+
 		[FoldoutGroup("Data")]
 		[Space, ShowIf(nameof(Mode), AttackMode.Instant)]
 		public Vector2 PushVelocity = new(12f, 0f);

@@ -25,6 +25,8 @@ namespace Quinn.MovementSystem
 		private bool StartGrounded = true;
 		[SerializeField]
 		private float AnimatedWalkSpeed = 2f;
+		[SerializeField]
+		private bool StartFacingRight = true;
 
 		public float MoveSpeed { get; protected set; }
 		/// <summary>
@@ -71,6 +73,13 @@ namespace Quinn.MovementSystem
 		{
 			base.Awake();
 			IsTouchingGround = StartGrounded;
+
+			SetFacingDir(StartFacingRight ? 1f : -1f);
+		}
+
+		private void OnValidate()
+		{
+			GetComponent<SpriteRenderer>().flipX = !StartFacingRight;
 		}
 
 		protected virtual void Update()

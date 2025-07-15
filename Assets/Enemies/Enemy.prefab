@@ -62,7 +62,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: -876546973899608171, guid: 6f7a11b7afe6db64f8f690b54ceb4734, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -207,11 +207,11 @@ MonoBehaviour:
   Default: 50
   HurtSound:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -435825105
+      Data2: 1166855176
+      Data3: 625134993
+      Data4: 146170337
+    Path: event:/Player/Hurt
   DeathSound:
     Guid:
       Data1: 0
@@ -221,8 +221,8 @@ MonoBehaviour:
     Path: 
   HurtVFX: {fileID: 0}
   DeathVFX: {fileID: 0}
-  FlashOnHurt: {fileID: 0}
-  FlashInDuration: 0.1
+  FlashOnHurt: {fileID: -7769812350432153940}
+  FlashInDuration: 0.02
   FlashHoldDuration: 0.1
   FlashOutDuration: 0.1
 --- !u!114 &-966629561171739572
@@ -241,6 +241,8 @@ MonoBehaviour:
   InitialFallSpeed: 12
   MaxFallSpeed: 64
   StartGrounded: 1
+  AnimatedWalkSpeed: 2
+  StartFacingRight: 1
 --- !u!114 &139415963201933384
 MonoBehaviour:
   m_ObjectHideFlags: 0
