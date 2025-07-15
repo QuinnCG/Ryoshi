@@ -715,6 +715,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DefaultAttackPoints: 5
   AttackChainEndCooldown: 0.4
+  HitTimeSlowDecayRate: 10
   BlockAnim: {fileID: 5184268689941235841, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
   StaggerAnim: {fileID: 2499582949211276124, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
   BlockDamageVFX: {fileID: 5439599828935633487}
@@ -763,7 +764,7 @@ MonoBehaviour:
     DamageBoxSize: {x: 2, y: 1}
     Damage: 5
     KnockbackVelocity: {x: 5, y: 0}
-    PushVelocity: {x: 12, y: 0}
+    PushVelocity: {x: 18, y: 0}
     PushDecayRate: 32
     DashVelocity: {x: 12, y: 0}
     MinDashDistance: 1

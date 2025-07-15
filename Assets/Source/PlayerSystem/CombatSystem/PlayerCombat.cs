@@ -3,6 +3,7 @@ using FMODUnity;
 using Quinn.DamageSystem;
 using Sirenix.OdinInspector;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Quinn.CombatSystem
@@ -253,12 +254,15 @@ namespace Quinn.CombatSystem
 				{
 					if (collider.TryGetComponent(out IDamageable dmg))
 					{
+						var knockback = _attackDef.KnockbackVelocity;
+						knockback.x *= _movement.FacingDirection;
+
 						bool success = dmg.TakeDamage(new DamageInfo()
 						{
 							Damage = _attackDef.Damage,
 							Direction = Vector2.right * _movement.FacingDirection,
 							TeamType = TeamType.Player,
-							Knockback = _attackDef.KnockbackVelocity
+							Knockback = knockback
 						});
 
 						if (success)
