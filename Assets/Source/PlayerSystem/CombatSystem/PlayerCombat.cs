@@ -19,15 +19,17 @@ namespace Quinn.CombatSystem
 		private float AttackChainEndCooldown = 0.8f;
 		[SerializeField]
 		private float HitTimeSlowDecayRate = 10f;
+		[SerializeField]
+		private float ParryWindow = 0.2f;
 
 		[Space]
 
 		[SerializeField, Required]
-		private AnimationClip BlockAnim, StaggerAnim;
+		private AnimationClip BlockAnim, UnblockAnim, ParryAnim, StaggerAnim;
 		[SerializeField, Required, Tooltip("Not a prefab."), ChildGameObjectsOnly]
-		private ParticleSystem BlockDamageVFX;
+		private ParticleSystem BlockDamageVFX, ParryVFX;
 		[SerializeField]
-		private EventReference BlockDamageSound;
+		private EventReference BlockDamageSound, ParrySound;
 
 		[SerializeField]
 		private AttackDefinition[] Moveset;
@@ -46,7 +48,10 @@ namespace Quinn.CombatSystem
 		private PlayerMovement _movement;
 		private BoxCollider2D _hitbox;
 
+		private float _blockEndTime;
+		private float _parryWindowEndTime;
 		private float _staggerEndTime;
+		private bool _isUnblocking;
 
 		/// <summary>
 		/// Attacks consume points. The number of current points, also dictates whether the attack will be a starter, chain, or finisher type.
@@ -95,7 +100,17 @@ namespace Quinn.CombatSystem
 
 			if (IsBlocking)
 			{
-				_animator.PlayLooped(BlockAnim, overrideOneShot: true);
+				if (!_isUnblocking)
+				{
+					_animator.PlayLooped(BlockAnim, overrideOneShot: true);
+				}
+				else if (Time.time >= _blockEndTime)
+				{
+					IsBlocking = false;
+					_isUnblocking = false;
+
+					Log.Info("Block stop!");
+				}
 			}
 		}
 
@@ -130,14 +145,24 @@ namespace Quinn.CombatSystem
 			if (!IsBlocking && !_movement.IsJumping && _movement.IsTouchingGround && !_movement.IsDashing && !IsStaggered)
 			{
 				IsBlocking = true;
+				_parryWindowEndTime = Time.time + ParryWindow;
+				_isUnblocking = false;
 			}
 		}
 
+		/// <summary>
+		/// Plays an unblock animation, then sets the player to not blocking.<br/>
+		/// Parry windows are invalidated during the unblocking animation.
+		/// </summary>
 		public void Unblock()
 		{
-			if (IsBlocking)
+			if (IsBlocking && !_isUnblocking)
 			{
-				IsBlocking = false;
+				// Unblocking treats it as if the player is still technically in the block state, but without the benefit of a parry window (if they just started blocking).
+				_animator.PlayOnce(UnblockAnim);
+				_blockEndTime = Time.time + UnblockAnim.length;
+				_parryWindowEndTime = -1f;
+				_isUnblocking = true;
 			}
 		}
 
@@ -163,16 +188,31 @@ namespace Quinn.CombatSystem
 					dir.Normalize();
 					float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
-					// -45f is needed because default angle is not 0f.
-					BlockDamageVFX.transform.rotation = Quaternion.AngleAxis(angle - 45f, Vector3.forward);
-					BlockDamageVFX.Play();
+					var vfxRotation = Quaternion.AngleAxis(angle - 45f, Vector3.forward);
 
-					Audio.Play(BlockDamageSound);
+					// Block and stagger.
+					if (Time.time > _parryWindowEndTime)
+					{
+						_staggerEndTime = Time.time + StaggerAnim.length;
 
-					_staggerEndTime = Time.time + StaggerAnim.length;
+						// -45f is needed because default angle is not 0f.
+						BlockDamageVFX.transform.rotation = vfxRotation;
+						BlockDamageVFX.Play();
 
-					Unblock();
-					_animator.PlayOnce(StaggerAnim);
+						Audio.Play(BlockDamageSound);
+
+						Unblock();
+						_animator.PlayOnce(StaggerAnim);
+					}
+					// Parry; do not stagger.
+					else
+					{
+						ParryVFX.transform.rotation = vfxRotation;
+						ParryVFX.Play();
+
+						Audio.Play(ParrySound);
+						_animator.PlayOnce(ParryAnim);
+					}
 
 					// Do not allow damage.
 					return false;
