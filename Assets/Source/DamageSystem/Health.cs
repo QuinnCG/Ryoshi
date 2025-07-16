@@ -4,6 +4,7 @@ using FMODUnity;
 using Quinn.MovementSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.VFX;
 
 namespace Quinn.DamageSystem
@@ -13,6 +14,8 @@ namespace Quinn.DamageSystem
 	{
 		[SerializeField]
 		private float Default = 50f;
+		[SerializeField]
+		private Slider HPBar;
 
 		[SerializeField, FoldoutGroup("SFX")]
 		private EventReference HurtSound, DeathSound;
@@ -55,6 +58,14 @@ namespace Quinn.DamageSystem
 			Current = Max = Default;
 		}
 
+		private void LateUpdate()
+		{
+			if (HPBar != null)
+			{
+				HPBar.value = Normalized;
+			}
+		}
+
 		public bool TakeDamage(DamageInfo info)
 		{
 			if (IsDead)
@@ -66,6 +77,12 @@ namespace Quinn.DamageSystem
 			bool? allowed = AllowDamage?.Invoke(info);
 			if (allowed.HasValue && !allowed.Value)
 				return false;
+
+			// This is the first instance of damage.
+			if (Current == Max && HPBar != null)
+			{
+				HPBar.GetComponent<CanvasGroup>().DOFade(1f, 0.1f);
+			}
 
 			_lastDamageDir = info.Direction.normalized;
 
@@ -94,6 +111,10 @@ namespace Quinn.DamageSystem
 
 			if (Current <= 0f)
 			{
+				var group = HPBar.GetComponent<CanvasGroup>();
+				group.DOKill();
+				group.DOFade(0f, 0.1f);
+
 				Death();
 			}
 
