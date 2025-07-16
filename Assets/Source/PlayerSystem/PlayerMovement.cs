@@ -250,8 +250,10 @@ namespace Quinn
 
 		protected override bool OnContact(Collider2D collider, Vector2 normal, int layer)
 		{
-			if (normal.y > 0f && layer == LayerMask.NameToLayer(Layers.CharacterName))
+			if (layer == LayerMask.NameToLayer(Layers.CharacterName))
 			{
+				Log.Info(normal);
+
 				// Direction from collider to us.
 				Vector2 dir = collider.bounds.center.DirectionTo(_hitbox.bounds.center);
 				dir += Vector2.up; // Crude way to apply an upward bias.

@@ -1,6 +1,5 @@
 using Quinn.DamageSystem;
 using Sirenix.OdinInspector;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -16,8 +15,6 @@ namespace Quinn.AI
 	{
 		[SerializeField, Required]
 		private TextMeshProUGUI DebugStateText;
-		[SerializeField]
-		private bool EnableDebugStateText;
 
 		public delegate IEnumerator State();
 
@@ -43,12 +40,29 @@ namespace Quinn.AI
 			Hitbox = GetComponent<BoxCollider2D>();
 
 			Health.OnDamage += Damage;
-			Health.OnDeath += OnDeath;
+			Health.OnDeath += Death;
 
-			if (EnableDebugStateText)
+			AgentManager.Instance.RegisterAgent(this);
+		}
+
+		public void SetAgentStateDisplay(bool visible)
+		{
+			if (visible)
 			{
-				DebugStateText.text = "Not Active Yet!";
+				if (_activeState != null)
+				{
+					DebugStateText.text = "Unnamed State";
+				}
+				else
+				{
+					DebugStateText.text = "No State Set";
+				}
+
 				DebugStateText.enabled = true;
+			}
+			else
+			{
+				DebugStateText.enabled = false;
 			}
 		}
 
@@ -97,7 +111,7 @@ namespace Quinn.AI
 			return _events.Contains(name);
 		}
 
-		protected void TransitionTo(State state, string name = default)
+		protected void TransitionTo(State state, string name)
 		{
 			Debug.Assert(state != null);
 
@@ -108,7 +122,7 @@ namespace Quinn.AI
 
 			DebugStateText.text = name;
 		}
-		protected void TransitionTo(IEnumerator state, string name = default)
+		protected void TransitionTo(IEnumerator state, string name)
 		{
 			Debug.Assert(state != null);
 
@@ -215,6 +229,12 @@ namespace Quinn.AI
 		protected virtual void OnSecondPhaseBegin() { }
 
 		protected virtual void OnDamage(DamageInfo info) { }
+
+		private void Death()
+		{
+			AgentManager.Instance.UnregisterAgent(this);
+			OnDeath();
+		}
 
 		protected virtual void OnDeath()
 		{

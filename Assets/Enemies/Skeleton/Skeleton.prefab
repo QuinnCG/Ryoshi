@@ -17,6 +17,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3174066465519602528, guid: 245dd65f2c1ff684ea8376e02939abab, type: 3}
     - target: {fileID: -966629561171739572, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: RunSpeed
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -966629561171739572, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: WalkSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -966629561171739572, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: StartFacingRight
       value: 0
       objectReference: {fileID: 0}
@@ -359,7 +367,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DebugStateText: {fileID: 9153441097014388844}
-  EnableDebugStateText: 0
   IdlingAnim: {fileID: 6239711262259380995, guid: 245dd65f2c1ff684ea8376e02939abab, type: 3}
   WalkingAnim: {fileID: -8979603218701514631, guid: 245dd65f2c1ff684ea8376e02939abab, type: 3}
   RunningAnim: {fileID: -1682986537609030830, guid: 245dd65f2c1ff684ea8376e02939abab, type: 3}

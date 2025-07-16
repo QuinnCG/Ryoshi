@@ -21,7 +21,7 @@ namespace Quinn.AI.Brains
 
 		protected override void OnSecondPhaseBegin()
 		{
-			TransitionTo(FleeState);
+			TransitionTo(FleeState, "Flee");
 		}
 
 		private IEnumerator PatrolState()
@@ -100,15 +100,17 @@ namespace Quinn.AI.Brains
 		
 		private IEnumerator AttackState(int recursionDepth = 0)
 		{
-			var anim = PlayAnimOnce(AttackAnim1);
-
 			FacePlayer();
+			//var anim = PlayAnimOnce(AttackAnim1);
+			Animator.PlayOnce(AttackAnim1);
 
-			yield return new WaitUntil(() => ReadEvent("dash"));
+			yield return WaitUntil(() => ReadEvent("dash"), 2f);
 			FacePlayer();
 
 			float dir = DirectionToPlayer.x;
-			while (!ReadEvent("damage"))
+			float timeoutTime = Time.time + 2f;
+
+			while (!ReadEvent("damage") && Time.time < timeoutTime)
 			{
 				Movement.SetVelocity(dir * 6f * Vector2.right);
 				yield return null;
@@ -117,13 +119,14 @@ namespace Quinn.AI.Brains
 			FacePlayer();
 			DamageBox(new(1f, 0f), new(2f, 1.5f), 1, DirectionToPlayer.x * Vector2.right, new(12f, 0f));
 
-			yield return anim;
+			//yield return anim;
 
-			if (recursionDepth < 3 && Random.value < 0.5f)
-			{
-				TransitionTo(AttackState(recursionDepth + 1), "Attack -> Attack");
-			}
-			else if (Random.value < 0.3f)
+			//if (recursionDepth < 3 && Random.value < 0.5f)
+			//{
+			//	TransitionTo(AttackState(recursionDepth + 1), "Attack -> Attack");
+			//}
+			//else if (Random.value < 0.3f)
+			if (Random.value < 0.3f)
 			{
 				TransitionTo(RetreatState, "Attack -> Retreat");
 			}
