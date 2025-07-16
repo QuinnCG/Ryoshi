@@ -253,6 +253,10 @@ PrefabInstance:
       propertyPath: managedReferences[2675992864976012186].GUID.m_Value1
       value: 17876024403545973712
       objectReference: {fileID: 0}
+    - target: {fileID: 162957262876438721, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 748654900169410309, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5
@@ -354,8 +358,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b46c9655b5d9acb42a7c95a2f8fe153e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IdlingAnim: {fileID: -1682986537609030830, guid: 245dd65f2c1ff684ea8376e02939abab, type: 3}
+  DebugStateText: {fileID: 9153441097014388844}
+  EnableDebugStateText: 0
+  IdlingAnim: {fileID: 6239711262259380995, guid: 245dd65f2c1ff684ea8376e02939abab, type: 3}
   WalkingAnim: {fileID: -8979603218701514631, guid: 245dd65f2c1ff684ea8376e02939abab, type: 3}
   RunningAnim: {fileID: -1682986537609030830, guid: 245dd65f2c1ff684ea8376e02939abab, type: 3}
   AttackAnim1: {fileID: -2880290374925985103, guid: 245dd65f2c1ff684ea8376e02939abab, type: 3}
   AttackAnim2: {fileID: -6181992566258711915, guid: 245dd65f2c1ff684ea8376e02939abab, type: 3}
+--- !u!114 &9153441097014388844 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5998045481962464200, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+  m_PrefabInstance: {fileID: 3187097973234551716}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

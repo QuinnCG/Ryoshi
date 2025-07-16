@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Playables;
@@ -12,7 +13,9 @@ namespace Quinn
 		private PlayableGraph _graph;
 		private AnimationPlayableOutput _output;
 
-		private AnimationClip _loopingAnim;
+		[ShowInInspector, ReadOnly]
+		private AnimationClip LoopingAnimation;
+
 		private float _nextOneShotEndTime;
 		private bool _isOneShotPlaying;
 		private bool _holdOneShotEndFrame;
@@ -36,9 +39,9 @@ namespace Quinn
 			{
 				_isOneShotPlaying = false;
 				
-				if (_loopingAnim != null)
+				if (LoopingAnimation != null)
 				{
-					PlayAnimClip(_loopingAnim);
+					PlayAnimClip(LoopingAnimation);
 				}
 				else
 				{
@@ -62,9 +65,9 @@ namespace Quinn
 				StopOneShot();
 			}
 
-			if (_loopingAnim != anim && !_isOneShotPlaying)
+			if (LoopingAnimation != anim && !_isOneShotPlaying)
 			{
-				_loopingAnim = anim;
+				LoopingAnimation = anim;
 				PlayAnimClip(anim);
 			}
 		}
@@ -84,7 +87,7 @@ namespace Quinn
 		public void Stop()
 		{
 			_graph.Stop();
-			_loopingAnim = null;
+			LoopingAnimation = null;
 			_isOneShotPlaying = false;
 			_holdOneShotEndFrame = false;
 		}

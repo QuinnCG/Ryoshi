@@ -715,9 +715,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DefaultAttackPoints: 5
-  AttackChainEndCooldown: 0.4
-  HitTimeSlowDecayRate: 10
-  ParryWindow: 0.2
+  AttackChainEndCooldown: 0.2
+  ParryWindow: 0.4
   BlockAnim: {fileID: 5184268689941235841, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
   UnblockAnim: {fileID: 1043378408356957035, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
   ParryAnim: {fileID: 6397262535865428064, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}

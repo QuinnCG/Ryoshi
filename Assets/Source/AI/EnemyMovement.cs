@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Quinn.AI
 {
+	[RequireComponent(typeof(SpriteRenderer))]
 	public class EnemyMovement : CharacterMovement
 	{
 		[SerializeField, Unit(Units.MetersPerSecondSquared)]
@@ -13,6 +14,7 @@ namespace Quinn.AI
 
 		public bool IsDashing { get; private set; }
 
+		private SpriteRenderer _renderer;
 		private float _dashDir, _dashSpeed, _dashEndTime;
 
 		//public event System.Action OnJumpComplete, OnDashComplete;
@@ -20,6 +22,8 @@ namespace Quinn.AI
 		protected override void Awake()
 		{
 			base.Awake();
+
+			_renderer = GetComponent<SpriteRenderer>();
 
 			if (WalkByDefault)
 				SetSpeedWalk();
@@ -40,6 +44,12 @@ namespace Quinn.AI
 					IsDashing = false;
 				}
 			}
+		}
+
+		protected override void LateUpdate()
+		{
+			base.LateUpdate();
+			_renderer.flipX = FacingDirection < 0f;
 		}
 
 		public void SetSpeedWalk()
@@ -83,6 +93,11 @@ namespace Quinn.AI
 			_dashDir = Mathf.Sign(xDirection);
 			_dashSpeed = speed;
 			_dashEndTime = Time.time + (distance / speed);
+		}
+
+		public new void SetVelocity(Vector2 velocity)
+		{
+			base.SetVelocity(velocity);
 		}
 	}
 }
