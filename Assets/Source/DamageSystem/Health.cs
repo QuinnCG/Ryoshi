@@ -31,6 +31,7 @@ namespace Quinn.DamageSystem
 		public float Normalized => Current / Max;
 
 		public bool IsDead => Current <= 0f;
+		public bool IsAlive => !IsDead;
 
 		public System.Func<DamageInfo, bool> AllowDamage { private get; set; }
 
