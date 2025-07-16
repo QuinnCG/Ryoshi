@@ -866,7 +866,7 @@ MonoBehaviour:
     MinDashDistance: 1
     MaxDashDistance: 5
   - Mode: 1
-    Animation: {fileID: 2206746778723631558, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
+    Animation: {fileID: -4639349512770019431, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
     ChargeAnim: {fileID: 0}
     AttackAnim: {fileID: 0}
     RecoveryAnim: {fileID: 0}
@@ -876,10 +876,10 @@ MonoBehaviour:
     Type: 0
     CanBeRepeated: 0
     Stance: 4
-    Cost: 1
+    Cost: 0
     DamageBoxOffset: {x: 1, y: 0}
     DamageBoxSize: {x: 2, y: 2}
-    Damage: 2
+    Damage: 20
     KnockbackVelocity: {x: 18, y: 0}
     PushVelocity: {x: 24, y: 0}
     PushDecayRate: 32
