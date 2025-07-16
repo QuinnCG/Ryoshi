@@ -12,6 +12,8 @@ namespace Quinn
 	[RequireComponent(typeof(Health))]
 	public class Player : MonoBehaviour
 	{
+		public static Player Instance { get; private set; }
+
 		public float FacingDirection => _movement.FacingDirection;
 		// HACK: Make all references to this point to the underlying _movement.FacingDirection.
 
@@ -22,6 +24,8 @@ namespace Quinn
 
 		private void Awake()
 		{
+			Instance = this;
+
 			_animator = GetComponent<PlayableAnimator>();
 			_movement = GetComponent<PlayerMovement>();
 			_combat = GetComponent<PlayerCombat>();
