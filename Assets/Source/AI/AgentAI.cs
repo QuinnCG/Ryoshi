@@ -7,6 +7,11 @@ namespace Quinn.AI
 	{
 		private readonly HashSet<string> _events = new();
 
+		private void LateUpdate()
+		{
+			//ResetAllEvents();
+		}
+
 		/// <summary>
 		/// Trigger a named event for the behavior tree to read.<br/>
 		/// Events are reset upon being read.

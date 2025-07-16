@@ -18,8 +18,6 @@ namespace Quinn.CombatSystem
 		[SerializeField, Tooltip("Cooldown penality to encourage chaining attacks.")]
 		private float AttackChainEndCooldown = 0.8f;
 		[SerializeField]
-		private float HitTimeSlowDecayRate = 10f;
-		[SerializeField]
 		private float ParryWindow = 0.2f;
 
 		[Space]
@@ -108,8 +106,6 @@ namespace Quinn.CombatSystem
 				{
 					IsBlocking = false;
 					_isUnblocking = false;
-
-					Log.Info("Block stop!");
 				}
 			}
 		}
@@ -475,11 +471,6 @@ namespace Quinn.CombatSystem
 		}
 
 		/* ANIMATION EVENTS */
-
-		protected void SFX(string eventName)
-		{
-			Audio.Play(eventName, transform.position);
-		}
 
 		/// <summary>
 		/// Called by attacks that aren't of the continuous mode.<br/>

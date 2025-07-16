@@ -274,5 +274,10 @@ namespace Quinn.MovementSystem
 		{
 			_isAnimatingWalk = false;
 		}
+
+		protected void SFX(string eventName)
+		{
+			Audio.Play(eventName, transform.position);
+		}
 	}
 }

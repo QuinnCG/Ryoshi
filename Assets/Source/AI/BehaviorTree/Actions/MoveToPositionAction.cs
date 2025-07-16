@@ -1,4 +1,3 @@
-using Quinn.MovementSystem;
 using System;
 using Unity.Behavior;
 using Unity.Properties;
@@ -16,6 +15,8 @@ namespace Quinn.AI.BehaviorTree
 
 		[SerializeReference]
 		public BlackboardVariable<float> StoppingDistance = new(0.2f);
+		[SerializeReference]
+		public BlackboardVariable<bool> FaceDirection = new(true);
 
 		private EnemyMovement _movement;
 
@@ -28,6 +29,12 @@ namespace Quinn.AI.BehaviorTree
 		protected override Status OnUpdate()
 		{
 			bool reached = _movement.MoveTo(Position.Value, StoppingDistance);
+
+			if (FaceDirection.Value)
+			{
+				_movement.SetFacingDir(Position.Value.x - GameObject.transform.position.x);
+			}
+
 			return reached ? Status.Success : Status.Running;
 		}
 	}

@@ -14,6 +14,9 @@ namespace Quinn.AI.BehaviorTree
 		[SerializeReference] 
 		public BlackboardVariable<Transform> Target;
 
+		[SerializeReference]
+		public BlackboardVariable<bool> FaceDirection = new(true);
+
 		private EnemyMovement _movement;
 
 		protected override Status OnStart()
@@ -24,7 +27,14 @@ namespace Quinn.AI.BehaviorTree
 
 		protected override Status OnUpdate()
 		{
-			_movement.MoveTowards(Target.Value.position.x - GameObject.transform.position.x);
+			float dir = Target.Value.position.x - GameObject.transform.position.x;
+			_movement.MoveTowards(dir);
+
+			if (FaceDirection.Value)
+			{
+				_movement.SetFacingDir(dir);
+			}
+
 			return Status.Running;
 		}
 	}

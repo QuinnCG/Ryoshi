@@ -2,40 +2,44 @@ using System;
 using Unity.Behavior;
 using Unity.Properties;
 using UnityEngine;
+using UnityEngine.UIElements;
 using Action = Unity.Behavior.Action;
 
 namespace Quinn.AI.BehaviorTree
 {
     [Serializable, GeneratePropertyBag]
-    [NodeDescription(name: "Move Towards", story: "Move in Direction [Dir]", category: "Action", id: "0ea0d1a4d3bcbd05cd71d63eabe04925")]
-    public partial class MoveTowardsAction : Action
+    [NodeDescription(name: "Move in Direction for Distance", story: "Move in Direction [Dir] for Distance [Dst]", category: "Action", id: "70a9c75510c2bc3249a4b8f038125ec9")]
+    public partial class MoveInDirectionForDistanceAction : Action
     {
-        [SerializeReference] 
+        [SerializeReference]
         public BlackboardVariable<int> Dir;
+        [SerializeReference]
+        public BlackboardVariable<float> Dst;
 
 		[SerializeReference]
 		public BlackboardVariable<bool> FaceDirection = new(true);
 
 		private EnemyMovement _movement;
+        private float _endTime;
 
         protected override Status OnStart()
         {
             _movement = GameObject.GetComponent<EnemyMovement>();
+            _endTime = Time.time + Dst.Value / _movement.MoveSpeed;
+
             return Status.Running;
         }
 
         protected override Status OnUpdate()
         {
-            float dir = Mathf.Sign(Dir.Value);
-
-			_movement.MoveTowards(dir);
+            _movement.MoveTowards(Dir.Value);
 
 			if (FaceDirection.Value)
 			{
-				_movement.SetFacingDir(dir);
+				_movement.SetFacingDir(Dir.Value);
 			}
 
-			return Status.Running;
+			return Time.time < _endTime ? Status.Running : Status.Success;
         }
     }
 }

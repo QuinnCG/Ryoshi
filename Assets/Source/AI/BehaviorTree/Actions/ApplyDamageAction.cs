@@ -4,33 +4,32 @@ using UnityEngine;
 using Action = Unity.Behavior.Action;
 using Unity.Properties;
 using Quinn.DamageSystem;
-using Quinn.MovementSystem;
 
 namespace Quinn.AI.BehaviorTree
 {
     [Serializable, GeneratePropertyBag]
-    [NodeDescription(name: "Apply Damage", story: "Apply [Damage] and [Knockback] at [Offset] [Size]", category: "Action", id: "1db1d464cb447dd8c98a8e79450ab2cf")]
+    [NodeDescription(name: "Apply Damage", story: "Apply Damage [D] and Knockback [K] at Offset [O] Size [S]", category: "Action", id: "1db1d464cb447dd8c98a8e79450ab2cf")]
     public partial class ApplyDamageAction : Action
     {
         [SerializeReference]
-        public BlackboardVariable<int> Damage = new(1);
+        public BlackboardVariable<int> D = new(1);
         [SerializeReference]
-        public BlackboardVariable<Vector2> Knockback = new(new(8f, 0f));
+        public BlackboardVariable<Vector2> K = new(new(8f, 0f));
         [SerializeReference]
-        public BlackboardVariable<Vector2> Offset = new(new(1f, 0f));
+        public BlackboardVariable<Vector2> O = new(new(1f, 0f));
         [SerializeReference]
-        public BlackboardVariable<Vector2> Size = new(new(2f, 2f));
+        public BlackboardVariable<Vector2> S = new(new(2f, 2f));
 
         protected override Status OnStart()
         {
             var movement = GameObject.GetComponent<EnemyMovement>();
 
-            Vector2 offset = Offset;
+            Vector2 offset = O;
             offset.x *= movement.FacingDirection;
 
             Vector2 center = (Vector2)GameObject.transform.position + offset;
 
-            var colliders = Physics2D.OverlapBoxAll(center, Size.Value, 0f);
+            var colliders = Physics2D.OverlapBoxAll(center, S.Value, 0f);
 
             foreach (var collider in colliders)
             {
@@ -38,9 +37,9 @@ namespace Quinn.AI.BehaviorTree
                 {
                     dmg.TakeDamage(new()
                     {
-                        Damage = Damage.Value,
+                        Damage = D.Value,
                         Direction = GameObject.transform.position.DirectionTo(collider.bounds.Bottom()),
-                        Knockback = Knockback.Value,
+                        Knockback = K.Value,
                         TeamType = TeamType.Enemy
                     });
                 }

@@ -30,20 +30,156 @@ PrefabInstance:
         UnityEngine.CoreModule]]'
       objectReference: {fileID: 0}
     - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: 'managedReferences[2675992864976012179]'
+      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[UnityEngine.AnimationClip,
+        UnityEngine.AnimationModule]]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: 'managedReferences[2675992864976012180]'
+      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[UnityEngine.AnimationClip,
+        UnityEngine.AnimationModule]]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: 'managedReferences[2675992864976012181]'
+      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[UnityEngine.AnimationClip,
+        UnityEngine.AnimationModule]]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: 'managedReferences[2675992864976012182]'
+      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[UnityEngine.AnimationClip,
+        UnityEngine.AnimationModule]]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: 'managedReferences[2675992864976012183]'
+      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[UnityEngine.AnimationClip,
+        UnityEngine.AnimationModule]]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: 'managedReferences[2675992864976012184]'
+      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[UnityEngine.AnimationClip,
+        UnityEngine.AnimationModule]]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: 'managedReferences[2675992864976012185]'
+      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[UnityEngine.AnimationClip,
+        UnityEngine.AnimationModule]]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: 'managedReferences[2675992864976012186]'
+      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[UnityEngine.AnimationClip,
+        UnityEngine.AnimationModule]]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: managedReferences[2675992863241928824].Name
       value: Self
       objectReference: {fileID: 0}
     - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992864976012179].Name
+      value: IdleAnim
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992864976012180].Name
+      value: WalkAnim
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992864976012181].Name
+      value: AlertAnim
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992864976012182].Name
+      value: AttackAnim_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992864976012183].Name
+      value: AttackAnim_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992864976012184].Name
+      value: AttackAnim_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992864976012185].Name
+      value: DashAnim
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992864976012186].Name
+      value: Run Anim
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_BlackboardVariableOverridesList.Array.size
-      value: 1
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: managedReferences[2675992863241928824].m_Value
       value: 
       objectReference: {fileID: 8775122225706639379}
     - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992864976012179].m_Value
+      value: 
+      objectReference: {fileID: 6239711262259380995, guid: 245dd65f2c1ff684ea8376e02939abab, type: 3}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992864976012180].m_Value
+      value: 
+      objectReference: {fileID: -8979603218701514631, guid: 245dd65f2c1ff684ea8376e02939abab, type: 3}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992864976012181].m_Value
+      value: 
+      objectReference: {fileID: 5511959720905137568, guid: 245dd65f2c1ff684ea8376e02939abab, type: 3}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992864976012182].m_Value
+      value: 
+      objectReference: {fileID: -2880290374925985103, guid: 245dd65f2c1ff684ea8376e02939abab, type: 3}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992864976012183].m_Value
+      value: 
+      objectReference: {fileID: -6181992566258711915, guid: 245dd65f2c1ff684ea8376e02939abab, type: 3}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992864976012184].m_Value
+      value: 
+      objectReference: {fileID: -2880290374925985103, guid: 245dd65f2c1ff684ea8376e02939abab, type: 3}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992864976012185].m_Value
+      value: 
+      objectReference: {fileID: -148485033039808304, guid: 245dd65f2c1ff684ea8376e02939abab, type: 3}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992864976012186].m_Value
+      value: 
+      objectReference: {fileID: -1682986537609030830, guid: 245dd65f2c1ff684ea8376e02939abab, type: 3}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: 'm_BlackboardVariableOverridesList.Array.data[0]'
       value: 2675992863241928824
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: 'm_BlackboardVariableOverridesList.Array.data[1]'
+      value: 2675992864976012179
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: 'm_BlackboardVariableOverridesList.Array.data[2]'
+      value: 2675992864976012180
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: 'm_BlackboardVariableOverridesList.Array.data[3]'
+      value: 2675992864976012181
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: 'm_BlackboardVariableOverridesList.Array.data[4]'
+      value: 2675992864976012182
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: 'm_BlackboardVariableOverridesList.Array.data[5]'
+      value: 2675992864976012183
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: 'm_BlackboardVariableOverridesList.Array.data[6]'
+      value: 2675992864976012184
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: 'm_BlackboardVariableOverridesList.Array.data[7]'
+      value: 2675992864976012185
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: 'm_BlackboardVariableOverridesList.Array.data[8]'
+      value: 2675992864976012186
       objectReference: {fileID: 0}
     - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: managedReferences[2675992863241928824].GUID.m_Value0
@@ -52,6 +188,70 @@ PrefabInstance:
     - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: managedReferences[2675992863241928824].GUID.m_Value1
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992864976012179].GUID.m_Value0
+      value: 7824178388204618866
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992864976012179].GUID.m_Value1
+      value: 4675131669574398069
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992864976012180].GUID.m_Value0
+      value: 1063665376326649571
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992864976012180].GUID.m_Value1
+      value: 13106469994366572634
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992864976012181].GUID.m_Value0
+      value: 2063214052883964767
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992864976012181].GUID.m_Value1
+      value: 17512066588610494790
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992864976012182].GUID.m_Value0
+      value: 7358930889071769162
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992864976012182].GUID.m_Value1
+      value: 16093045755454386502
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992864976012183].GUID.m_Value0
+      value: 5900565601006787317
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992864976012183].GUID.m_Value1
+      value: 18243600524537486665
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992864976012184].GUID.m_Value0
+      value: 9253079217845318423
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992864976012184].GUID.m_Value1
+      value: 6842362312278419434
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992864976012185].GUID.m_Value0
+      value: 14978865474085527976
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992864976012185].GUID.m_Value1
+      value: 353002006325322608
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992864976012186].GUID.m_Value0
+      value: 12279431286759119409
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992864976012186].GUID.m_Value1
+      value: 17876024403545973712
       objectReference: {fileID: 0}
     - target: {fileID: 748654900169410309, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -111,7 +311,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1655161607136902208, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
-      value: 0.495
+      value: 0.52571434
       objectReference: {fileID: 0}
     - target: {fileID: 1655161607136902208, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
@@ -119,11 +319,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1655161607136902208, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 4
+      value: 0.4375
       objectReference: {fileID: 0}
     - target: {fileID: 1655161607136902208, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 2
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 6196292914497350583, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_Name

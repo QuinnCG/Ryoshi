@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1655161607136902208}
   - component: {fileID: 9191267772119483074}
   - component: {fileID: -3022044969283644426}
+  - component: {fileID: -3530557906435744427}
   - component: {fileID: 8419323289301458012}
   - component: {fileID: 246501973113497856}
   - component: {fileID: -966629561171739572}
@@ -163,7 +164,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
@@ -177,6 +178,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e9ef39c2e52faf49891b0c759465aac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-3530557906435744427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6196292914497350583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b090aeaa13cddcb4fad4d49c709aecf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &8419323289301458012
@@ -243,6 +256,9 @@ MonoBehaviour:
   StartGrounded: 1
   AnimatedWalkSpeed: 2
   StartFacingRight: 1
+  WalkSpeed: 1
+  RunSpeed: 3
+  WalkByDefault: 1
 --- !u!114 &139415963201933384
 MonoBehaviour:
   m_ObjectHideFlags: 0

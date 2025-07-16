@@ -13,10 +13,28 @@ namespace Quinn.AI.BehaviorTree
         [SerializeReference]
         public BlackboardVariable<string> Name;
 
+		[SerializeReference]
+		public BlackboardVariable<float> TimeoutDuration = new(2f);
+
+		private AgentAI _agent;
+        private float _timeoutTime;
+
         protected override Status OnStart()
         {
-            GameObject.GetComponent<AgentAI>().TriggerEvent(Name.Value);
-            return Status.Success;
+            _agent = GameObject.GetComponent<AgentAI>();
+            _timeoutTime = Time.time + TimeoutDuration.Value;
+
+            return Status.Running;
         }
+
+		protected override Status OnUpdate()
+		{
+            if (Time.time > _timeoutTime)
+            {
+                return Status.Failure;
+            }
+
+            return _agent.ReadEvent(Name.Value) ? Status.Success : Status.Running;
+		}
     }
 }
