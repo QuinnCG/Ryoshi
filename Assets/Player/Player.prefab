@@ -737,6 +737,7 @@ MonoBehaviour:
       Data3: -1158132817
       Data4: -1858199525
     Path: event:/Player/Parry
+  RiposteWindow: 0.6
   Moveset:
   - Mode: 2
     Animation: {fileID: 0}
@@ -864,6 +865,27 @@ MonoBehaviour:
     DashVelocity: {x: 12, y: 0}
     MinDashDistance: 1
     MaxDashDistance: 5
+  - Mode: 1
+    Animation: {fileID: 2206746778723631558, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
+    ChargeAnim: {fileID: 0}
+    AttackAnim: {fileID: 0}
+    RecoveryAnim: {fileID: 0}
+    UseSlowRecovery: 0
+    SlowRecoveryAfterDashDstNorm: 0.7
+    SlowRecoveryAnim: {fileID: 0}
+    Type: 0
+    CanBeRepeated: 0
+    Stance: 4
+    Cost: 1
+    DamageBoxOffset: {x: 1, y: 0}
+    DamageBoxSize: {x: 2, y: 2}
+    Damage: 2
+    KnockbackVelocity: {x: 18, y: 0}
+    PushVelocity: {x: 24, y: 0}
+    PushDecayRate: 32
+    DashVelocity: {x: 12, y: 0}
+    MinDashDistance: 1
+    MaxDashDistance: 2
 --- !u!1001 &999602198186174741
 PrefabInstance:
   m_ObjectHideFlags: 0

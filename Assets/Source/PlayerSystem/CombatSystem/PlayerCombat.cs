@@ -28,6 +28,8 @@ namespace Quinn.CombatSystem
 		private ParticleSystem BlockDamageVFX, ParryVFX;
 		[SerializeField]
 		private EventReference BlockDamageSound, ParrySound;
+		[SerializeField, Tooltip("How long after parrying, can you execute a riposte attack.")]
+		private float RiposteWindow = 0.6f;
 
 		[SerializeField]
 		private AttackDefinition[] Moveset;
@@ -50,6 +52,7 @@ namespace Quinn.CombatSystem
 		private float _parryWindowEndTime;
 		private float _staggerEndTime;
 		private bool _isUnblocking;
+		private float _riposteWindowEndTime;
 
 		/// <summary>
 		/// Attacks consume points. The number of current points, also dictates whether the attack will be a starter, chain, or finisher type.
@@ -208,6 +211,8 @@ namespace Quinn.CombatSystem
 
 						Audio.Play(ParrySound);
 						_animator.PlayOnce(ParryAnim);
+
+						_riposteWindowEndTime = Time.time + RiposteWindow;
 					}
 
 					// Do not allow damage.
@@ -362,6 +367,11 @@ namespace Quinn.CombatSystem
 			else if (_movement.IsCrouched)
 			{
 				return AttackStanceType.Crouched;
+			}
+			else if (Time.time < _riposteWindowEndTime)
+			{
+				_riposteWindowEndTime = -1f;
+				return AttackStanceType.Riposte;
 			}
 			else
 			{

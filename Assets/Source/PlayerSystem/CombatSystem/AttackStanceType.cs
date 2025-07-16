@@ -5,6 +5,7 @@ namespace Quinn.CombatSystem
 		Standing,
 		Crouched,
 		Airborne,
-		Dashing
+		Dashing,
+		Riposte
 	}
 }
