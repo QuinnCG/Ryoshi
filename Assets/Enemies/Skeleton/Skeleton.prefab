@@ -20,6 +20,39 @@ PrefabInstance:
       propertyPath: StartFacingRight
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: m_Graph
+      value: 
+      objectReference: {fileID: 1894207118426997104, guid: 0af16f2ef8dd16b4585ccb24e2b0438c, type: 2}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: 'managedReferences[2675992863241928824]'
+      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[UnityEngine.GameObject,
+        UnityEngine.CoreModule]]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992863241928824].Name
+      value: Self
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: m_BlackboardVariableOverridesList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992863241928824].m_Value
+      value: 
+      objectReference: {fileID: 8775122225706639379}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: 'm_BlackboardVariableOverridesList.Array.data[0]'
+      value: 2675992863241928824
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992863241928824].GUID.m_Value0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 139415963201933384, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: managedReferences[2675992863241928824].GUID.m_Value1
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 748654900169410309, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5
@@ -78,7 +111,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1655161607136902208, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
-      value: 0.52571434
+      value: 0.495
       objectReference: {fileID: 0}
     - target: {fileID: 1655161607136902208, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
@@ -86,11 +119,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1655161607136902208, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.4375
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1655161607136902208, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.75
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6196292914497350583, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_Name
@@ -101,3 +134,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+--- !u!1 &8775122225706639379 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6196292914497350583, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+  m_PrefabInstance: {fileID: 3187097973234551716}
+  m_PrefabAsset: {fileID: 0}

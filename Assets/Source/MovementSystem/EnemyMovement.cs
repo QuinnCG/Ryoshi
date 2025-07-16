@@ -1,23 +1,54 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Quinn.MovementSystem
 {
 	public class EnemyMovement : CharacterMovement
 	{
+		[SerializeField, Unit(Units.MetersPerSecondSquared)]
+		private float WalkSpeed = 1f, RunSpeed = 3f;
+		[SerializeField]
+		private bool WalkByDefault = true;
+
 		public event System.Action OnJumpComplete, OnDashComplete;
 
-		public bool MoveTo(Vector2 destination)
+		protected override void Awake()
 		{
-			throw new System.NotImplementedException();
+			base.Awake();
+
+			if (WalkByDefault)
+				SetSpeedWalk();
+			else
+				SetSpeedRun();
 		}
 
-		public void MoveTowards(Vector2 destination)
+		public void SetSpeedWalk()
 		{
-			throw new System.NotImplementedException();
+			MoveSpeed = WalkSpeed;
 		}
+
+		public void SetSpeedRun()
+		{
+			MoveSpeed = RunSpeed;
+		}
+
+		public bool MoveTo(Vector2 destination, float stoppingDst = 0.2f)
+		{
+			float diff = destination.x - transform.position.x;
+
+			float xDir = Mathf.Sign(diff);
+			MoveTowards(xDir);
+
+			return Mathf.Abs(diff) <= stoppingDst;
+		}
+
 		public void MoveTowards(float xDirection)
 		{
-			throw new System.NotImplementedException();
+			MoveTowards(xDirection, MoveSpeed);
+		}
+		public void MoveTowards(float xDirection, float speed)
+		{
+			AddVelocity(Mathf.Sign(xDirection) * speed * Vector2.right);
 		}
 
 		public void JumpTo(Vector2 destination, float height, float speed)
