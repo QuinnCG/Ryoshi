@@ -1,7 +1,8 @@
+using Quinn.MovementSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Quinn.MovementSystem
+namespace Quinn.AI
 {
 	public class EnemyMovement : CharacterMovement
 	{
@@ -10,7 +11,7 @@ namespace Quinn.MovementSystem
 		[SerializeField]
 		private bool WalkByDefault = true;
 
-		public event System.Action OnJumpComplete, OnDashComplete;
+		//public event System.Action OnJumpComplete, OnDashComplete;
 
 		protected override void Awake()
 		{
