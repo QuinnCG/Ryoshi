@@ -13,11 +13,9 @@ GameObject:
   - component: {fileID: 1655161607136902208}
   - component: {fileID: 9191267772119483074}
   - component: {fileID: -3022044969283644426}
-  - component: {fileID: -3530557906435744427}
   - component: {fileID: 8419323289301458012}
   - component: {fileID: 246501973113497856}
   - component: {fileID: -966629561171739572}
-  - component: {fileID: 139415963201933384}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -180,18 +178,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e9ef39c2e52faf49891b0c759465aac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-3530557906435744427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6196292914497350583}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b090aeaa13cddcb4fad4d49c709aecf6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8419323289301458012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,22 +245,3 @@ MonoBehaviour:
   WalkSpeed: 1
   RunSpeed: 3
   WalkByDefault: 1
---- !u!114 &139415963201933384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6196292914497350583}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0038c16c34866b4f9e25c9c0dc0f7e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Graph: {fileID: 0}
-  m_BlackboardVariableOverridesList: []
-  m_IsInitialised: 0
-  m_IsStarted: 0
-  references:
-    version: 2
-    RefIds: []

@@ -11,6 +11,10 @@ namespace Quinn.AI
 		[SerializeField]
 		private bool WalkByDefault = true;
 
+		public bool IsDashing { get; private set; }
+
+		private float _dashDir, _dashSpeed, _dashEndTime;
+
 		//public event System.Action OnJumpComplete, OnDashComplete;
 
 		protected override void Awake()
@@ -21,6 +25,21 @@ namespace Quinn.AI
 				SetSpeedWalk();
 			else
 				SetSpeedRun();
+		}
+
+		protected override void Update()
+		{
+			base.Update();
+
+			if (IsDashing)
+			{
+				SetVelocity(_dashDir * _dashSpeed * Vector2.right);
+
+				if (Time.time >= _dashEndTime)
+				{
+					IsDashing = false;
+				}
+			}
 		}
 
 		public void SetSpeedWalk()
@@ -59,7 +78,11 @@ namespace Quinn.AI
 
 		public void DashTowards(float xDirection, float speed, float distance)
 		{
-			throw new System.NotImplementedException();
+			IsDashing = true;
+
+			_dashDir = Mathf.Sign(xDirection);
+			_dashSpeed = speed;
+			_dashEndTime = Time.time + (distance / speed);
 		}
 	}
 }
