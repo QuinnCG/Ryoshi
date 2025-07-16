@@ -114,6 +114,12 @@ namespace Quinn.MovementSystem
 			DecayRateFactor = IsTouchingGround ? 5f : 1f;
 		}
 
+		protected override void OnDisable()
+		{
+			ResetGravity();
+			base.OnDisable();
+		}
+
 		public void ResetGravity()
 		{
 			_fallSpeed = 0f;

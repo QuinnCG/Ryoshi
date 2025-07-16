@@ -63,6 +63,12 @@ namespace Quinn.MovementSystem
 			ResetVelocity();
 		}
 
+		protected virtual void OnDisable()
+		{
+			ResetVelocity();
+			Rigidbody.linearVelocity = Vector2.zero;
+		}
+
 		/// <summary>
 		/// Additive <c>direction * speed</c> that is reset by the end of the frame.
 		/// </summary>

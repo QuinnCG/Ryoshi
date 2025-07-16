@@ -682,6 +682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Default: 5
+  HPBar: {fileID: 0}
   HurtSound:
     Guid:
       Data1: -435825105
@@ -879,7 +880,7 @@ MonoBehaviour:
     Cost: 0
     DamageBoxOffset: {x: 1, y: 0}
     DamageBoxSize: {x: 2, y: 2}
-    Damage: 20
+    Damage: 25
     KnockbackVelocity: {x: 18, y: 0}
     PushVelocity: {x: 24, y: 0}
     PushDecayRate: 32

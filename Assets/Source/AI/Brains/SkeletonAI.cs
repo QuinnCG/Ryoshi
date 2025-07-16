@@ -21,7 +21,10 @@ namespace Quinn.AI.Brains
 
 		protected override void OnSecondPhaseBegin()
 		{
-			TransitionTo(FleeState, "Flee");
+			if (Random.value < 0.5f)
+			{
+				TransitionTo(FleeState, "Flee");
+			}
 		}
 
 		private IEnumerator PatrolState()

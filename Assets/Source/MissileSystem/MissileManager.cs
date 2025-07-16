@@ -27,6 +27,7 @@ namespace Quinn.MissileSystem
 			for (int i = 0; i < spawnBehavior.Count; i++)
 			{
 				var instance = prefab.Clone(origin);
+				instance.transform.position = origin;
 				var missile = instance.GetComponent<Missile>();
 
 				Vector2 finalDir = CalculateDir(i, baseDir, spawnBehavior);
