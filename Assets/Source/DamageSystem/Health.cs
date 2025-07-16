@@ -111,9 +111,12 @@ namespace Quinn.DamageSystem
 
 			if (Current <= 0f)
 			{
-				var group = HPBar.GetComponent<CanvasGroup>();
-				group.DOKill();
-				group.DOFade(0f, 0.1f);
+				if (HPBar != null)
+				{
+					var group = HPBar.GetComponent<CanvasGroup>();
+					group.DOKill();
+					group.DOFade(0f, 0.1f);
+				}
 
 				Death();
 			}
