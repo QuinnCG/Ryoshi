@@ -143,8 +143,8 @@ VFXRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 778373919
+  m_SortingLayer: 1
   m_SortingOrder: 0
 --- !u!1 &573788382482126008
 GameObject:
@@ -328,8 +328,8 @@ VFXRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 778373919
+  m_SortingLayer: 1
   m_SortingOrder: 0
 --- !u!1 &2367863660769959800
 GameObject:
@@ -881,6 +881,7 @@ MonoBehaviour:
   StartGrounded: 1
   AnimatedWalkSpeed: 2
   StartFacingRight: 1
+  TrackPlayerSoundMaterial: 0
   WalkSpeed: 1
   RunSpeed: 3
   WalkByDefault: 1

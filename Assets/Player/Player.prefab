@@ -193,8 +193,8 @@ VFXRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 778373919
+  m_SortingLayer: 1
   m_SortingOrder: 0
 --- !u!1 &4940276298064543660
 GameObject:
@@ -438,8 +438,8 @@ VFXRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1817747909
+  m_SortingLayer: 3
   m_SortingOrder: 0
 --- !u!1 &7460032228790228316
 GameObject:
@@ -671,7 +671,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FallSpeed: 32
-  InitialFallSpeed: 0
+  InitialFallSpeed: -4
   MaxFallSpeed: 24
   StartGrounded: 1
   AnimatedWalkSpeed: 2

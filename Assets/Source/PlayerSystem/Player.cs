@@ -35,6 +35,11 @@ namespace Quinn
 			Health.OnDeath += OnDeath;
 		}
 
+		private async void Start()
+		{
+			await TransitionManager.Instance.FadeFromBlackAsync(1f);
+		}
+
 		private void Update()
 		{
 			if (ConsoleManager.IsOpen)
@@ -99,6 +104,17 @@ namespace Quinn
 		private async void OnDeath()
 		{
 			Log.Notice("Player Death!");
+
+			_movement.StopDash();
+			_movement.StopJump();
+			_animator.Stop();
+
+			enabled = false;
+			Health.enabled = false;
+			_movement.enabled = false;
+			_combat.enabled = false;
+
+			await TransitionManager.Instance.FadeToBlackAsync(2f);
 			await SceneManager.LoadSceneAsync(0);
 		}
 
