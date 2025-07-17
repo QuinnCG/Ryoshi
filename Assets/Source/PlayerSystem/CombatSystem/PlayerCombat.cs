@@ -2,7 +2,9 @@ using DG.Tweening;
 using FMODUnity;
 using Quinn.DamageSystem;
 using Sirenix.OdinInspector;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Quinn.CombatSystem
 {
@@ -279,48 +281,69 @@ namespace Quinn.CombatSystem
 			if (_phase is AttackPhase.Attacking && !_hasEnteredAttackPhase)
 			{
 				_hasEnteredAttackPhase = true;
+				ApplyDamage();
+			}
+		}
 
-				Vector2 offset = _attackDef.DamageBoxOffset;
-				offset.x *= _movement.FacingDirection;
+		private void ApplyDamage()
+		{
+			var knockback = _attackDef.KnockbackVelocity;
+			knockback.x *= _movement.FacingDirection;
 
-				Vector2 center = (Vector2)_hitbox.bounds.center + offset;
-				Vector2 size = _attackDef.DamageBoxSize;
+			var info = new DamageInfo()
+			{
+				Damage = _attackDef.Damage,
+				Direction = Vector2.right * _movement.FacingDirection,
+				TeamType = TeamType.Player,
+				Knockback = knockback
+			};
 
-				var colliders = Physics2D.OverlapBoxAll(center, size, 0f);
-				bool hitAny = false;
+			Vector2 offset = _attackDef.DamageBoxOffset;
+			offset.x *= _movement.FacingDirection;
 
-				foreach (var collider in colliders)
+			Vector2 center = (Vector2)_hitbox.bounds.center + offset;
+			Vector2 size = _attackDef.DamageBoxSize;
+
+			var colliders = Physics2D.OverlapBoxAll(center, size, 0f);
+
+			IDamageable closest = null;
+			float closestDst = float.PositiveInfinity;
+
+			foreach (var collider in colliders)
+			{
+				if (collider.gameObject != gameObject && 
+					collider.TryGetComponent(out IDamageable dmg)
+					&& dmg.CanDamage(info))
 				{
-					if (collider.TryGetComponent(out IDamageable dmg))
+					float dst = collider.transform.position.DistanceTo(transform.position);
+
+					if (dst < closestDst)
 					{
-						var knockback = _attackDef.KnockbackVelocity;
-						knockback.x *= _movement.FacingDirection;
-
-						bool success = dmg.TakeDamage(new DamageInfo()
-						{
-							Damage = _attackDef.Damage,
-							Direction = Vector2.right * _movement.FacingDirection,
-							TeamType = TeamType.Player,
-							Knockback = knockback
-						});
-
-						if (success)
-							hitAny = true;
+						closest = dmg;
+						closestDst = dst;
 					}
 				}
+			}
 
-				if (hitAny)
-				{
-					TimeManager.ApplyFactor(this, 0f);
+			// Hit nothing.
+			if (closest == null)
+			{
+				return;
+			}
 
-					this.DOKill();
+			bool hitAny = closest.TakeDamage(info);
 
-					DOTween.To(() => TimeManager.GetFactor(this), t => TimeManager.ApplyFactor(this, t), 1f, 0.03f)
-						.SetTarget(this)
-						.SetUpdate(true)
-						.SetEase(Ease.InCubic)
-						.OnComplete(() => TimeManager.RemoveFactor(this));
-				}
+			if (hitAny)
+			{
+				TimeManager.ApplyFactor(this, 0f);
+
+				this.DOKill();
+
+				DOTween.To(() => TimeManager.GetFactor(this), t => TimeManager.ApplyFactor(this, t), 1f, 0.03f)
+					.SetTarget(this)
+					.SetUpdate(true)
+					.SetEase(Ease.InCubic)
+					.OnComplete(() => TimeManager.RemoveFactor(this));
 			}
 		}
 

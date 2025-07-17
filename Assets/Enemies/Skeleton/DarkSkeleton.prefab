@@ -28,6 +28,14 @@ PrefabInstance:
       propertyPath: WalkingAnim
       value: 
       objectReference: {fileID: -8979603218701514631, guid: 22f1fa52f0c744c499c4dd97412f4259, type: 3}
+    - target: {fileID: -1713577263120872133, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
+      propertyPath: AttackKnockback.x
+      value: -24
+      objectReference: {fileID: 0}
+    - target: {fileID: -1713577263120872133, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
+      propertyPath: AttackKnockback.y
+      value: -6
+      objectReference: {fileID: 0}
     - target: {fileID: 585053652651806970, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -78,7 +86,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3409533354299597476, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
       propertyPath: Default
-      value: 105
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 4041642484639409416, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
       propertyPath: m_Sprite
@@ -87,6 +95,26 @@ PrefabInstance:
     - target: {fileID: 4234096194067970020, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822688665361463272, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
+      propertyPath: RunSpeed
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822688665361463272, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
+      propertyPath: FallSpeed
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822688665361463272, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
+      propertyPath: WalkSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822688665361463272, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
+      propertyPath: MaxFallSpeed
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822688665361463272, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
+      propertyPath: InitialFallSpeed
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 8775122225706639379, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
       propertyPath: m_Name

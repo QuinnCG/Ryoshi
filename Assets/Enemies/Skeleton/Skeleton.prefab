@@ -267,7 +267,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 246501973113497856, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: Default
-      value: 55
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 748654900169410309, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -371,6 +371,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DebugStateText: {fileID: 9153441097014388844}
+  AttackDamage: 1
+  AttackKnockback: {x: 16, y: 6}
+  AttackDashSpeed: 6
+  RetreatChance: 0.3
+  IdleDuration: {x: 0.5, y: 3}
   IdlingAnim: {fileID: 6239711262259380995, guid: 245dd65f2c1ff684ea8376e02939abab, type: 3}
   WalkingAnim: {fileID: -8979603218701514631, guid: 245dd65f2c1ff684ea8376e02939abab, type: 3}
   RunningAnim: {fileID: -1682986537609030830, guid: 245dd65f2c1ff684ea8376e02939abab, type: 3}

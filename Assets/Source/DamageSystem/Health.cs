@@ -66,12 +66,20 @@ namespace Quinn.DamageSystem
 			}
 		}
 
-		public bool TakeDamage(DamageInfo info)
+		public bool CanDamage(DamageInfo info)
 		{
 			if (IsDead)
 				return false;
 
 			if (info.TeamType == _team.Type)
+				return false;
+
+			return true;
+		}
+
+		public bool TakeDamage(DamageInfo info)
+		{
+			if (!CanDamage(info)) 
 				return false;
 
 			bool? allowed = AllowDamage?.Invoke(info);

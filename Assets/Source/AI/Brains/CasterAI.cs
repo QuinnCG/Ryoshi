@@ -1,21 +1,25 @@
+using FMODUnity;
 using Quinn.MissileSystem;
 using Sirenix.OdinInspector;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.VFX;
 
 namespace Quinn.AI.Brains
 {
 	public class CasterAI : AgentAI
 	{
-		[SerializeField, Required, FoldoutGroup("Animations")]
-		private AnimationClip IdleAnim, WalkAnim, WalkBackAnim, CastChargeAnim, CastAnim, DeathAnim;
-
 		[SerializeField]
 		private GameObject MissilePrefab;
 		[SerializeField]
 		private Transform MissileOrigin;
 		[SerializeField]
 		private MissileSpawnBehavior MissileSpawnBehavior;
+		[SerializeField, ChildGameObjectsOnly]
+		private VisualEffect CastVFX;
+
+		[SerializeField, Required, FoldoutGroup("Animations")]
+		private AnimationClip IdleAnim, WalkAnim, WalkBackAnim, CastChargeAnim, CastAnim, DeathAnim;
 
 		protected override void OnDeath()
 		{
@@ -80,6 +84,8 @@ namespace Quinn.AI.Brains
 
 			Animator.PlayOnce(CastAnim);
 			MissileManager.SpawnMissile(gameObject, MissilePrefab, DamageSystem.TeamType.Enemy, MissileOrigin.position, MissileSpawnBehavior, DirectionToPlayer);
+
+			CastVFX.Play();
 
 			yield return new WaitForSeconds(CastAnim.length);
 			TransitionTo(IdleState, "Attack -> Idle");

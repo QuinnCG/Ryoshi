@@ -6,6 +6,20 @@ namespace Quinn.AI.Brains
 {
 	public class SkeletonAI : AgentAI
 	{
+		[SerializeField]
+		private int AttackDamage = 1;
+		[SerializeField]
+		private Vector2 AttackKnockback = new(12f, 0f);
+		[SerializeField]
+		private float AttackDashSpeed = 6f;
+		[SerializeField]
+		private float RetreatChance = 0.3f;
+
+		[Space]
+
+		[SerializeField]
+		private Vector2 IdleDuration = new(0.5f, 3f);
+
 		[SerializeField, FoldoutGroup("Animations")]
 		private AnimationClip IdlingAnim, WalkingAnim, RunningAnim;
 		[SerializeField, FoldoutGroup("Animations")]
@@ -73,7 +87,7 @@ namespace Quinn.AI.Brains
 		{
 			Animator.PlayLooped(IdlingAnim);
 
-			for (float t = 0f; t < Random.Range(0.5f, 3f); t += Time.deltaTime)
+			for (float t = 0f; t < Random.Range(IdleDuration.x, IdleDuration.y); t += Time.deltaTime)
 			{
 				FacePlayer();
 				yield return null;
@@ -94,17 +108,16 @@ namespace Quinn.AI.Brains
 				// Reached.
 				if (Movement.MoveTo(Player.position, 3f))
 				{
-					TransitionTo(AttackState(0), "Chase -> Attack");
+					TransitionTo(AttackState, "Chase -> Attack");
 				}
 
 				yield return null;
 			}
 		}
 		
-		private IEnumerator AttackState(int recursionDepth = 0)
+		private IEnumerator AttackState()
 		{
 			FacePlayer();
-			//var anim = PlayAnimOnce(AttackAnim1);
 			Animator.PlayOnce(AttackAnim1);
 
 			yield return WaitUntil(() => ReadEvent("dash"), 2f);
@@ -115,21 +128,14 @@ namespace Quinn.AI.Brains
 
 			while (!ReadEvent("damage") && Time.time < timeoutTime)
 			{
-				Movement.SetVelocity(dir * 6f * Vector2.right);
+				Movement.SetVelocity(dir * AttackDashSpeed * Vector2.right);
 				yield return null;
 			}
 
 			FacePlayer();
-			DamageBox(new(1f, 0f), new(2f, 1.5f), 1, DirectionToPlayer.x * Vector2.right, new(12f, 0f));
+			DamageBox(new(1f, 0f), new(2f, 1.5f), AttackDamage, DirectionToPlayer.x * Vector2.right, AttackKnockback);
 
-			//yield return anim;
-
-			//if (recursionDepth < 3 && Random.value < 0.5f)
-			//{
-			//	TransitionTo(AttackState(recursionDepth + 1), "Attack -> Attack");
-			//}
-			//else if (Random.value < 0.3f)
-			if (Random.value < 0.3f)
+			if (Random.value < RetreatChance)
 			{
 				TransitionTo(RetreatState, "Attack -> Retreat");
 			}
