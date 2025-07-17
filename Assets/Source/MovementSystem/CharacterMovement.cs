@@ -28,6 +28,9 @@ namespace Quinn.MovementSystem
 		[SerializeField]
 		private bool StartFacingRight = true;
 
+		[Space, SerializeField]
+		private bool TrackPlayerSoundMaterial;
+
 		public float MoveSpeed { get; protected set; }
 		/// <summary>
 		/// The move speed, accounting for any factors from status effects or the like.
@@ -213,7 +216,7 @@ namespace Quinn.MovementSystem
 					{
 						IsTouchingGround = true;
 
-						if (!processedFloorAnyContact && contact.collider.TryGetComponent(out SoundMaterial mat))
+						if (!processedFloorAnyContact && TrackPlayerSoundMaterial && contact.collider.TryGetComponent(out SoundMaterial mat))
 						{
 							LastFloorMaterial = mat.Material;
 							Audio.SetGlobalParameter(PlayerSurfaceMatKey, LastFloorMaterial.ToString());

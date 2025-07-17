@@ -55,6 +55,16 @@ namespace Quinn
 			_graph.Destroy();
 		}
 
+		private void OnEnable()
+		{
+			_graph.Play();
+		}
+
+		private void OnDisable()
+		{
+			_graph.Stop();
+		}
+
 		public void PlayLooped(AnimationClip anim, bool overrideOneShot = false)
 		{
 			if (anim == null)
@@ -100,6 +110,9 @@ namespace Quinn
 
 		private void PlayAnimClip(AnimationClip anim)
 		{
+			if (!enabled)
+				return;
+
 			// Remove current, if it exists.
 			var current = _output.GetSourcePlayable();
 
