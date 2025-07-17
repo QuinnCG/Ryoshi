@@ -83,8 +83,12 @@
 		</relationship>
 	</object>
 	<object class="MultiSound" id="{a1e67624-c076-4526-b07f-127cd751b368}">
+		<property name="playbackMode">
+			<value>1</value>
+		</property>
 		<relationship name="sounds">
 			<destination>{41406b03-03bd-4cea-af60-0fe116cca082}</destination>
+			<destination>{46e65888-edb1-422e-967e-b740357ef4df}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{e1f975ec-98a9-4c2b-a644-79bcf2f1b0f5}">
@@ -96,14 +100,56 @@
 	<object class="MixerBusEffectChain" id="{515f77fd-cfe3-48b2-b7a2-177107861ff3}">
 		<relationship name="effects">
 			<destination>{ba397959-faf2-44b3-b244-21cfc34b894d}</destination>
+			<destination>{517e095a-a858-4379-ba44-9a0768a6c1dc}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{2b7ffdf5-b75d-4040-9b1e-37bba9e3f902}" />
 	<object class="EventSound" id="{41406b03-03bd-4cea-af60-0fe116cca082}">
+		<property name="volume">
+			<value>-19.5</value>
+		</property>
+		<property name="pitch">
+			<value>-2.20000005</value>
+		</property>
 		<relationship name="event">
 			<destination>{75389a1c-539c-4561-8698-cc05fda9cc8a}</destination>
 		</relationship>
 	</object>
+	<object class="MultiSound" id="{46e65888-edb1-422e-967e-b740357ef4df}">
+		<relationship name="modulators">
+			<destination>{00a0d34c-e476-4193-9443-92efb8ce6903}</destination>
+		</relationship>
+		<relationship name="sounds">
+			<destination>{e614554c-43f8-4a3f-8b1c-e3a9a83d700e}</destination>
+			<destination>{7fdc7e08-6981-49a1-b9f6-241f938a0ca9}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusFader" id="{a1e801c4-74ed-4cde-b60f-be78e89cd159}" />
 	<object class="MixerBusFader" id="{ba397959-faf2-44b3-b244-21cfc34b894d}" />
+	<object class="ObjectSpatialiserEffect" id="{517e095a-a858-4379-ba44-9a0768a6c1dc}">
+		<property name="extentMode">
+			<value>1</value>
+		</property>
+		<property name="minimumExtent">
+			<value>170</value>
+		</property>
+	</object>
+	<object class="RandomizerModulator" id="{00a0d34c-e476-4193-9443-92efb8ce6903}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>pitch</value>
+		</property>
+		<property name="amount">
+			<value>18.5</value>
+		</property>
+	</object>
+	<object class="SingleSound" id="{e614554c-43f8-4a3f-8b1c-e3a9a83d700e}">
+		<relationship name="audioFile">
+			<destination>{2325030d-6b78-4abc-babf-2c43a50617ff}</destination>
+		</relationship>
+	</object>
+	<object class="SingleSound" id="{7fdc7e08-6981-49a1-b9f6-241f938a0ca9}">
+		<relationship name="audioFile">
+			<destination>{6cd799df-555d-4f25-8f34-6634b1d7f08a}</destination>
+		</relationship>
+	</object>
 </objects>
