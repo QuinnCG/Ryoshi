@@ -16,7 +16,7 @@ namespace Quinn.UI
 		[SerializeField, Required]
 		private Image FluidSprite;
 		[SerializeField]
-		private int FrameRate = 10;
+		private int MinFramerate = 6, MaxFramerate = 16;
 		[SerializeField]
 		private float MinHeight = -60f, MaxHeight = 60f;
 		[SerializeField]
@@ -40,7 +40,7 @@ namespace Quinn.UI
 
 			if (Time.time >= _next)
 			{
-				_next = Time.time + (1f / FrameRate);
+				_next = Time.time + (1f / Mathf.Lerp(MinFramerate, MaxFramerate, norm));
 
 				_index++;
 

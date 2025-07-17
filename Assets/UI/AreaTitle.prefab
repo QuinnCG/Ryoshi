@@ -171,7 +171,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 30, y: 2}
+  m_AnchoredPosition: {x: 30, y: 30}
   m_SizeDelta: {x: 700, y: 800}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &283671779967976614
@@ -314,8 +314,8 @@ MonoBehaviour:
   Subtitle: The Area's Subtitle
   FadeInDuration: 0.2
   FadeInEase: 2
-  PersistDuration: 2
-  FadeOutDuration: 0.5
+  PersistDuration: 4
+  FadeOutDuration: 2
   FadeOutEase: 9
   Group: {fileID: 7040961449797112168}
   TitleText: {fileID: 5525371032068356805}

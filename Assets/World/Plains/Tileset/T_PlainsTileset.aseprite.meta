@@ -339,7 +339,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 76, y: 164}
-  - name: Layer 1
+  - name: Background
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
@@ -351,7 +351,7 @@ ScriptedImporter:
       y: 4
       width: 128
       height: 128
-    spriteID: d137f353cb402b845bd4afd45d6d47c6
+    spriteID: e4c70cb924de58b40bab1ac9cac9d332
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -361,14 +361,39 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
   asepriteLayers:
-  - layerIndex: 1
+  - layerIndex: 0
     uuid:
-      value0: 4287466677
+      value0: 332801758
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: Layer 2
+    name: Background
+    layerFlags: 1
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Background
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      spriteId: e4c70cb924de58b40bab1ac9cac9d332
+    linkedCells: []
+    tileCells: []
+    tileSetIndex: 0
+    parentIndex: -1
+  - layerIndex: 1
+    uuid:
+      value0: 1858120630
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Tileset
     layerFlags: 3
     layerType: 2
     blendMode: 0
@@ -383,31 +408,6 @@ ScriptedImporter:
         width: 3
         height: 3
       tileIndices: 010000000200000003000000040000000500000006000000070000000800000009000000
-    tileSetIndex: 0
-    parentIndex: -1
-  - layerIndex: 0
-    uuid:
-      value0: 4287466680
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Layer 1
-    layerFlags: 1
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Layer 1
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 0
-        y: 0
-        width: 128
-        height: 128
-      spriteId: d137f353cb402b845bd4afd45d6d47c6
-    linkedCells: []
-    tileCells: []
     tileSetIndex: 0
     parentIndex: -1
   tileSets:

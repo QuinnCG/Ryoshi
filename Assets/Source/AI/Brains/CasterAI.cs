@@ -17,6 +17,13 @@ namespace Quinn.AI.Brains
 		[SerializeField, ChildGameObjectsOnly]
 		private VisualEffect CastVFX;
 
+		[Space]
+
+		[SerializeField]
+		private float MinIdealDstToPlayer = 6f, MaxIdealDstToPlayer = 10f;
+		[SerializeField]
+		private Vector2 ChargeDuration = new(0.5f, 2f);
+
 		[SerializeField, Required, FoldoutGroup("Animations")]
 		private AnimationClip IdleAnim, WalkAnim, WalkBackAnim, CastChargeAnim, CastAnim, DeathAnim;
 
@@ -48,7 +55,7 @@ namespace Quinn.AI.Brains
 			Animator.PlayLooped(IdleAnim);
 			yield return new WaitForSeconds(Random.Range(0f, 1f));
 
-			if (DistanceToPlayer < 6f)
+			if (DistanceToPlayer < MinIdealDstToPlayer)
 			{
 				for (float t = 0f; t < Random.Range(0.5f, 2f); t += Time.deltaTime)
 				{
@@ -60,7 +67,7 @@ namespace Quinn.AI.Brains
 					yield return null;
 				}
 			}
-			else if (DistanceToPlayer > 10f)
+			else if (DistanceToPlayer > MaxIdealDstToPlayer)
 			{
 				for (float t = 0f; t < Random.Range(0.5f, 1f); t += Time.deltaTime)
 				{
@@ -79,7 +86,7 @@ namespace Quinn.AI.Brains
 		private IEnumerator AttackState()
 		{
 			Animator.PlayLooped(CastChargeAnim);
-			yield return new WaitForSeconds(Random.Range(2f, 4f));
+			yield return new WaitForSeconds(Random.Range(ChargeDuration.x, ChargeDuration.y));
 
 			Animator.PlayOnce(CastAnim);
 			MissileManager.SpawnMissile(gameObject, MissilePrefab, DamageSystem.TeamType.Enemy, MissileOrigin.position, MissileSpawnBehavior, DirectionToPlayer);

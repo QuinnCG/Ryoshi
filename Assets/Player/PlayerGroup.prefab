@@ -151,7 +151,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3524616735505358909, guid: b221ce7159386d84b82c3b07cd858d98, type: 3}
       propertyPath: field of view
-      value: 45
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3524616735505358909, guid: b221ce7159386d84b82c3b07cd858d98, type: 3}
       propertyPath: orthographic size
@@ -184,14 +184,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2460804428202487903}
     m_Modifications:
-    - target: {fileID: 705026749399461314, guid: c42cd2a3f7c1bc6438209ab2096189c1, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 705026749399461314, guid: c42cd2a3f7c1bc6438209ab2096189c1, type: 3}
-      propertyPath: m_PointLightInnerAngle
-      value: 180
-      objectReference: {fileID: 0}
     - target: {fileID: 1094530058303361649, guid: c42cd2a3f7c1bc6438209ab2096189c1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -231,10 +223,6 @@ PrefabInstance:
     - target: {fileID: 1094530058303361649, guid: c42cd2a3f7c1bc6438209ab2096189c1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6238997182439593952, guid: c42cd2a3f7c1bc6438209ab2096189c1, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7460032228790228316, guid: c42cd2a3f7c1bc6438209ab2096189c1, type: 3}
       propertyPath: m_Name

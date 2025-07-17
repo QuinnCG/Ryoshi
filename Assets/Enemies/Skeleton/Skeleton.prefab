@@ -309,6 +309,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1244148347713127447, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: m_PropertySheet.m_Gradient.m_Array.Array.data[0].m_Value.key0.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1244148347713127447, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: m_PropertySheet.m_Gradient.m_Array.Array.data[0].m_Value.key0.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1244148347713127447, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: m_PropertySheet.m_Gradient.m_Array.Array.data[0].m_Value.key1.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1244148347713127447, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: m_PropertySheet.m_Gradient.m_Array.Array.data[0].m_Value.key1.g
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1655161607136902208, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_Size.x
       value: 0.41651714
@@ -340,6 +356,22 @@ PrefabInstance:
     - target: {fileID: 1655161607136902208, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476217390586819012, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: m_PropertySheet.m_Gradient.m_Array.Array.data[0].m_Value.key0.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476217390586819012, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: m_PropertySheet.m_Gradient.m_Array.Array.data[0].m_Value.key0.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476217390586819012, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: m_PropertySheet.m_Gradient.m_Array.Array.data[0].m_Value.key1.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476217390586819012, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: m_PropertySheet.m_Gradient.m_Array.Array.data[0].m_Value.key1.g
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6196292914497350583, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_Name
