@@ -171,7 +171,8 @@ namespace Quinn.CombatSystem
 		private bool AllowDamage(DamageInfo info)
 		{
 			// Ignore damage if we are blocking in the opposing direction.
-			if (IsBlocking)
+			// Doesn't count if we are in the process of unblocking.
+			if (IsBlocking && !_isUnblocking)
 			{
 				bool blockingDmg = false;
 
