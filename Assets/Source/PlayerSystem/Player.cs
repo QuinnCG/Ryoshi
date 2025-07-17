@@ -17,10 +17,11 @@ namespace Quinn
 		public float FacingDirection => _movement.FacingDirection;
 		// HACK: Make all references to this point to the underlying _movement.FacingDirection.
 
+		public Health Health { get; private set; }
+
 		private PlayableAnimator _animator;
 		private PlayerMovement _movement;
 		private PlayerCombat _combat;
-		private Health _health;
 
 		private void Awake()
 		{
@@ -29,9 +30,9 @@ namespace Quinn
 			_animator = GetComponent<PlayableAnimator>();
 			_movement = GetComponent<PlayerMovement>();
 			_combat = GetComponent<PlayerCombat>();
-			_health = GetComponent<Health>();
+			Health = GetComponent<Health>();
 
-			_health.OnDeath += OnDeath;
+			Health.OnDeath += OnDeath;
 		}
 
 		private void Update()
@@ -104,7 +105,7 @@ namespace Quinn
 		[Command("hurt", "Hurts the player.")]
 		protected void Hurt_Cmd(int damage = 1)
 		{
-			_health.TakeDamage(new()
+			Health.TakeDamage(new()
 			{
 				Damage = damage,
 				Direction = Vector2.up,
@@ -115,9 +116,9 @@ namespace Quinn
 		[Command("kill", "Kills the player.")]
 		protected void Kill_Cmd()
 		{
-			_health.TakeDamage(new()
+			Health.TakeDamage(new()
 			{
-				Damage = _health.Current + 1f,
+				Damage = Health.Current + 1f,
 				Direction = Vector2.up,
 				TeamType = TeamType.Environment
 			});
@@ -128,11 +129,11 @@ namespace Quinn
 		{
 			if (health.HasValue)
 			{
-				_health.Heal(health.Value);
+				Health.Heal(health.Value);
 			}
 			else
 			{
-				_health.FullHeal();
+				Health.FullHeal();
 			}
 		}
 	}
