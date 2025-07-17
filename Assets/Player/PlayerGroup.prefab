@@ -184,6 +184,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2460804428202487903}
     m_Modifications:
+    - target: {fileID: 705026749399461314, guid: c42cd2a3f7c1bc6438209ab2096189c1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 705026749399461314, guid: c42cd2a3f7c1bc6438209ab2096189c1, type: 3}
+      propertyPath: m_PointLightInnerAngle
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 1094530058303361649, guid: c42cd2a3f7c1bc6438209ab2096189c1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -223,6 +231,10 @@ PrefabInstance:
     - target: {fileID: 1094530058303361649, guid: c42cd2a3f7c1bc6438209ab2096189c1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6238997182439593952, guid: c42cd2a3f7c1bc6438209ab2096189c1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7460032228790228316, guid: c42cd2a3f7c1bc6438209ab2096189c1, type: 3}
       propertyPath: m_Name
@@ -349,10 +361,6 @@ PrefabInstance:
     - target: {fileID: 6260070420703185855, guid: 4aa4ba7c262424e489732bb78416b5ee, type: 3}
       propertyPath: m_Name
       value: HUD
-      objectReference: {fileID: 0}
-    - target: {fileID: 7242544609543235969, guid: 4aa4ba7c262424e489732bb78416b5ee, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.39990234
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
