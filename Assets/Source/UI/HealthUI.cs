@@ -40,7 +40,7 @@ namespace Quinn.UI
 
 			if (Time.time >= _next)
 			{
-				_next = Time.time + (1f / Mathf.Lerp(MinFramerate, MaxFramerate, norm));
+				_next = Time.time + (1f / Mathf.Lerp(MaxFramerate, MinFramerate, norm));
 
 				_index++;
 

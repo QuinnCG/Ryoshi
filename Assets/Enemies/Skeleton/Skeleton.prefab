@@ -393,6 +393,14 @@ PrefabInstance:
       propertyPath: m_PropertySheet.m_Gradient.m_Array.Array.data[0].m_Value.key1.g
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2604311535062375262, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2604311535062375262, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6196292914497350583, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_Name
       value: Skeleton
