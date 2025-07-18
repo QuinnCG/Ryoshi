@@ -18,6 +18,13 @@ namespace Quinn.AI.Brains
 		[Space]
 
 		[SerializeField]
+		private float PlayMessageChance = 0.5f;
+		[SerializeField]
+		private string[] RandomFirstMessage;
+
+		[Space]
+
+		[SerializeField]
 		private Vector2 IdleDuration = new(0.5f, 3f);
 
 		[SerializeField, FoldoutGroup("Animations")]
@@ -28,10 +35,20 @@ namespace Quinn.AI.Brains
 		private IEnumerator Start()
 		{
 			TransitionTo(PatrolState, "Patrol");
-
 			yield return new WaitUntil(() => DistanceToPlayer < 6f);
+
+			if (Random.value < PlayMessageChance)
+			{
+				ClearState();
+
+				Animator.PlayLooped(IdlingAnim);
+				FacePlayer();
+
+				float duration = Speak(RandomFirstMessage.GetRandom());
+				yield return new WaitForSeconds(duration);
+			}
+
 			TransitionTo(IdleState, "Idle");
-			Speak("Ggrrrr!");
 		}
 
 		protected override void OnSecondPhaseBegin()

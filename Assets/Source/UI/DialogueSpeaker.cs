@@ -2,6 +2,7 @@ using DG.Tweening;
 using FMODUnity;
 using Sirenix.OdinInspector;
 using System.Collections;
+using System.Linq;
 using System.Text;
 using TMPro;
 using UnityEngine;
@@ -27,10 +28,17 @@ namespace Quinn.UI
 			Group.alpha = 0f;
 		}
 
-		public void Speak(params string[] messages)
+		/// <summary>
+		/// Start a speaking sequence.
+		/// </summary>
+		/// <param name="messages">The messages to play, one after the other.</param>
+		/// <returns>The total duration that the speaking sequence will take.</returns>
+		public float Speak(params string[] messages)
 		{
 			StopAllCoroutines();
 			StartCoroutine(SpeakSequence(messages));
+
+			return (messages.Length * MessageInterval) + (messages.Sum(x => x.Length) * TypeInterval);
 		}
 
 		public void StopSpeaking()

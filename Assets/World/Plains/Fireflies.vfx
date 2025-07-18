@@ -39,7 +39,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 614
     y: -1434
-    width: 713
+    width: 714
     height: 2249
 --- !u!114 &114350483966674976
 MonoBehaviour:
@@ -261,7 +261,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 128
+      m_SerializableObject: 24
     m_Space: -1
   m_Property:
     name: Rate
@@ -516,7 +516,7 @@ MonoBehaviour:
   m_Children:
   - {fileID: 8926484042661614827}
   - {fileID: 8926484042661614880}
-  m_UIPosition: {x: 877, y: -454}
+  m_UIPosition: {x: 878, y: -372}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -994,7 +994,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.5
+      m_SerializableObject: 1
     m_Space: -1
   m_Property:
     name: dragCoefficient
@@ -2650,7 +2650,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 4
+      m_SerializableObject: 2
     m_Space: -1
   m_Property:
     name: Intensity

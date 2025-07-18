@@ -161,9 +161,10 @@ namespace Quinn.AI
 			Movement.SetFacingDir(-DirectionToPlayer.x);
 		}
 
-		protected void Speak(params string[] messages)
+		/// <inheritdoc cref="DialogueSpeaker.Speak(string[])"/>
+		protected float Speak(params string[] messages)
 		{
-			Speaker.Speak(messages);
+			return Speaker.Speak(messages);
 		}
 
 		protected void StopSpeaking()

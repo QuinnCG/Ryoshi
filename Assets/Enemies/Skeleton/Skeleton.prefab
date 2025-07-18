@@ -329,6 +329,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 830276960049143762, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: m_text
+      value: Ggrr
+      objectReference: {fileID: 0}
     - target: {fileID: 1244148347713127447, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_PropertySheet.m_Gradient.m_Array.Array.data[0].m_Value.key0.b
       value: 1
@@ -409,6 +413,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton
       objectReference: {fileID: 0}
+    - target: {fileID: 8213976270160305635, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 108.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 8213976270160305635, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 43.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8213976270160305635, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -440,6 +456,12 @@ MonoBehaviour:
   AttackKnockback: {x: 16, y: 6}
   AttackDashSpeed: 6
   RetreatChance: 0.3
+  PlayMessageChance: 0.5
+  RandomFirstMessage:
+  - Ggr!
+  - Ggrrrr!
+  - Raghr!
+  - Ggr?
   IdleDuration: {x: 0.5, y: 3}
   IdlingAnim: {fileID: 6239711262259380995, guid: 245dd65f2c1ff684ea8376e02939abab, type: 3}
   WalkingAnim: {fileID: -8979603218701514631, guid: 245dd65f2c1ff684ea8376e02939abab, type: 3}
