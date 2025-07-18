@@ -127,8 +127,11 @@
 	<object class="MixerBusFader" id="{ae20730d-402d-4cbd-8dff-e9ea5cb9dd7b}" />
 	<object class="MixerBusFader" id="{169ba9e1-7cb6-4621-bcfc-34f695b3e5d5}" />
 	<object class="ObjectSpatialiserEffect" id="{98d4d464-0ccc-48af-8941-15550ac88c0b}">
-		<property name="distanceRolloffType">
+		<property name="extentMode">
 			<value>1</value>
+		</property>
+		<property name="minimumExtent">
+			<value>142</value>
 		</property>
 	</object>
 	<object class="SFXReverbEffect" id="{e50baa7c-5872-4bfc-831b-2afb02618fc1}">
