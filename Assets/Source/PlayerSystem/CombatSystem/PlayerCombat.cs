@@ -316,6 +316,12 @@ namespace Quinn.CombatSystem
 					collider.TryGetComponent(out IDamageable dmg)
 					&& dmg.CanDamage(info))
 				{
+					if (dmg.IsLowPriority())
+					{
+						dmg.TakeDamage(info);
+						continue;
+					}
+
 					float dst = collider.transform.position.DistanceTo(transform.position);
 
 					if (dst < closestDst)

@@ -53,7 +53,7 @@ namespace Quinn.AI.Brains
 
 		protected override void OnSecondPhaseBegin()
 		{
-			if (Random.value < 0.5f)
+			if (Random.value < 0.2f)
 			{
 				TransitionTo(FleeState, "Flee");
 			}
