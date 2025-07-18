@@ -168,8 +168,9 @@ MonoBehaviour:
   - {fileID: 2779061271682764547}
   - {fileID: 816567976196448899}
   FluidSprite: {fileID: 5018460131021122121}
-  FrameRate: 8
-  MinHeight: -60
+  MinFramerate: 6
+  MaxFramerate: 16
+  MinHeight: -65
   MaxHeight: 60
   AnimSprites:
   - {fileID: 1807924141055302080, guid: 5679d81ec386de04da97e50d41a19d51, type: 3}
@@ -336,7 +337,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -2.0399988}
+  m_AnchoredPosition: {x: 0, y: -4.6249986}
   m_SizeDelta: {x: 93.75, y: 31.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1479622270856454902
