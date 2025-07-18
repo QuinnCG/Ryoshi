@@ -44,8 +44,8 @@ namespace Quinn.AI.Brains
 				Animator.PlayLooped(IdlingAnim);
 				FacePlayer();
 
-				float duration = Speak(RandomFirstMessage.GetRandom());
-				yield return new WaitForSeconds(duration);
+				Speak(RandomFirstMessage.GetRandom());
+				yield return new WaitForSeconds(1f);
 			}
 
 			TransitionTo(IdleState, "Idle");

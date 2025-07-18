@@ -1156,6 +1156,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 748654900169410309}
     m_Modifications:
+    - target: {fileID: 427693013931231161, guid: d2f8a34e05a4c144caa9a2aa810705aa, type: 3}
+      propertyPath: MessageInterval
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2156757663387433401, guid: d2f8a34e05a4c144caa9a2aa810705aa, type: 3}
       propertyPath: m_Name
       value: DialogueBox

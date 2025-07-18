@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Quinn.UI
 {
@@ -23,9 +24,24 @@ namespace Quinn.UI
 		[SerializeField, Unit(Units.Second)]
 		private float MessageInterval = 4f;
 
+		[SerializeField, FoldoutGroup("Starting Message")]
+		private string[] Messages;
+		[SerializeField]
+		private UnityEvent OnSequenceEnd;
+
+		public bool IsSpeaking { get; private set; }
+
 		private void Awake()
 		{
 			Group.alpha = 0f;
+		}
+
+		private void Start()
+		{
+			if (Messages.Length > 0)
+			{
+				Speak(Messages);
+			}
 		}
 
 		/// <summary>
@@ -35,6 +51,8 @@ namespace Quinn.UI
 		/// <returns>The total duration that the speaking sequence will take.</returns>
 		public float Speak(params string[] messages)
 		{
+			IsSpeaking = true;
+
 			StopAllCoroutines();
 			StartCoroutine(SpeakSequence(messages));
 
@@ -43,19 +61,26 @@ namespace Quinn.UI
 
 		public void StopSpeaking()
 		{
-			StopAllCoroutines();
-			Group.DOFade(0f, 0.1f);
+			if (IsSpeaking)
+			{
+				IsSpeaking = false;
+
+				StopAllCoroutines();
+				Group.DOFade(0f, 0.1f);
+
+				OnSequenceEnd?.Invoke();
+			}
 		}
 
 		private IEnumerator SpeakSequence(string[] messages)
 		{
 			Text.text = string.Empty;
-
 			yield return Group.DOFade(1f, 0.1f);
-			var builder = new StringBuilder();
 
 			foreach (var message in messages)
 			{
+				var builder = new StringBuilder();
+
 				for (int i = 0; i < message.Length; i++)
 				{
 					builder.Append(message[i]);
