@@ -31,6 +31,7 @@ namespace Quinn.AI.Brains
 
 			yield return new WaitUntil(() => DistanceToPlayer < 6f);
 			TransitionTo(IdleState, "Idle");
+			Speak("Ggrrrr!");
 		}
 
 		protected override void OnSecondPhaseBegin()

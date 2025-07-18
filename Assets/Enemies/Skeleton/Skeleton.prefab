@@ -377,6 +377,10 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 0.75
       objectReference: {fileID: 0}
+    - target: {fileID: 1825686130384406241, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.185
+      objectReference: {fileID: 0}
     - target: {fileID: 2476217390586819012, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_PropertySheet.m_Gradient.m_Array.Array.data[0].m_Value.key0.b
       value: 1
@@ -431,6 +435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DebugStateText: {fileID: 9153441097014388844}
+  Speaker: {fileID: 8798018874342217371}
   AttackDamage: 1
   AttackKnockback: {x: 16, y: 6}
   AttackDashSpeed: 6
@@ -441,6 +446,17 @@ MonoBehaviour:
   RunningAnim: {fileID: -1682986537609030830, guid: 245dd65f2c1ff684ea8376e02939abab, type: 3}
   AttackAnim1: {fileID: -2880290374925985103, guid: 245dd65f2c1ff684ea8376e02939abab, type: 3}
   AttackAnim2: {fileID: -6181992566258711915, guid: 245dd65f2c1ff684ea8376e02939abab, type: 3}
+--- !u!114 &8798018874342217371 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6206539957236587839, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+  m_PrefabInstance: {fileID: 3187097973234551716}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a38161f33ee6db44d8244f5a4d2b31af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &9153441097014388844 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5998045481962464200, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}

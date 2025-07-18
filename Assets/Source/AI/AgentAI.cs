@@ -1,4 +1,5 @@
 using Quinn.DamageSystem;
+using Quinn.UI;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,6 +16,8 @@ namespace Quinn.AI
 	{
 		[SerializeField, Required]
 		private TextMeshProUGUI DebugStateText;
+		[SerializeField, Required]
+		private DialogueSpeaker Speaker;
 
 		public delegate IEnumerator State();
 
@@ -156,6 +159,16 @@ namespace Quinn.AI
 		protected void FaceAwayFromPlayer()
 		{
 			Movement.SetFacingDir(-DirectionToPlayer.x);
+		}
+
+		protected void Speak(params string[] messages)
+		{
+			Speaker.Speak(messages);
+		}
+
+		protected void StopSpeaking()
+		{
+			Speaker.StopSpeaking();
 		}
 
 		protected IEnumerator PlayAnimOnce(AnimationClip anim, bool holdLastFrame = false)
