@@ -138,7 +138,7 @@ namespace Quinn
 		}
 
 		[Command("hurt", "Hurts the player.")]
-		protected void Hurt_Cmd(int damage = 1)
+		protected void Hurt_Cmd(float damage = 10f)
 		{
 			Health.TakeDamage(new()
 			{

@@ -149,7 +149,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6109593918807941322, guid: c4f8cf2425791094bbd5006e598e81a6, type: 3}
       propertyPath: Damage
-      value: 0.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6109593918807941322, guid: c4f8cf2425791094bbd5006e598e81a6, type: 3}
       propertyPath: Knockback.y

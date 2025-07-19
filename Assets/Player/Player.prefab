@@ -647,6 +647,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e9ef39c2e52faf49891b0c759465aac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DefaultAnim: {fileID: 0}
+  LoopDefaultAnim: 1
 --- !u!114 &8508295708139993541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -659,6 +661,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 305c2d07297e1394b875b7b23aff822a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AreaMusic:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &7573702492132094022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -671,6 +680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87f5e53cad997ee47ab435bb183df247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GenericDecayRateFactor: 1
   FallSpeed: 32
   InitialFallSpeed: -4
   MaxFallSpeed: 24
@@ -748,7 +758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76caccf7eccef0b4c8a98eaf4548e15f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Default: 5
+  Default: 50
   HPBar: {fileID: 0}
   HurtSound:
     Guid:
@@ -785,6 +795,7 @@ MonoBehaviour:
   DefaultAttackPoints: 5
   AttackChainEndCooldown: 0.2
   ParryWindow: 0.4
+  HealthOnKill: 30
   BlockAnim: {fileID: 5184268689941235841, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
   UnblockAnim: {fileID: 1043378408356957035, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
   ParryAnim: {fileID: 6397262535865428064, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}

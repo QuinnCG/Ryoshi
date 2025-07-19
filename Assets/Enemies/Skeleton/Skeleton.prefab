@@ -452,7 +452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DebugStateText: {fileID: 9153441097014388844}
   Speaker: {fileID: 8798018874342217371}
-  AttackDamage: 1
+  AttackDamage: 10
   AttackKnockback: {x: 16, y: 6}
   AttackDashSpeed: 6
   RetreatChance: 0.3
