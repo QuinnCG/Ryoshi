@@ -374,8 +374,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 3409284925198859872}
     m_Modifications:
     - target: {fileID: 427693013931231161, guid: d2f8a34e05a4c144caa9a2aa810705aa, type: 3}
+      propertyPath: MessageInterval
+      value: 2.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 427693013931231161, guid: d2f8a34e05a4c144caa9a2aa810705aa, type: 3}
       propertyPath: Messages.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 427693013931231161, guid: d2f8a34e05a4c144caa9a2aa810705aa, type: 3}
       propertyPath: 'Messages.Array.data[0]'
@@ -383,11 +387,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 427693013931231161, guid: d2f8a34e05a4c144caa9a2aa810705aa, type: 3}
       propertyPath: 'Messages.Array.data[1]'
-      value: "Good. You must defeat the yokai plague\u2026"
+      value: Good. You must defeat the yokai plague.
       objectReference: {fileID: 0}
     - target: {fileID: 427693013931231161, guid: d2f8a34e05a4c144caa9a2aa810705aa, type: 3}
       propertyPath: 'Messages.Array.data[2]'
       value: Go forth. Start your journey as a hero!
+      objectReference: {fileID: 0}
+    - target: {fileID: 427693013931231161, guid: d2f8a34e05a4c144caa9a2aa810705aa, type: 3}
+      propertyPath: 'Messages.Array.data[3]'
+      value: But be careful; it's getting dark...
       objectReference: {fileID: 0}
     - target: {fileID: 2156757663387433401, guid: d2f8a34e05a4c144caa9a2aa810705aa, type: 3}
       propertyPath: m_Name
