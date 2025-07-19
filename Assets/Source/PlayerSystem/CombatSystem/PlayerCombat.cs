@@ -21,6 +21,8 @@ namespace Quinn.CombatSystem
 		private float AttackChainEndCooldown = 0.8f;
 		[SerializeField]
 		private float ParryWindow = 0.2f;
+		[SerializeField]
+		private float HealthOnKill = 3f;
 
 		[Space]
 
@@ -318,7 +320,7 @@ namespace Quinn.CombatSystem
 				{
 					if (dmg.IsLowPriority())
 					{
-						dmg.TakeDamage(info);
+						dmg.TakeDamage(info, out bool _);
 						continue;
 					}
 
@@ -338,7 +340,12 @@ namespace Quinn.CombatSystem
 				return;
 			}
 
-			bool hitAny = closest.TakeDamage(info);
+			bool hitAny = closest.TakeDamage(info, out bool isLethal);
+
+			if (isLethal)
+			{
+				_health.Heal(HealthOnKill);
+			}
 
 			if (hitAny)
 			{

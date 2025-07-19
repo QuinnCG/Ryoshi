@@ -41,7 +41,7 @@ namespace Quinn.AI.BehaviorTree
                         Direction = GameObject.transform.position.DirectionTo(collider.bounds.Bottom()),
                         Knockback = K.Value,
                         TeamType = TeamType.Enemy
-                    });
+                    }, out bool _);
                 }
             }
 

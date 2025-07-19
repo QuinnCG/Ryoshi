@@ -31,7 +31,7 @@ namespace Quinn
 			return !_isDead;
 		}
 
-		public bool TakeDamage(DamageInfo info)
+		public bool TakeDamage(DamageInfo info, out bool isLethal)
 		{
 			_isDead = true;
 
@@ -40,6 +40,8 @@ namespace Quinn
 			VFX.Play();
 
 			gameObject.Destroy();
+
+			isLethal = true;
 			return true;
 		}
 	}

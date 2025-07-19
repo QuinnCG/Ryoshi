@@ -77,14 +77,20 @@ namespace Quinn.DamageSystem
 			return true;
 		}
 
-		public bool TakeDamage(DamageInfo info)
+		public bool TakeDamage(DamageInfo info, out bool isLethal)
 		{
-			if (!CanDamage(info)) 
+			if (!CanDamage(info))
+			{
+				isLethal = false;
 				return false;
+			}
 
 			bool? allowed = AllowDamage?.Invoke(info);
 			if (allowed.HasValue && !allowed.Value)
+			{
+				isLethal = false;
 				return false;
+			}
 
 			// This is the first instance of damage.
 			if (Current == Max && HPBar != null)
@@ -129,6 +135,7 @@ namespace Quinn.DamageSystem
 				Death();
 			}
 
+			isLethal = IsDead;
 			return true;
 		}
 

@@ -23,7 +23,7 @@ namespace Quinn.AI
 							Damage = 1,
 							Direction = transform.position.DirectionTo(collider.bounds.center),
 							TeamType = TeamType.Enemy
-						});
+						}, out bool _);
 					}
 				}
 			}

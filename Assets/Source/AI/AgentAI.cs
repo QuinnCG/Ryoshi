@@ -219,7 +219,7 @@ namespace Quinn.AI
 						Direction = direction.normalized,
 						Knockback = knockback,
 						TeamType = TeamType.Enemy
-					});
+					}, out bool _);
 
 					if (hit)
 						hitAny = true;

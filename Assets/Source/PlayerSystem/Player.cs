@@ -145,7 +145,7 @@ namespace Quinn
 				Damage = damage,
 				Direction = Vector2.up,
 				TeamType = TeamType.Environment
-			});
+			}, out bool _);
 		}
 
 		[Command("kill", "Kills the player.")]
@@ -156,7 +156,7 @@ namespace Quinn
 				Damage = Health.Current + 1f,
 				Direction = Vector2.up,
 				TeamType = TeamType.Environment
-			});
+			}, out bool _);
 		}
 
 		[Command("heal", "Heals the player.")]

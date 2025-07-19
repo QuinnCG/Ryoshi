@@ -15,7 +15,7 @@ namespace Quinn.DamageSystem
 		/// </summary>
 		/// <param name="info">The description of the damage to try and apply.</param>
 		/// <returns>True, if the damage was applied, false if it was ignored.</returns>
-		public bool TakeDamage(DamageInfo info);
+		public bool TakeDamage(DamageInfo info, out bool isLethal);
 
 		public bool CanDamage(DamageInfo info);
 	}

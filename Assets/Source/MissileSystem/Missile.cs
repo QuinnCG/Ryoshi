@@ -127,7 +127,7 @@ namespace Quinn.MissileSystem
 						Direction = _rb.linearVelocity.normalized,
 						Knockback = Knockback,
 						TeamType = Team
-					});
+					}, out bool _);
 
 					// Only attempt destroying self if damage was actually applied.
 					if (success && DestroyOnHit)
