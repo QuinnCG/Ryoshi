@@ -133,6 +133,8 @@ namespace Quinn
 			_movement.enabled = false;
 			_combat.enabled = false;
 
+			MusicManager.Instance.StopAllMusic();
+
 			await TransitionManager.Instance.FadeToBlackAsync(2f);
 			await SceneManager.LoadSceneAsync(0);
 		}

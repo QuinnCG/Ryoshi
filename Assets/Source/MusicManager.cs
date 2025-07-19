@@ -1,5 +1,6 @@
 using FMOD.Studio;
 using FMODUnity;
+using System;
 using UnityEngine;
 
 namespace Quinn
@@ -50,6 +51,15 @@ namespace Quinn
 
 			await Awaitable.WaitForSecondsAsync(5f);
 			PlayAreaMusic(_areaMusicRef);
+		}
+
+		internal void StopAllMusic()
+		{
+			_areaMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+			_areaMusic.release();
+
+			_bossMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+			_bossMusic.release();
 		}
 	}
 }

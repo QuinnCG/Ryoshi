@@ -21,6 +21,8 @@ namespace Quinn
 		[ShowInInspector, ReadOnly]
 		private AnimationClip LoopingAnimation;
 
+		public bool IsPlayingOneShot => _isOneShotPlaying;
+
 		private float _nextOneShotEndTime;
 		private bool _isOneShotPlaying;
 		private bool _holdOneShotEndFrame;

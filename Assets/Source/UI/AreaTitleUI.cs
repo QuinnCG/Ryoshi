@@ -38,6 +38,8 @@ namespace Quinn.UI
 
 		private void Awake()
 		{
+			Group.alpha = 0f;
+
 			if (SaveManager.IsSaved(Title))
 			{
 				return;
@@ -47,8 +49,6 @@ namespace Quinn.UI
 
 			TitleText.text = Title;
 			SubtitleText.text = Subtitle;
-
-			Group.alpha = 0f;
 
 			var seq = DOTween.Sequence();
 			seq.Append(Group.DOFade(1f, FadeInDuration).SetEase(FadeInEase));

@@ -19,6 +19,9 @@ namespace Quinn.AI
 		[SerializeField, Required]
 		private DialogueSpeaker Speaker;
 
+		// HACK
+		protected DialogueSpeaker SpeakerRef => Speaker;
+
 		public delegate IEnumerator State();
 
 		protected PlayableAnimator Animator { get; private set; }
@@ -26,12 +29,13 @@ namespace Quinn.AI
 		protected Health Health { get; private set; }
 		protected BoxCollider2D Hitbox { get; private set; }
 
+		protected IEnumerator ActiveState { get; private set; }
+
 		protected Transform Player => Quinn.Player.Instance.transform;
 		protected float DistanceToPlayer => transform.position.DistanceTo(Player.position);
 		protected Vector2 DirectionToPlayer => transform.position.DirectionTo(Player.position);
 
 		private readonly HashSet<string> _events = new();
-		private IEnumerator _activeState;
 
 		private bool _hasHealthDroppedBelowHalfYet;
 
@@ -52,7 +56,7 @@ namespace Quinn.AI
 		{
 			if (visible)
 			{
-				if (_activeState != null)
+				if (ActiveState != null)
 				{
 					DebugStateText.text = "Unnamed State";
 				}
@@ -114,35 +118,35 @@ namespace Quinn.AI
 			return _events.Contains(name);
 		}
 
-		protected void TransitionTo(State state, string name)
+		protected void TransitionTo(State state, string name = default)
 		{
 			Debug.Assert(state != null);
 
 			ClearState();
 
-			_activeState = state();
-			StartCoroutine(_activeState);
+			ActiveState = state();
+			StartCoroutine(ActiveState);
 
 			DebugStateText.text = name;
 		}
-		protected void TransitionTo(IEnumerator state, string name)
+		protected void TransitionTo(IEnumerator state, string name = default)
 		{
 			Debug.Assert(state != null);
 
 			ClearState();
 
-			_activeState = state;
-			StartCoroutine(_activeState);
+			ActiveState = state;
+			StartCoroutine(ActiveState);
 
 			DebugStateText.text = name;
 		}
 
 		protected void ClearState()
 		{
-			if (_activeState != null)
+			if (ActiveState != null)
 			{
-				StopCoroutine(_activeState);
-				_activeState = null;
+				StopCoroutine(ActiveState);
+				ActiveState = null;
 
 				DebugStateText.text = "No Active State!";
 			}

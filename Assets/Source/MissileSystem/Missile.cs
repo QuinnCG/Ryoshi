@@ -130,7 +130,7 @@ namespace Quinn.MissileSystem
 					}, out bool _);
 
 					// Only attempt destroying self if damage was actually applied.
-					if (success && DestroyOnHit)
+					if (success && DestroyOnHit && !damage.IsLowPriority())
 					{
 						DestroyMissile();
 					}
