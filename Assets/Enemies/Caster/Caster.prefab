@@ -400,6 +400,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b9e0fd4c26b34d48870e710046b1e29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3469361029831258894 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6206539957236587839, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+  m_PrefabInstance: {fileID: 7352032163320442417}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a38161f33ee6db44d8244f5a4d2b31af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3745321292397823366 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6196292914497350583, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
@@ -418,6 +429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DebugStateText: {fileID: 3835656048123071993}
+  Speaker: {fileID: 3469361029831258894}
   MissilePrefab: {fileID: 2564034885257058421, guid: aa1d330861bf9304e965590b4fe08fcf, type: 3}
   MissileOrigin: {fileID: 4356458726627667154}
   MissileSpawnBehavior:
@@ -427,6 +439,9 @@ MonoBehaviour:
     SpreadType: 0
     SpreadAngle: 0
   CastVFX: {fileID: 8400027033965627865}
+  MinIdealDstToPlayer: 6
+  MaxIdealDstToPlayer: 10
+  ChargeDuration: {x: 0.5, y: 1}
   IdleAnim: {fileID: 6327698846309602966, guid: a5b07b95779c43f44a05123866b22453, type: 3}
   WalkAnim: {fileID: 7402124271905394773, guid: a5b07b95779c43f44a05123866b22453, type: 3}
   WalkBackAnim: {fileID: -5309913786236769353, guid: a5b07b95779c43f44a05123866b22453, type: 3}

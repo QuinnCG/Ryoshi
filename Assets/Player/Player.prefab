@@ -689,6 +689,7 @@ MonoBehaviour:
   DashCooldown: 0.5
   IdleAnim: {fileID: 2195382558344662133, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
   MoveAnim: {fileID: -2883626450286218148, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
+  MoveBackAnim: {fileID: -4257442597859297152, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
   CrouchedIdleAnim: {fileID: 4901208516649519409, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
   CrouchedMoveAnim: {fileID: 1567561829760523040, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}
   JumpingAnim: {fileID: -8667289301584079092, guid: 46f2bafb799fe3041a51d68165f0d002, type: 3}

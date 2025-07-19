@@ -2256,7 +2256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Origin: {fileID: 1121750767}
-  Prefab: {fileID: 5832470517716988322, guid: 9bf697d583ef3d2419a133bea82551e3, type: 3}
+  Prefab: {fileID: 2564034885257058421, guid: aa1d330861bf9304e965590b4fe08fcf, type: 3}
   SpawnBehavior:
     Count: 3
     Interval: 0.1

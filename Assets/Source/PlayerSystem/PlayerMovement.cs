@@ -44,10 +44,12 @@ namespace Quinn
 		private float DashCooldown = 0.5f;
 
 		[SerializeField, FoldoutGroup("Animations"), Required]
-		private AnimationClip IdleAnim, MoveAnim, CrouchedIdleAnim, CrouchedMoveAnim, JumpingAnim, FallingAnim, DashingAnim;
+		private AnimationClip IdleAnim, MoveAnim, MoveBackAnim, CrouchedIdleAnim, CrouchedMoveAnim, JumpingAnim, FallingAnim, DashingAnim;
 
 		[SerializeField, FoldoutGroup("SFX")]
 		private EventReference FootstepSound, JumpSound, LandSound, DashSound;
+
+		public float InputDir { get; private set; }
 
 		public bool IsJumping { get; private set; }
 		public bool IsDashing { get; private set; }
@@ -105,7 +107,9 @@ namespace Quinn
 			if (IsDashing)
 			{
 				ResetGravity();
-				SetVelocity(DashSpeed * _player.FacingDirection * Vector2.right);
+				SetVelocity(DashSpeed * InputDir * Vector2.right);
+
+				SetVisualFacingDirection(InputDir);
 
 				if (Time.time > _dashEndTime)
 				{
@@ -118,7 +122,8 @@ namespace Quinn
 
 		public void Move(float xDir)
 		{
-			UpdateFacingDir(_player.FacingDirection);
+			InputDir = xDir == 0f ? xDir : Mathf.Sign(xDir);
+			SetVisualFacingDirection(_player.FacingDirection);
 
 			// Can only change facing direction, while blocking.
 			if (_combat.IsBlocking)
@@ -132,7 +137,8 @@ namespace Quinn
 				}
 				else
 				{
-					_animator.PlayLooped(IsCrouched ? CrouchedMoveAnim : MoveAnim);
+					var moveAnim = Mathf.Sign(xDir) == Mathf.Sign(_player.FacingDirection) ? MoveAnim : MoveBackAnim;
+					_animator.PlayLooped(IsCrouched ? CrouchedMoveAnim : moveAnim);
 				}
 			}
 
@@ -234,16 +240,13 @@ namespace Quinn
 			base.SetVelocity(vel);
 		}
 
-		private void UpdateFacingDir(float xDir)
+		/// <summary>
+		/// Flips the sprite.
+		/// </summary>
+		private void SetVisualFacingDirection(float xDir)
 		{
-			// TODO: In dueling fights, override this to always face boss opponent.
-
 			if (xDir != 0f)
 			{
-				//var scale = transform.localScale;
-				//scale.x = Mathf.Abs(scale.x) * Mathf.Sign(xDir);
-				//transform.localScale = scale;
-
 				_renderer.flipX = xDir < 0f;
 			}
 		}
