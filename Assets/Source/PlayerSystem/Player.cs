@@ -1,4 +1,5 @@
 using QFSW.QC;
+using Quinn.AI;
 using Quinn.CombatSystem;
 using Quinn.DamageSystem;
 using Quinn.RoomManagement;
@@ -19,6 +20,8 @@ namespace Quinn
 		// HACK: Make all references to this point to the underlying _movement.FacingDirection.
 
 		public Health Health { get; private set; }
+
+		public bool InLockedRoom { get; set; }
 
 		private PlayableAnimator _animator;
 		private PlayerMovement _movement;
@@ -58,9 +61,19 @@ namespace Quinn
 			if (!_movement.IsDashing && (!_combat.IsAttacking || _combat.IsRecovering) && !_combat.IsStaggered)
 			{
 				var inputDir = Input.GetAxisRaw("Horizontal");
-				_movement.Move(inputDir);
 
-				_movement.SetFacingDir(inputDir);
+				if (InLockedRoom && LockedRoom.Instance.Boss != null)
+				{
+					Vector2 pos = LockedRoom.Instance.Boss.transform.position;
+					float dir = transform.position.DirectionTo(pos).x;
+					_movement.SetFacingDir(dir);
+				}
+				else
+				{
+					_movement.SetFacingDir(inputDir);
+				}
+
+				_movement.Move(inputDir);
 			}
 
 			if (!_combat.IsAttacking || _combat.IsRecovering)

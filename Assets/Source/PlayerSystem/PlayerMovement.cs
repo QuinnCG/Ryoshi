@@ -118,7 +118,7 @@ namespace Quinn
 
 		public void Move(float xDir)
 		{
-			UpdateFacingDir(xDir);
+			UpdateFacingDir(_player.FacingDirection);
 
 			// Can only change facing direction, while blocking.
 			if (_combat.IsBlocking)
