@@ -176,6 +176,14 @@ namespace Quinn
 			Audio.Play(LandSound);
 		}
 
+		protected override void OnLeaveGround()
+		{
+			if (!IsJumping)
+			{
+				ResetGravity();
+			}
+		}
+
 		public void StopJump()
 		{
 			if (IsJumping)

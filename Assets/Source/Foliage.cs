@@ -36,8 +36,12 @@ namespace Quinn
 			_isDead = true;
 
 			Audio.Play(SFX, transform.position);
-			VFX.transform.SetParent(null, true);
-			VFX.Play();
+
+			if (VFX != null)
+			{
+				VFX.transform.SetParent(null, true);
+				VFX.Play();
+			}
 
 			gameObject.Destroy();
 
