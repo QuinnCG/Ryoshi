@@ -39,7 +39,7 @@ namespace Quinn.UI
 			Title.text = boss.Title;
 			_boss = boss.GetComponent<Health>();
 
-			Group.DOFade(1f, 0.5f);
+			Group.DOFade(1f, 1f);
 		}
 
 		public void StopFight()
