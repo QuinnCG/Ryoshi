@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{f52eba38-b01f-4422-84ed-4e74bb10b74a}">
+		<property name="name">
+			<value>is-second-phase</value>
+		</property>
+		<relationship name="folder">
+			<destination>{3c028cb2-bf65-4b32-bf88-7de2f71fb092}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{772f6e6b-ee44-4134-8ce2-b0c8627ae5df}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{772f6e6b-ee44-4134-8ce2-b0c8627ae5df}">
+		<property name="isGlobal">
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="isExposedRecursively">
+			<value>false</value>
+		</property>
+	</object>
+</objects>

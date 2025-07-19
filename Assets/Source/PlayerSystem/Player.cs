@@ -1,3 +1,4 @@
+using FMODUnity;
 using QFSW.QC;
 using Quinn.AI;
 using Quinn.CombatSystem;
@@ -15,6 +16,9 @@ namespace Quinn
 	public class Player : MonoBehaviour
 	{
 		public static Player Instance { get; private set; }
+
+		[SerializeField]
+		private EventReference AreaMusic;
 
 		public float FacingDirection => _movement.FacingDirection;
 		// HACK: Make all references to this point to the underlying _movement.FacingDirection.
@@ -41,6 +45,7 @@ namespace Quinn
 
 		private async void Start()
 		{
+			MusicManager.Instance.PlayAreaMusic(AreaMusic);
 			await TransitionManager.Instance.FadeFromBlackAsync(1f);
 		}
 

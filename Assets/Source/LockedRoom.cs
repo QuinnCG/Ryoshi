@@ -1,4 +1,5 @@
 using FMODUnity;
+using Quinn.UI;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -14,9 +15,11 @@ namespace Quinn.AI
 		private Gate[] Gates;
 		[SerializeField]
 		private EventReference OpenSound, CloseSound;
+		[SerializeField]
+		private EventReference BossMusic, OutroMusic;
 
 		[field: SerializeField, Required]
-		public AgentAI Boss { get; private set; }
+		public BossAI Boss { get; private set; }
 
 		public bool HasBegun { get; private set; }
 		public bool IsConquered { get; private set; }
@@ -39,6 +42,13 @@ namespace Quinn.AI
 				Player.Instance.InLockedRoom = true;
 
 				Instance = this;
+
+				MusicManager.Instance.PlayBossMusic(BossMusic);
+
+				if (Boss != null)
+				{
+					BossBarUI.Instance.StartFight(Boss);
+				}
 			}
 		}
 
@@ -46,6 +56,15 @@ namespace Quinn.AI
 		{
 			if (!IsConquered)
 			{
+				MusicManager.Instance.StopBossMusic(OutroMusic);
+
+				if (Boss != null)
+				{
+					BossBarUI.Instance.StopFight();
+				}
+
+				SaveManager.Save(SaveKey);
+
 				await Awaitable.WaitForSecondsAsync(1f);
 
 				IsConquered = true;
@@ -53,8 +72,6 @@ namespace Quinn.AI
 				Player.Instance.InLockedRoom = false;
 
 				Instance = null;
-
-				SaveManager.Save(SaveKey);
 			}
 		}
 
