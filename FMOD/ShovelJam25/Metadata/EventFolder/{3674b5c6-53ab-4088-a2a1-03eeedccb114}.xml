@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="EventFolder" id="{3674b5c6-53ab-4088-a2a1-03eeedccb114}">
+		<property name="name">
+			<value>Shapeshifter</value>
+		</property>
+		<relationship name="folder">
+			<destination>{f96e0277-06d0-4403-aa2c-7351f6bef2f4}</destination>
+		</relationship>
+	</object>
+</objects>

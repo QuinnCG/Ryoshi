@@ -10,6 +10,11 @@ namespace Quinn
 	/// </summary>
 	public class PlayableAnimator : MonoBehaviour
 	{
+		[SerializeField]
+		private AnimationClip DefaultAnim;
+		[SerializeField]
+		private bool LoopDefaultAnim = true;
+
 		private PlayableGraph _graph;
 		private AnimationPlayableOutput _output;
 
@@ -31,6 +36,18 @@ namespace Quinn
 
 			_graph = PlayableGraph.Create("Playable Animator Graph");
 			_output = AnimationPlayableOutput.Create(_graph, "Animation Output", animator);
+
+			if (DefaultAnim != null)
+			{
+				if (LoopDefaultAnim)
+				{
+					PlayLooped(DefaultAnim);
+				}
+				else
+				{
+					PlayOnce(DefaultAnim, true);
+				}
+			}
 		}
 
 		private void Update()

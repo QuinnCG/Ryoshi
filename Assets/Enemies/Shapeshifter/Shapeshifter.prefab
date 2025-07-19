@@ -51,10 +51,10 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 0.7
+      - m_Value: 0.312
         m_Name: DirectionalityBias
         m_Overridden: 1
-      - m_Value: 64
+      - m_Value: 32
         m_Name: SpawnRate
         m_Overridden: 1
       - m_Value: 5
@@ -182,9 +182,25 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -7769812350432153940, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7769812350432153940, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -7971706740260215807, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
+    - target: {fileID: -966629561171739572, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: StartFacingRight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -966629561171739572, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: GenericDecayRateFactor
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 246501973113497856, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: Default
+      value: 550
+      objectReference: {fileID: 0}
     - target: {fileID: 748654900169410309, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -238,6 +254,18 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1655161607136902208, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: m_Size.y
+      value: 2.063516
+      objectReference: {fileID: 0}
+    - target: {fileID: 1655161607136902208, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: m_Offset.y
+      value: 1.1196855
+      objectReference: {fileID: 0}
+    - target: {fileID: 1655161607136902208, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: m_ForceReceiveLayers.m_Bits
+      value: 62
+      objectReference: {fileID: 0}
+    - target: {fileID: 1655161607136902208, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
       value: 0
       objectReference: {fileID: 0}
@@ -253,13 +281,17 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 1.53
       objectReference: {fileID: 0}
+    - target: {fileID: 2597848906674020248, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.03
+      objectReference: {fileID: 0}
     - target: {fileID: 2604311535062375262, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 2604311535062375262, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6196292914497350583, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_Name
@@ -268,6 +300,14 @@ PrefabInstance:
     - target: {fileID: 6641779185569500727, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.264
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799834748252435994, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912765222246233289, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

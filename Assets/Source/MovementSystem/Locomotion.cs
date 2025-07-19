@@ -6,6 +6,9 @@ namespace Quinn.MovementSystem
 	[RequireComponent(typeof(Rigidbody2D))]
 	public abstract class Locomotion : MonoBehaviour
 	{
+		[SerializeField]
+		private float GenericDecayRateFactor = 1f;
+
 		// Used for things like knockback.
 		class DecayingVelocity
 		{
@@ -125,7 +128,7 @@ namespace Quinn.MovementSystem
 				float mag = handle.Velocity.magnitude;
 				Vector2 dir = handle.Velocity.normalized;
 
-				mag -= Time.deltaTime * handle.DecayRate * DecayRateFactor;
+				mag -= Time.deltaTime * handle.DecayRate * DecayRateFactor * GenericDecayRateFactor;
 				mag.MakeAtLeast(0f);
 
 				handle.Velocity = dir * mag;

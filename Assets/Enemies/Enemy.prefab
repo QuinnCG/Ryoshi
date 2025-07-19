@@ -586,7 +586,7 @@ GameObject:
   - component: {fileID: 8276265765895722778}
   - component: {fileID: 3664735741256760868}
   m_Layer: 5
-  m_Name: DebugCanvas
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -818,6 +818,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e9ef39c2e52faf49891b0c759465aac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DefaultAnim: {fileID: 0}
+  LoopDefaultAnim: 1
 --- !u!114 &8419323289301458012
 MonoBehaviour:
   m_ObjectHideFlags: 0
