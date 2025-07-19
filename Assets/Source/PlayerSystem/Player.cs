@@ -1,6 +1,7 @@
 using QFSW.QC;
 using Quinn.CombatSystem;
 using Quinn.DamageSystem;
+using Quinn.RoomManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -42,7 +43,7 @@ namespace Quinn
 
 		private void Update()
 		{
-			if (ConsoleManager.IsOpen)
+			if (ConsoleManager.IsOpen || RoomManager.Instance.IsLoading)
 				return;
 
 			if (Input.GetMouseButtonDown(0))

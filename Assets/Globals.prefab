@@ -206,6 +206,7 @@ GameObject:
   - component: {fileID: 6965152004990350395}
   - component: {fileID: -3402243769600995114}
   - component: {fileID: 4165958793203414579}
+  - component: {fileID: 56971477577549734}
   m_Layer: 0
   m_Name: Globals
   m_TagString: Untagged
@@ -368,6 +369,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edbb379c041502946a0641f01d487b69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &56971477577549734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3488755243193208316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f7a7caf0b4d0cb439f2b6806ff546c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4008529427120353495
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,9 +448,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'v0.6a - dev
+  m_text: 'v0.7a - dev
 
-    u6000.1.11f1'
+    u6000.1.12f1'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

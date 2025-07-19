@@ -19,6 +19,11 @@ namespace Quinn.MissileSystem
 		/// <param name="onMissileSpawnCallback">A callback called after the missile is spawned but before <see cref="Missile.Launch(Vector2, GameObject)"/> is called.</param>
 		public static async void SpawnMissile(GameObject source, GameObject prefab, TeamType team, Vector2 origin, MissileSpawnBehavior spawnBehavior, Vector2 baseDir, System.Action<Missile> onMissileSpawnCallback = default)
 		{
+			if (prefab == null)
+			{
+				return;
+			}
+
 			if (spawnBehavior.Delay > 0f)
 			{
 				await Wait.Duration(spawnBehavior.Delay);
