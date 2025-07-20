@@ -303,6 +303,8 @@ namespace Quinn.CombatSystem
 				Knockback = knockback
 			};
 
+			_riposteWindowEndTime = -1f;
+
 			Vector2 offset = _attackDef.DamageBoxOffset;
 			offset.x *= _movement.FacingDirection;
 
@@ -410,7 +412,6 @@ namespace Quinn.CombatSystem
 			}
 			else if (Time.time < _riposteWindowEndTime)
 			{
-				_riposteWindowEndTime = -1f;
 				return AttackStanceType.Riposte;
 			}
 			else
@@ -551,6 +552,14 @@ namespace Quinn.CombatSystem
 			else
 			{
 				Log.Warning($"Active animation '{_attackAnim}' has events to set the recovery phase. This shouldn't happen with continuous mode attacks.");
+			}
+		}
+
+		protected void RiposteSFX()
+		{
+			if (Time.time < _riposteWindowEndTime)
+			{
+				Audio.Play("event:/Player/Riposte", transform.position);
 			}
 		}
 	}
