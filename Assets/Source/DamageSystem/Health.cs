@@ -144,6 +144,17 @@ namespace Quinn.DamageSystem
 			return true;
 		}
 
+		public void Kill()
+		{
+			TakeDamage(new()
+			{
+				Damage = Max + 1f,
+				Direction = Vector2.zero,
+				Knockback = Vector2.zero,
+				TeamType = TeamType.Environment
+			}, out var _);
+		}
+
 		public void Heal(float amount)
 		{
 			Current = Mathf.Clamp(Current + amount, 0f, Max);

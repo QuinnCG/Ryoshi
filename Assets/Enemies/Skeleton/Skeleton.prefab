@@ -415,7 +415,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8213976270160305635, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 108.35
+      value: 152.88
       objectReference: {fileID: 0}
     - target: {fileID: 8213976270160305635, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_SizeDelta.y
@@ -453,6 +453,7 @@ MonoBehaviour:
   DebugStateText: {fileID: 9153441097014388844}
   Speaker: {fileID: 8798018874342217371}
   AggroDistance: 5
+  DoesPatrol: 1
   AttackDamage: 10
   AttackKnockback: {x: 16, y: 6}
   AttackDashSpeed: 6
@@ -463,6 +464,10 @@ MonoBehaviour:
   - Ggrrrr!
   - Raghr!
   - Ggr?
+  KillPlayMessages:
+  - I won?!
+  - What a loser.
+  - That was easy.
   IdleDuration: {x: 0.5, y: 3}
   IdlingAnim: {fileID: 6239711262259380995, guid: 245dd65f2c1ff684ea8376e02939abab, type: 3}
   WalkingAnim: {fileID: -8979603218701514631, guid: 245dd65f2c1ff684ea8376e02939abab, type: 3}

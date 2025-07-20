@@ -8,6 +8,8 @@ namespace Quinn.AI.Brains
 	{
 		[SerializeField]
 		private float AggroDistance = 5f;
+		[SerializeField]
+		private bool DoesPatrol = true;
 
 		[Space]
 
@@ -26,6 +28,8 @@ namespace Quinn.AI.Brains
 		private float PlayMessageChance = 0.5f;
 		[SerializeField]
 		private string[] RandomFirstMessage;
+		[SerializeField]
+		private string[] KillPlayMessages;
 
 		[Space]
 
@@ -75,6 +79,12 @@ namespace Quinn.AI.Brains
 
 		private IEnumerator PatrolState()
 		{
+			if (!DoesPatrol)
+			{
+				Animator.PlayLooped(IdlingAnim);
+				yield break;
+			}
+
 			Movement.SetSpeedWalk();
 
 			while (true)
@@ -166,6 +176,22 @@ namespace Quinn.AI.Brains
 
 			FacePlayer();
 			DamageBox(new(1f, 0f), new(2f, 1.5f), AttackDamage, DirectionToPlayer.x * Vector2.right, AttackKnockback);
+
+			if (Quinn.Player.Instance.Health.IsDead)
+			{
+				if (KillPlayMessages.Length > 0)
+				{
+					Speak(KillPlayMessages.GetRandom());
+				}
+
+				ClearState();
+
+				Animator.PlayLooped(IdlingAnim, true);
+				while (true)
+				{
+					yield return null;
+				}
+			}
 
 			if (Random.value < RetreatChance)
 			{

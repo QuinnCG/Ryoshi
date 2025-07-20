@@ -1,3 +1,4 @@
+using Quinn.DamageSystem;
 using UnityEngine;
 
 namespace Quinn.Parkour
@@ -37,6 +38,10 @@ namespace Quinn.Parkour
 				{
 					Player.Instance.GoToParkourCheckpoint();
 				}
+			}
+			else if (collision.collider.IsEnemy())
+			{
+				collision.collider.GetComponent<Health>().Kill();
 			}
 		}
 	}

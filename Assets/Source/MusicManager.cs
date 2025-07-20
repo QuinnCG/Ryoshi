@@ -37,17 +37,26 @@ namespace Quinn
 			_areaMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 			_areaMusic.release();
 
-			_bossMusic = RuntimeManager.CreateInstance(loop);
-			_bossMusic.start();
+			if (!loop.IsNull)
+			{
+				_bossMusic = RuntimeManager.CreateInstance(loop);
+				_bossMusic.start();
+			}
 		}
 
 		public async void StopBossMusic(EventReference outro)
 		{
-			_bossMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-			_bossMusic.release();
+			if (_bossMusic.isValid())
+			{
+				_bossMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+				_bossMusic.release();
+			}
 
-			_bossMusic = RuntimeManager.CreateInstance(outro);
-			_bossMusic.start();
+			if (!outro.IsNull)
+			{
+				_bossMusic = RuntimeManager.CreateInstance(outro);
+				_bossMusic.start();
+			}
 
 			await Awaitable.WaitForSecondsAsync(5f);
 			PlayAreaMusic(_areaMusicRef);
