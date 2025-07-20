@@ -41,6 +41,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3524659633339416653, guid: 95f306004c48b8d4cbeb4ce47d25f965, type: 3}
+      propertyPath: MessageInterval
+      value: 1e+15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3524659633339416653, guid: 95f306004c48b8d4cbeb4ce47d25f965, type: 3}
       propertyPath: Messages.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -90,15 +94,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5417262864780883222, guid: 95f306004c48b8d4cbeb4ce47d25f965, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5417262864780883222, guid: 95f306004c48b8d4cbeb4ce47d25f965, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5417262864780883222, guid: 95f306004c48b8d4cbeb4ce47d25f965, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5417262864780883222, guid: 95f306004c48b8d4cbeb4ce47d25f965, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -7,6 +7,11 @@ namespace Quinn.AI.Brains
 	public class SkeletonAI : AgentAI
 	{
 		[SerializeField]
+		private float AggroDistance = 5f;
+
+		[Space]
+
+		[SerializeField]
 		private int AttackDamage = 1;
 		[SerializeField]
 		private Vector2 AttackKnockback = new(12f, 0f);
@@ -35,7 +40,7 @@ namespace Quinn.AI.Brains
 		private IEnumerator Start()
 		{
 			TransitionTo(PatrolState, "Patrol");
-			yield return new WaitUntil(() => DistanceToPlayer < 6f);
+			yield return new WaitUntil(() => DistanceToPlayer < AggroDistance);
 
 			if (Random.value < PlayMessageChance)
 			{

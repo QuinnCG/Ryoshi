@@ -1,5 +1,6 @@
 using DG.Tweening;
 using Sirenix.OdinInspector;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -11,6 +12,8 @@ namespace Quinn.UI
 		private string Title = "Area Title";
 		[SerializeField]
 		private string Subtitle = "The Area's Subtitle";
+		[SerializeField, Unit(Units.Second)]
+		private float ShowDelay = 0f;
 
 		[Space]
 
@@ -39,11 +42,16 @@ namespace Quinn.UI
 		private void Awake()
 		{
 			Group.alpha = 0f;
+		}
 
+		private IEnumerator Start()
+		{
 			if (SaveManager.IsSaved(Title))
 			{
-				return;
+				yield break;
 			}
+
+			yield return new WaitForSeconds(ShowDelay);
 
 			SaveManager.Save(Title);
 

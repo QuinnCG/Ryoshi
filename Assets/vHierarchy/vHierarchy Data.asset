@@ -15,6 +15,9 @@ MonoBehaviour:
   sceneDatas_byGuid:
     keys:
     - ed6b8aa7db7654f4ca0abda19535fd15
+    - e1870f4723a0d1741a88e22bf36e0034
+    - 3034f1db3a7f7394c84ff55362f8482d
+    - 8e8340821c69bca43a86a531a46cf3fe
     values:
     - goDatas_byGlobalId:
         keys:
@@ -22,6 +25,80 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-ed6b8aa7db7654f4ca0abda19535fd15-123323876-0
         - globalObjectIdString: GlobalObjectId_V1-2-ed6b8aa7db7654f4ca0abda19535fd15-6157801076507832465-1141527685
         - globalObjectIdString: GlobalObjectId_V1-2-ed6b8aa7db7654f4ca0abda19535fd15-783301793-0
+        values:
+        - colorIndex: 7
+          iconNameOrGuid: PreMatCube
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 2
+          iconNameOrGuid: AvatarMask On Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 5
+          iconNameOrGuid: AvatarMask On Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 3
+          iconNameOrGuid: AvatarMask On Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+    - goDatas_byGlobalId:
+        keys:
+        - globalObjectIdString: GlobalObjectId_V1-2-e1870f4723a0d1741a88e22bf36e0034-1229644330-0
+        - globalObjectIdString: GlobalObjectId_V1-2-e1870f4723a0d1741a88e22bf36e0034-123323876-0
+        - globalObjectIdString: GlobalObjectId_V1-2-e1870f4723a0d1741a88e22bf36e0034-6157801076507832465-1141527685
+        - globalObjectIdString: GlobalObjectId_V1-2-e1870f4723a0d1741a88e22bf36e0034-783301793-0
+        - globalObjectIdString: GlobalObjectId_V1-2-e1870f4723a0d1741a88e22bf36e0034-200515536-0
+        values:
+        - colorIndex: 7
+          iconNameOrGuid: PreMatCube
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 2
+          iconNameOrGuid: AvatarMask On Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 5
+          iconNameOrGuid: AvatarMask On Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 3
+          iconNameOrGuid: AvatarMask On Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 1
+          iconNameOrGuid: PreMatCube
+          isIconRecursive: 0
+          isColorRecursive: 0
+    - goDatas_byGlobalId:
+        keys:
+        - globalObjectIdString: GlobalObjectId_V1-2-3034f1db3a7f7394c84ff55362f8482d-1229644330-0
+        - globalObjectIdString: GlobalObjectId_V1-2-3034f1db3a7f7394c84ff55362f8482d-123323876-0
+        - globalObjectIdString: GlobalObjectId_V1-2-3034f1db3a7f7394c84ff55362f8482d-6157801076507832465-1141527685
+        - globalObjectIdString: GlobalObjectId_V1-2-3034f1db3a7f7394c84ff55362f8482d-783301793-0
+        values:
+        - colorIndex: 7
+          iconNameOrGuid: PreMatCube
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 2
+          iconNameOrGuid: AvatarMask On Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 5
+          iconNameOrGuid: AvatarMask On Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 3
+          iconNameOrGuid: AvatarMask On Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+    - goDatas_byGlobalId:
+        keys:
+        - globalObjectIdString: GlobalObjectId_V1-2-8e8340821c69bca43a86a531a46cf3fe-1229644330-0
+        - globalObjectIdString: GlobalObjectId_V1-2-8e8340821c69bca43a86a531a46cf3fe-123323876-0
+        - globalObjectIdString: GlobalObjectId_V1-2-8e8340821c69bca43a86a531a46cf3fe-6157801076507832465-1141527685
+        - globalObjectIdString: GlobalObjectId_V1-2-8e8340821c69bca43a86a531a46cf3fe-783301793-0
         values:
         - colorIndex: 7
           iconNameOrGuid: PreMatCube

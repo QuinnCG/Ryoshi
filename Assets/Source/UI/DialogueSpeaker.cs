@@ -24,8 +24,10 @@ namespace Quinn.UI
 		[SerializeField, Unit(Units.Second)]
 		private float MessageInterval = 4f;
 
+		[InfoBox("@GetStartingMessageDuration()")]
 		[SerializeField, FoldoutGroup("Starting Message")]
 		private string[] Messages;
+
 		[SerializeField]
 		private UnityEvent OnSequenceEnd;
 
@@ -94,6 +96,18 @@ namespace Quinn.UI
 			}
 
 			StopSpeaking();
+		}
+
+		protected string GetStartingMessageDuration()
+		{
+			float duration = 0f;
+
+			foreach (var message in Messages)
+			{
+				duration += (message.Length * TypeInterval) + MessageInterval;
+			}
+
+			return $"Total Message Duration: {duration:0.00}s";
 		}
 	}
 }

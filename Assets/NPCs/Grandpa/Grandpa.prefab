@@ -397,6 +397,30 @@ PrefabInstance:
       propertyPath: 'Messages.Array.data[3]'
       value: But be careful; it's getting dark...
       objectReference: {fileID: 0}
+    - target: {fileID: 427693013931231161, guid: d2f8a34e05a4c144caa9a2aa810705aa, type: 3}
+      propertyPath: OnSequenceEnd.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 427693013931231161, guid: d2f8a34e05a4c144caa9a2aa810705aa, type: 3}
+      propertyPath: OnSequenceEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 427693013931231161, guid: d2f8a34e05a4c144caa9a2aa810705aa, type: 3}
+      propertyPath: OnSequenceEnd.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 427693013931231161, guid: d2f8a34e05a4c144caa9a2aa810705aa, type: 3}
+      propertyPath: OnSequenceEnd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Open
+      objectReference: {fileID: 0}
+    - target: {fileID: 427693013931231161, guid: d2f8a34e05a4c144caa9a2aa810705aa, type: 3}
+      propertyPath: OnSequenceEnd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Quinn.AI.Gate, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 427693013931231161, guid: d2f8a34e05a4c144caa9a2aa810705aa, type: 3}
+      propertyPath: OnSequenceEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2156757663387433401, guid: d2f8a34e05a4c144caa9a2aa810705aa, type: 3}
       propertyPath: m_Name
       value: DialogueBox

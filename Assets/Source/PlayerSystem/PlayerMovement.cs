@@ -1,4 +1,5 @@
 using FMODUnity;
+using QFSW.QC;
 using Quinn.CombatSystem;
 using Quinn.MovementSystem;
 using Sirenix.OdinInspector;
@@ -282,6 +283,15 @@ namespace Quinn
 		protected void OnFootstep()
 		{
 			Audio.Play(FootstepSound);
+		}
+
+		[Command("nudge", "Teleport the player a distance on the x.")]
+		protected void Nudge_Cmd(float x)
+		{
+			var pos = transform.position;
+			pos.x += x;
+
+			transform.position = pos;
 		}
 	}
 }
