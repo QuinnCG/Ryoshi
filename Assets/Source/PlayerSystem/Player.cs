@@ -3,6 +3,7 @@ using QFSW.QC;
 using Quinn.AI;
 using Quinn.CombatSystem;
 using Quinn.DamageSystem;
+using Quinn.Parkour;
 using Quinn.RoomManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -33,6 +34,8 @@ namespace Quinn
 		private PlayerMovement _movement;
 		private PlayerCombat _combat;
 
+		private bool _isGoingtoCheckpoint;
+
 		private void Awake()
 		{
 			Instance = this;
@@ -53,8 +56,11 @@ namespace Quinn
 
 		private void Update()
 		{
-			if (ConsoleManager.IsOpen || RoomManager.Instance.IsLoading)
+			if (ConsoleManager.IsOpen || RoomManager.Instance.IsLoading || _isGoingtoCheckpoint)
+			{
+				_movement.Move(0f); // Update ground state animations.
 				return;
+			}
 
 			if (Input.GetMouseButtonDown(0))
 			{
@@ -120,6 +126,31 @@ namespace Quinn
 					_movement.Dash();
 				}
 			}
+		}
+
+		public async void GoToParkourCheckpoint()
+		{
+			if (ParkourCheckpoint.Active == null)
+			{
+				Log.Warning("No active ParkourCheckpoint found!");
+				return;
+			}
+
+			if (_isGoingtoCheckpoint)
+			{
+				return;
+			}
+
+			Health.IsImmune = true;
+			_isGoingtoCheckpoint = true;
+			await TransitionManager.Instance.FadeToBlackAsync(0.5f);
+
+			var pos = ParkourCheckpoint.Active.TeleportPoint.position;
+			transform.position = pos;
+
+			_isGoingtoCheckpoint = false;
+			Health.IsImmune = false;
+			await TransitionManager.Instance.FadeFromBlackAsync(1f);
 		}
 
 		private async void OnDeath()

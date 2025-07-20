@@ -123,8 +123,11 @@ namespace Quinn
 
 		public void Move(float xDir)
 		{
-			InputDir = xDir == 0f ? xDir : Mathf.Sign(xDir);
-			SetVisualFacingDirection(_player.FacingDirection);
+			if (xDir != 0f)
+			{
+				InputDir = Mathf.Sign(xDir);
+				SetVisualFacingDirection(InputDir);
+			}
 
 			// Can only change facing direction, while blocking.
 			if (_combat.IsBlocking)
@@ -247,6 +250,11 @@ namespace Quinn
 		public new void SetVelocity(Vector2 vel)
 		{
 			base.SetVelocity(vel);
+		}
+
+		public new void AddVelocity(Vector2 vel)
+		{
+			base.AddVelocity(vel);
 		}
 
 		/// <summary>

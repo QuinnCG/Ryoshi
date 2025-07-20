@@ -36,6 +36,8 @@ namespace Quinn.DamageSystem
 		public bool IsDead => Current <= 0f;
 		public bool IsAlive => !IsDead;
 
+		public bool IsImmune { get; set; } = false;
+
 		public System.Func<DamageInfo, bool> AllowDamage { private get; set; }
 
 		public event System.Action<DamageInfo> OnDamage;
@@ -72,6 +74,9 @@ namespace Quinn.DamageSystem
 				return false;
 
 			if (info.TeamType == _team.Type)
+				return false;
+
+			if (IsImmune)
 				return false;
 
 			return true;
