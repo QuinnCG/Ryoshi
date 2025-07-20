@@ -62,7 +62,7 @@ namespace Quinn
 			PlayAreaMusic(_areaMusicRef);
 		}
 
-		internal void StopAllMusic()
+		public void StopAllMusic()
 		{
 			_areaMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 			_areaMusic.release();

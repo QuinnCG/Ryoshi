@@ -20,6 +20,8 @@ namespace Quinn.RoomManagement
 			if (!_isTransitioning && collision.IsPlayer())
 			{
 				_isTransitioning = true;
+
+				MusicManager.Instance.StopAllMusic();
 				await RoomManager.Instance.LoadRoom(NextRoom);
 			}
 		}

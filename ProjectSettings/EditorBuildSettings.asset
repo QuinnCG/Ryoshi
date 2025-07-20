@@ -14,6 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/World/Plains/Plains_03.unity
     guid: 8e8340821c69bca43a86a531a46cf3fe
+  - enabled: 1
+    path: Assets/World/EndScene.unity
+    guid: b787082e9d1815640a2f5f7284ca71f7
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 382f36537a7e1564184775ee270e5e74, type: 2}
     com.unity.dt.app-ui: {fileID: 11400000, guid: 99f9c9493070a9d4c979a8fec7c5a8d3, type: 2}
