@@ -19,11 +19,6 @@ namespace Quinn.AI.Brains
 			Knight
 		}
 
-		[SerializeField]
-		private bool IsDebug = false;
-
-		[Space]
-
 		[SerializeField, Required]
 		private LockedRoom Room;
 
@@ -99,6 +94,7 @@ namespace Quinn.AI.Brains
 		// Transform if the HP is below this threshold.
 		private float _transformHPThreshold;
 
+		private bool _isPastFirstTransformation;
 		private bool _isTransforming;
 
 		protected override void Awake()
@@ -119,13 +115,9 @@ namespace Quinn.AI.Brains
 
 			_transformHPThreshold = Health.Current - TransformHPInterval;
 
-			if (Application.isEditor && IsDebug)
-			{
-				TransitionTo(TransformState(Form.Knight));
-				yield break;
-			}
-
 			yield return PlayAnimOnce(GrandpaTransform);
+			_isPastFirstTransformation = true;
+
 			TransitionTo(OniIdleState);
 		}
 
@@ -136,7 +128,7 @@ namespace Quinn.AI.Brains
 
 		protected override void OnDamage(DamageInfo info)
 		{
-			if (Health.Current < _transformHPThreshold)
+			if (Health.Current < _transformHPThreshold && _isPastFirstTransformation)
 			{
 				TransitionTo(TransformState(GetRandomTransform()));
 			}
@@ -246,7 +238,7 @@ namespace Quinn.AI.Brains
 				yield return null;
 			}
 
-			if (Random.value < TeleportOverCastChance)
+			if (Random.value < TeleportOverCastChance || DistanceToPlayer < 3f)
 			{
 				TransitionTo(MageTeleportState);
 			}

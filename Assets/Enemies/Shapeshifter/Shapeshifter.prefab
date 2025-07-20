@@ -858,7 +858,7 @@ MonoBehaviour:
   MageMissile: {fileID: 4076441030341577732, guid: 08b6f6b017a9a494fb976c3ec6a26ac9, type: 3}
   MageCastBehavior:
     Count: 3
-    Interval: 0.15
+    Interval: 0.1
     Delay: 0
     SpreadType: 0
     SpreadAngle: 0
