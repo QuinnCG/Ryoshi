@@ -130,21 +130,15 @@ namespace Quinn.AI.Brains
 		{
 			if (Health.Current < _transformHPThreshold && _isPastFirstTransformation)
 			{
-				TransitionTo(TransformState(GetRandomTransform()));
+				TransitionTo(TransformState(GetNextForm()));
 			}
 		}
 
-		private Form GetRandomTransform()
+		private Form GetNextForm()
 		{
 			if (_form is Form.Oni)
 			{
-				
-				if (_inSecondPhase)
-				{
-					return (Random.value < 0.5f) ? Form.Mage : Form.Knight;
-				}
-
-				return Form.Mage;
+				return _inSecondPhase ? Form.Knight : Form.Mage;
 			}
 			else
 			{
@@ -167,19 +161,18 @@ namespace Quinn.AI.Brains
 				yield break;
 			}
 
-			_form = form;
-
 			_transformHPThreshold = Health.Current - TransformHPInterval;
 
 			if (form is Form.Oni)
 			{
-				yield return PlayAnimOnce(_form == Form.Mage ? FromMage : FromKnight);
+				yield return PlayAnimOnce((_form == Form.Mage) ? FromMage : FromKnight);
 			}
 			else
 			{
-				yield return PlayAnimOnce(form == Form.Mage ? ToMage : ToKnight);
+				yield return PlayAnimOnce((form == Form.Mage) ? ToMage : ToKnight);
 			}
 
+			_form = form;
 			_isTransforming = false;
 
 			if (_form is Form.Oni)
@@ -274,6 +267,14 @@ namespace Quinn.AI.Brains
 			transform.position = new(x, transform.position.y);
 
 			TeleportVFX.Play();
+
+			Animator.PlayLooped(MageIdle, true);
+			
+			for (float t = 0f; t < 1f; t += Time.deltaTime)
+			{
+				FacePlayer();
+				yield return null;
+			}
 
 			TransitionTo(MageIdleState);
 		}
