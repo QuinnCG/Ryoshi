@@ -140,7 +140,7 @@ namespace Quinn
 			_animator.PlayOnce(DeathAnim, true);
 
 			await TransitionManager.Instance.FadeToBlackAsync(2f);
-			await SceneManager.LoadSceneAsync(0);
+			await SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
 		}
 
 		[Command("hurt", "Hurts the player.")]

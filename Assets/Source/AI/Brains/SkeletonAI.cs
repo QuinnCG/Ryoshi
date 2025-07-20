@@ -35,7 +35,7 @@ namespace Quinn.AI.Brains
 		[SerializeField, FoldoutGroup("Animations")]
 		private AnimationClip IdlingAnim, WalkingAnim, RunningAnim;
 		[SerializeField, FoldoutGroup("Animations")]
-		private AnimationClip AttackAnim1, AttackAnim2;
+		private AnimationClip AttackAnim1, DeathAnim;
 
 		private IEnumerator Start()
 		{
@@ -62,6 +62,15 @@ namespace Quinn.AI.Brains
 			{
 				TransitionTo(FleeState, "Flee");
 			}
+		}
+
+		protected override void OnDeath()
+		{
+			ClearState();
+			Health.AllowDamage = _ => false;
+			Movement.enabled = false;
+			Hitbox.enabled = false;
+			Animator.PlayOnce(DeathAnim, true);
 		}
 
 		private IEnumerator PatrolState()

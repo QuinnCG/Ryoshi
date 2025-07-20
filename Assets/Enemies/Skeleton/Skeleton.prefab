@@ -452,6 +452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DebugStateText: {fileID: 9153441097014388844}
   Speaker: {fileID: 8798018874342217371}
+  AggroDistance: 5
   AttackDamage: 10
   AttackKnockback: {x: 16, y: 6}
   AttackDashSpeed: 6
@@ -467,7 +468,7 @@ MonoBehaviour:
   WalkingAnim: {fileID: -8979603218701514631, guid: 245dd65f2c1ff684ea8376e02939abab, type: 3}
   RunningAnim: {fileID: -1682986537609030830, guid: 245dd65f2c1ff684ea8376e02939abab, type: 3}
   AttackAnim1: {fileID: -2880290374925985103, guid: 245dd65f2c1ff684ea8376e02939abab, type: 3}
-  AttackAnim2: {fileID: -6181992566258711915, guid: 245dd65f2c1ff684ea8376e02939abab, type: 3}
+  DeathAnim: {fileID: -6629471613118851897, guid: 245dd65f2c1ff684ea8376e02939abab, type: 3}
 --- !u!114 &8798018874342217371 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6206539957236587839, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}

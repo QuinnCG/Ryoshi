@@ -9,6 +9,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -1713577263120872133, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
+      propertyPath: DeathAnim
+      value: 
+      objectReference: {fileID: -6629471613118851897, guid: 22f1fa52f0c744c499c4dd97412f4259, type: 3}
+    - target: {fileID: -1713577263120872133, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
       propertyPath: IdlingAnim
       value: 
       objectReference: {fileID: 6239711262259380995, guid: 22f1fa52f0c744c499c4dd97412f4259, type: 3}

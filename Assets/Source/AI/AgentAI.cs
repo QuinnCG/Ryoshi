@@ -122,6 +122,9 @@ namespace Quinn.AI
 		{
 			Debug.Assert(state != null);
 
+			if (Health.IsDead)
+				return;
+
 			ClearState();
 
 			ActiveState = state();
@@ -132,6 +135,9 @@ namespace Quinn.AI
 		protected void TransitionTo(IEnumerator state, string name = default)
 		{
 			Debug.Assert(state != null);
+
+			if (Health.IsDead)
+				return;
 
 			ClearState();
 
