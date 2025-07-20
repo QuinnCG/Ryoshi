@@ -439,8 +439,8 @@ MonoBehaviour:
     SpreadType: 0
     SpreadAngle: 0
   CastVFX: {fileID: 8400027033965627865}
-  MinIdealDstToPlayer: 6
-  MaxIdealDstToPlayer: 10
+  MinIdealDstToPlayer: 4
+  MaxIdealDstToPlayer: 7
   ChargeDuration: {x: 0.5, y: 1}
   IdleAnim: {fileID: 6327698846309602966, guid: a5b07b95779c43f44a05123866b22453, type: 3}
   WalkAnim: {fileID: 7402124271905394773, guid: a5b07b95779c43f44a05123866b22453, type: 3}

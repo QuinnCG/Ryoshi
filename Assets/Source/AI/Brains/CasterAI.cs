@@ -85,8 +85,12 @@ namespace Quinn.AI.Brains
 
 		private IEnumerator AttackState()
 		{
+			FacePlayer();
+
 			Animator.PlayLooped(CastChargeAnim);
 			yield return new WaitForSeconds(Random.Range(ChargeDuration.x, ChargeDuration.y));
+
+			FacePlayer();
 
 			Animator.PlayOnce(CastAnim);
 			MissileManager.SpawnMissile(gameObject, MissilePrefab, DamageSystem.TeamType.Enemy, MissileOrigin.position, MissileSpawnBehavior, DirectionToPlayer);
