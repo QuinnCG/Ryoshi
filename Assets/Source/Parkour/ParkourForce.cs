@@ -22,6 +22,9 @@ namespace Quinn.Parkour
 			if (collision.IsPlayer())
 			{
 				var movement = collision.GetComponent<PlayerMovement>();
+				movement.StopDash();
+				movement.StopJump();
+				movement.NegateAdditiveVelocities();
 				
 				if ((movement.IsTouchingGround || !RequirePlayerGrounded) && !movement.IsTouchingCeiling)
 				{

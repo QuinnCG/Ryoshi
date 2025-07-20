@@ -171,5 +171,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 10
-  Knockback: {x: 10, y: 20}
+  Knockback: {x: 0, y: 5}
   Cooldown: 2

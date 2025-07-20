@@ -160,13 +160,13 @@ namespace Quinn.MovementSystem
 		{
 			if (overrideVelocity)
 			{
-				CeaseMomentum();
+				NegateAdditiveVelocities();
 			}
 
 			AddDecayingVelocity(velocity, decayRate);
 		}
 
-		public void CeaseMomentum()
+		public void NegateAdditiveVelocities()
 		{
 			ResetVelocity(true);
 		}
@@ -224,7 +224,7 @@ namespace Quinn.MovementSystem
 
 						processedFloorAnyContact = true;
 					}
-					else if (normal.y < 0f)
+					else if (normal.y < 0f && !contact.collider.gameObject.CompareTag("Platform"))
 					{
 						IsTouchingCeiling = true;
 					}

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6547562139725235291}
   m_Layer: 3
   m_Name: Platform
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -191,7 +191,7 @@ BoxCollider2D:
   m_UsedByEffector: 1
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.031249762, y: 0.15625}
+  m_Offset: {x: -0.031249762, y: 0.24567223}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5051546, y: 0}
@@ -201,7 +201,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 6.0625, y: 0.3125}
+  m_Size: {x: 6.0625, y: 0.13365555}
   m_EdgeRadius: 0
 --- !u!251 &6547562139725235291
 PlatformEffector2D:
