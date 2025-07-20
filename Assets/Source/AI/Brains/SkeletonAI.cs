@@ -138,6 +138,20 @@ namespace Quinn.AI.Brains
 			TransitionTo(ChaseState, "Idle -> Chase");
 		}
 
+		private IEnumerator VictoryState()
+		{
+			if (KillPlayMessages.Length > 0)
+			{
+				Speak(KillPlayMessages.GetRandom());
+			}
+
+			while(true)
+			{
+				Animator.PlayLooped(IdlingAnim, true);
+				yield return null;
+			}
+		}
+
 		private IEnumerator ChaseState()
 		{
 			Movement.SetSpeedRun();
@@ -179,18 +193,8 @@ namespace Quinn.AI.Brains
 
 			if (Quinn.Player.Instance.Health.IsDead)
 			{
-				if (KillPlayMessages.Length > 0)
-				{
-					Speak(KillPlayMessages.GetRandom());
-				}
-
-				ClearState();
-
-				Animator.PlayLooped(IdlingAnim, true);
-				while (true)
-				{
-					yield return null;
-				}
+				TransitionTo(VictoryState);
+				yield break;
 			}
 
 			if (Random.value < RetreatChance)

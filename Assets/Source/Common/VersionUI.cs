@@ -31,11 +31,6 @@ namespace Quinn
 			string gameVersion = $"v{Application.version}";
 			string unityVersion = $"u{Application.unityVersion}";
 
-			if (Debug.isDebugBuild)
-			{
-				gameVersion += " - dev";
-			}
-
 			_textBlock.text = $"{gameVersion}\n{unityVersion}";
 		}
 	}
