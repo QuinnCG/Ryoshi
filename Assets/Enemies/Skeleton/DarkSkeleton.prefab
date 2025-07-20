@@ -40,6 +40,38 @@ PrefabInstance:
       propertyPath: AttackKnockback.y
       value: -6
       objectReference: {fileID: 0}
+    - target: {fileID: -1713577263120872133, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
+      propertyPath: RandomFirstMessage.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -1713577263120872133, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
+      propertyPath: 'KillPlayMessages.Array.data[0]'
+      value: Pathetic!
+      objectReference: {fileID: 0}
+    - target: {fileID: -1713577263120872133, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
+      propertyPath: 'KillPlayMessages.Array.data[1]'
+      value: Weak!
+      objectReference: {fileID: 0}
+    - target: {fileID: -1713577263120872133, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
+      propertyPath: 'KillPlayMessages.Array.data[2]'
+      value: Beneath me!
+      objectReference: {fileID: 0}
+    - target: {fileID: -1713577263120872133, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
+      propertyPath: 'RandomFirstMessage.Array.data[0]'
+      value: Gahr?
+      objectReference: {fileID: 0}
+    - target: {fileID: -1713577263120872133, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
+      propertyPath: 'RandomFirstMessage.Array.data[1]'
+      value: Ragh!
+      objectReference: {fileID: 0}
+    - target: {fileID: -1713577263120872133, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
+      propertyPath: 'RandomFirstMessage.Array.data[2]'
+      value: Ruhg...
+      objectReference: {fileID: 0}
+    - target: {fileID: -1713577263120872133, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
+      propertyPath: 'RandomFirstMessage.Array.data[3]'
+      value: Fffffu...
+      objectReference: {fileID: 0}
     - target: {fileID: 585053652651806970, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

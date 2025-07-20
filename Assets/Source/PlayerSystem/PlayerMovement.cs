@@ -126,7 +126,7 @@ namespace Quinn
 			if (xDir != 0f)
 			{
 				InputDir = Mathf.Sign(xDir);
-				SetVisualFacingDirection(InputDir);
+				SetVisualFacingDirection(FacingDirection);
 			}
 
 			// Can only change facing direction, while blocking.

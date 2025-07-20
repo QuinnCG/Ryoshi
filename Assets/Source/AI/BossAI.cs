@@ -6,5 +6,7 @@ namespace Quinn.AI
 	{
 		[field: SerializeField]
 		public string Title { get; private set; } = "Boss Name";
+
+		protected override void OnDeath() { }
 	}
 }

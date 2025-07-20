@@ -58,7 +58,11 @@ namespace Quinn
 		{
 			if (ConsoleManager.IsOpen || RoomManager.Instance.IsLoading || _isGoingtoCheckpoint)
 			{
-				_movement.Move(0f); // Update ground state animations.
+				if (!InLockedRoom)
+				{
+					_movement.Move(0f); // Update ground state animations.
+				}
+
 				return;
 			}
 
