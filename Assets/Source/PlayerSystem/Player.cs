@@ -19,6 +19,8 @@ namespace Quinn
 
 		[SerializeField]
 		private EventReference AreaMusic;
+		[SerializeField]
+		private AnimationClip DeathAnim;
 
 		public float FacingDirection => _movement.FacingDirection;
 		// HACK: Make all references to this point to the underlying _movement.FacingDirection.
@@ -134,6 +136,8 @@ namespace Quinn
 			_combat.enabled = false;
 
 			MusicManager.Instance.StopAllMusic();
+
+			_animator.PlayOnce(DeathAnim, true);
 
 			await TransitionManager.Instance.FadeToBlackAsync(2f);
 			await SceneManager.LoadSceneAsync(0);
