@@ -23,6 +23,8 @@ namespace Quinn.CombatSystem
 		private float ParryWindow = 0.2f;
 		[SerializeField]
 		private float HealthOnKill = 3f, LifestealRate = 0.5f;
+		[SerializeField]
+		private float DamageFactor = 1f;
 
 		[Space]
 
@@ -295,7 +297,7 @@ namespace Quinn.CombatSystem
 
 			var info = new DamageInfo()
 			{
-				Damage = _attackDef.Damage,
+				Damage = _attackDef.Damage * DamageFactor,
 				Direction = Vector2.right * _movement.FacingDirection,
 				TeamType = TeamType.Player,
 				Knockback = knockback
