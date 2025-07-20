@@ -229,7 +229,7 @@ namespace Quinn.AI.Brains
 				yield return null;
 			}
 
-			if (Random.value < TeleportOverCastChance || DistanceToPlayer < 3f)
+			if (Random.value < TeleportOverCastChance || DistanceToPlayer < 2.5f)
 			{
 				TransitionTo(MageTeleportState);
 			}

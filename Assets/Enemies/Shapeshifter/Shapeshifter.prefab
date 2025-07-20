@@ -681,7 +681,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 879138643058986776, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_Intensity
-      value: 0.5
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 879138643058986776, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: m_LightVolumeEnabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 879138643058986776, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_LightVolumeIntensity
@@ -886,11 +890,11 @@ MonoBehaviour:
   KnightAttackDamage: 14
   KnightDashSound:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -604901754
+      Data2: 1175542890
+      Data3: 1786494626
+      Data4: 22683267
+    Path: event:/Enemies/Shapeshifter/KnightDash
 --- !u!114 &2655372465272581033 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5998045481962464200, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
