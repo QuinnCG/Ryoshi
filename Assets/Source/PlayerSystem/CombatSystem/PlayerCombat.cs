@@ -22,7 +22,7 @@ namespace Quinn.CombatSystem
 		[SerializeField]
 		private float ParryWindow = 0.2f;
 		[SerializeField]
-		private float HealthOnKill = 3f;
+		private float HealthOnKill = 3f, LifestealRate = 0.5f;
 
 		[Space]
 
@@ -341,6 +341,7 @@ namespace Quinn.CombatSystem
 			}
 
 			bool hitAny = closest.TakeDamage(info, out bool isLethal);
+			_health.Heal(info.Damage * LifestealRate);
 
 			if (isLethal)
 			{
