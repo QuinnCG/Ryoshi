@@ -3,6 +3,7 @@ using Quinn.DamageSystem;
 using Quinn.MissileSystem;
 using Sirenix.OdinInspector;
 using System.Collections;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -31,9 +32,15 @@ namespace Quinn.AI.Brains
 
 		[SerializeField]
 		private float TransformHPInterval = 80f;
+		[SerializeField, Required]
+		private AnimationClip Death;
+		[SerializeField, Required]
+		private VisualEffect DeathBlood;
 
 		[SerializeField, Required, FoldoutGroup("Grandpa")]
 		private AnimationClip GrandpaIdle, GrandpaTransform;
+		[SerializeField, Required]
+		private VisualEffect TransformBlood;
 
 		[SerializeField, Required, FoldoutGroup("Oni")]
 		private AnimationClip OniIdle, OniThrow, ToMage, ToKnight;
@@ -113,8 +120,12 @@ namespace Quinn.AI.Brains
 
 			_transformHPThreshold = Health.Current - TransformHPInterval;
 
+			TransformBlood.Play();
+
 			yield return PlayAnimOnce(GrandpaTransform);
 			_isPastFirstTransformation = true;
+
+			TransformBlood.Stop();
 
 			TransitionTo(OniIdleState);
 		}
@@ -130,6 +141,38 @@ namespace Quinn.AI.Brains
 			{
 				TransitionTo(TransformState(GetNextForm()));
 			}
+		}
+
+		protected override void OnDeath()
+		{
+			StopAllCoroutines();
+			StartCoroutine(DeathSequence());
+		}
+
+		private IEnumerator DeathSequence()
+		{
+			Movement.enabled = false;
+			Hitbox.enabled = false;
+
+			ClearState();
+
+			DeathBlood.Play();
+
+			var initForm = _form;
+
+			if (_form is not Form.Oni)
+			{
+				yield return PlayAnimOnce((_form is Form.Mage) ? FromMage : FromKnight);
+			}
+
+			var newForm = (initForm is Form.Mage) ? Form.Knight : Form.Mage;
+
+			yield return PlayAnimOnce((newForm == Form.Mage) ? ToMage : ToKnight);
+			yield return PlayAnimOnce((newForm is Form.Mage) ? FromMage : FromKnight);
+
+			DeathBlood.Stop();
+
+			yield return PlayAnimOnce(Death, true);
 		}
 
 		private Form GetNextForm()

@@ -33,7 +33,7 @@ namespace Quinn.AI.Brains
 
 			Animator.PlayOnce(DeathAnim, true);
 			Movement.enabled = false;
-			Hitbox.excludeLayers = LayerMask.GetMask(Layers.CharacterName);
+			Hitbox.enabled = false;
 		}
 
 		private IEnumerator Start()
