@@ -4,8 +4,8 @@ namespace Quinn.MissileSystem.Behaviors
 {
 	public class MissileGravity : MissileBehavior
 	{
-		[SerializeField]
-		private float Gravity = 9.81f;
+		[field: SerializeField]
+		public float Gravity { get; set; } = 0f;
 		[SerializeField]
 		private float MaxGravity = 30f;
 

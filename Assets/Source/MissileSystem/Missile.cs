@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Quinn.DamageSystem;
 using Quinn.MissileSystem.Behaviors;
@@ -24,6 +25,10 @@ namespace Quinn.MissileSystem
 		private float Damage = 1f;
 		[SerializeField]
 		private Vector2 Knockback;
+		[SerializeField]
+		private float Gravity = 0f;
+		[SerializeField]
+		private float Speed = 8f;
 
 		[Space]
 
@@ -33,10 +38,13 @@ namespace Quinn.MissileSystem
 		[Space]
 
 		[SerializeReference]
-		private MissileBehavior[] Behaviors = new MissileBehavior[]
+		private List<MissileBehavior> Behaviors = new()
 		{
-			new MissileDirect()
+			new MissileDirect(),
+			new MissileGravity()
 		};
+		[SerializeField]
+		private MissileDeathExplosion DeathExplosion;
 
 		/// <summary>
 		/// The owner of the missile. This is used primarily by the damage system when filtering for friendlies.
@@ -76,7 +84,18 @@ namespace Quinn.MissileSystem
 			{
 				behavior.Init(this);
 				behavior.OnCreate();
+
+				if (behavior is MissileDirect direct)
+				{
+					direct.Speed = Speed;
+				}
+				else if (behavior is MissileGravity gravity)
+				{
+					gravity.Gravity = Gravity;
+				}
 			}
+
+			Behaviors.Add(DeathExplosion);
 
 			_vfx = GetComponentsInChildren<VisualEffect>(true);
 		}
@@ -153,7 +172,7 @@ namespace Quinn.MissileSystem
 			{
 				if (behavior is T)
 				{
-					Behaviors = Behaviors.Where(b => b != behavior).ToArray();
+					Behaviors = Behaviors.Where(b => b != behavior).ToList();
 					break;
 				}
 			}

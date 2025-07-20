@@ -1,4 +1,5 @@
 using FMODUnity;
+using Quinn.DamageSystem;
 using Quinn.UI;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -24,11 +25,23 @@ namespace Quinn.AI
 		public bool HasBegun { get; private set; }
 		public bool IsConquered { get; private set; }
 
+		private Health _bossHealth;
+
 		private void Awake()
 		{
 			if (SaveManager.IsSaved(SaveKey))
 			{
 				IsConquered = true;
+			}
+
+			_bossHealth = Boss.GetComponent<Health>();
+		}
+
+		private void Update()
+		{
+			if (HasBegun && !IsConquered)
+			{
+				Audio.SetGlobalParameter("is-second-phase", (_bossHealth.Normalized < 0.5f) ? 1f : 0f);
 			}
 		}
 

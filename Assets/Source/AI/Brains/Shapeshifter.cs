@@ -1,7 +1,9 @@
+using FMODUnity;
 using Quinn.DamageSystem;
 using Quinn.MissileSystem;
 using Quinn.UI;
 using Sirenix.OdinInspector;
+using Sirenix.Reflection.Editor;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.VFX;
@@ -16,6 +18,11 @@ namespace Quinn.AI.Brains
 			Mage,
 			Knight
 		}
+
+		[SerializeField]
+		private bool IsDebug = false;
+
+		[Space]
 
 		[SerializeField, Required]
 		private LockedRoom Room;
@@ -64,7 +71,27 @@ namespace Quinn.AI.Brains
 		private BoxCollider2D MageTeleportBounds;
 
 		[SerializeField, Required, FoldoutGroup("Knight")]
-		private AnimationClip KnightIdle, FromKnight;
+		private AnimationClip KnightIdle, FromKnight, KnightDash, KnightAttack1, KnightAttack2;
+		[SerializeField, FoldoutGroup("Knight")]
+		private Vector2 KnightIdleTime = new(2f, 4f);
+		[SerializeField, FoldoutGroup("Knight")]
+		private float DashOverAttackChance = 0.7f;
+		[SerializeField, FoldoutGroup("Knight")]
+		private float AttackAfterDashChance = 0.8f;
+		[SerializeField, FoldoutGroup("Knight")]
+		private Vector2Int AttackCount = new(1, 3);
+		[SerializeField, FoldoutGroup("Knight")]
+		private float KnightDashSpeed = 12f;
+		[SerializeField, FoldoutGroup("Knight")]
+		private float KnightMaxDashDistance = 7f, KnightAttackRange = 3f;
+		[SerializeField, FoldoutGroup("Knight")]
+		private Vector2 KnightAttackBoxOffset, KnightAttackBoxSize;
+		[SerializeField, FoldoutGroup("Knight")]
+		private Vector2 KnightAttackKnockback;
+		[SerializeField, FoldoutGroup("Knight")]
+		private float KnightAttackDamage;
+		[SerializeField, FoldoutGroup("Knight")]
+		private EventReference KnightDashSound;
 
 		private Form _form = Form.Oni;
 		private bool _inSecondPhase;
@@ -88,10 +115,15 @@ namespace Quinn.AI.Brains
 			SpeakerRef.Speak(Dialogue);
 
 			yield return new WaitUntil(() => Room.HasBegun);
-
 			SpeakerRef.StopSpeaking();
 
 			_transformHPThreshold = Health.Current - TransformHPInterval;
+
+			if (Application.isEditor && IsDebug)
+			{
+				TransitionTo(TransformState(Form.Knight));
+				yield break;
+			}
 
 			yield return PlayAnimOnce(GrandpaTransform);
 			TransitionTo(OniIdleState);
@@ -199,6 +231,8 @@ namespace Quinn.AI.Brains
 		protected void OniThrowEvent()
 		{
 			FacePlayer();
+
+			Vector2 dir = (DirectionToPlayer + (Vector2.up * 1f)).normalized;
 			MissileManager.SpawnMissile(gameObject, OniMissile, TeamType.Enemy, OniThrowSpawnPoint.position, OniCastBehavior, DirectionToPlayer);
 		}
 
@@ -254,7 +288,104 @@ namespace Quinn.AI.Brains
 
 		private IEnumerator KnightIdleState()
 		{
-			yield break;
+			Animator.PlayLooped(KnightIdle, true);
+
+			float duration = Random.Range(KnightIdleTime.x, KnightIdleTime.y);
+			if (_inSecondPhase) duration *= 0.5f;
+
+			for (float t = 0f; t < duration; t += Time.deltaTime)
+			{
+				FacePlayer();
+				yield return null;
+			}
+
+			if (DistanceToPlayer > KnightAttackRange)
+			{
+				TransitionTo(KnightDashState(true));
+				yield break;
+			}
+
+			if (Random.value < DashOverAttackChance)
+			{
+				TransitionTo(KnightDashState());
+			}
+			else
+			{
+				TransitionTo(KnightAttackState);
+			}
+		}
+
+		private IEnumerator KnightDashState(bool alwaysAttack = false)
+		{
+			Audio.Play(KnightDashSound, transform.position);
+			Animator.PlayLooped(KnightDash, true);
+			float dir = Mathf.Sign(DirectionToPlayer.x);
+
+			for (float t = 0f; t < KnightDashSpeed / KnightMaxDashDistance; t += Time.deltaTime)
+			{
+				FaceDirection(dir);
+
+				if (DistanceToPlayer < KnightAttackRange)
+				{
+					break;
+				}
+
+				Movement.SetVelocity(KnightDashSpeed * dir * Vector2.right);
+				yield return null;
+			}
+
+			if (alwaysAttack || Random.value < AttackAfterDashChance)
+			{
+				TransitionTo(KnightAttackState());
+			}
+			else
+			{
+				TransitionTo(KnightIdleState);
+			}
+		}
+
+		private IEnumerator KnightAttackState()
+		{
+			for (int i = 0; i < Random.Range(AttackCount.x, AttackCount.y + 1); i++)
+			{
+				FacePlayer();
+				var anim = i.IsEven() ? KnightAttack1 : KnightAttack2;
+
+				yield return PlayAnimOnce(anim);
+				FacePlayer();
+
+				Animator.PlayLooped(KnightIdle);
+			}
+
+			TransitionTo(KnightIdleState);
+		}
+
+		protected void SwingHitbox()
+		{
+			Vector2 center = transform.position;
+			Vector2 offset = KnightAttackBoxOffset;
+			offset.x *= Mathf.Sign(DirectionToPlayer.x);
+
+			Vector2 size = KnightAttackBoxSize;
+
+			Vector2 knockback = KnightAttackKnockback;
+			knockback.x *= Mathf.Sign(DirectionToPlayer.x);
+
+			var colliders = Physics2D.OverlapBoxAll(center, size, 0f);
+			foreach (var collider in colliders)
+			{
+				if (collider.TryGetComponent(out IDamageable damageable))
+				{
+					var info = new DamageInfo()
+					{
+						Damage = KnightAttackDamage,
+						Direction = DirectionToPlayer,
+						TeamType = TeamType.Enemy,
+						Knockback = KnightAttackKnockback
+					};
+					damageable.TakeDamage(info, out bool _);
+				}
+			}
 		}
 	}
 }

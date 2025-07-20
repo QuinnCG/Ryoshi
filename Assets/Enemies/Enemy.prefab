@@ -849,11 +849,11 @@ MonoBehaviour:
   HPBar: {fileID: 8552142293634287994}
   HurtSound:
     Guid:
-      Data1: -435825105
-      Data2: 1166855176
-      Data3: 625134993
-      Data4: 146170337
-    Path: event:/Player/Hurt
+      Data1: 1966643740
+      Data2: 1164006300
+      Data3: 97294470
+      Data4: -1966298627
+    Path: event:/Enemies/Hurt
   DeathSound:
     Guid:
       Data1: 0
@@ -879,6 +879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b9e0fd4c26b34d48870e710046b1e29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GenericDecayRateFactor: 1
   FallSpeed: 12
   InitialFallSpeed: 12
   MaxFallSpeed: 64

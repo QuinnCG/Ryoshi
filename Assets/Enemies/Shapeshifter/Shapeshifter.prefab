@@ -605,16 +605,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7769812350432153940, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_Size.x
-      value: 1.5
+      value: 2.25
       objectReference: {fileID: 0}
     - target: {fileID: -7769812350432153940, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_Size.y
-      value: 2.25
+      value: 1.875
       objectReference: {fileID: 0}
     - target: {fileID: -7769812350432153940, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -7971706740260215807, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
+      objectReference: {fileID: 1333180063350994677, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
     - target: {fileID: -7769812350432153940, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -713,11 +713,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1655161607136902208, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
-      value: 1.5
+      value: 2.25
       objectReference: {fileID: 0}
     - target: {fileID: 1655161607136902208, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.y
-      value: 2.25
+      value: 1.875
       objectReference: {fileID: 0}
     - target: {fileID: 1655161607136902208, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -826,6 +826,7 @@ MonoBehaviour:
   DebugStateText: {fileID: 2655372465272581033}
   Speaker: {fileID: 2433807003285738846}
   <Title>k__BackingField: The Shapeshifter
+  IsDebug: 0
   Room: {fileID: 0}
   DialogueStartDistance: 7
   Dialogue:
@@ -833,21 +834,20 @@ MonoBehaviour:
   - C- come here...
   - P- put down your sword...
   TransformHPInterval: 80
-  TransformTimeInterval: 10
   GrandpaIdle: {fileID: 5161380805009862626, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
   GrandpaTransform: {fileID: -6304105329409124334, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
   OniIdle: {fileID: -8148706903464223296, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
   OniThrow: {fileID: 747534910195963912, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
   ToMage: {fileID: 466453818884786589, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
-  ToKnight: {fileID: 466453818884786589, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
+  ToKnight: {fileID: -151613565437553505, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
   OniIdleTime: {x: 0.5, y: 2}
   OniThrowSpawnPoint: {fileID: 8193903682740160398}
   OniCastBehavior:
-    Count: 3
-    Interval: 0.01
+    Count: 6
+    Interval: 0.1
     Delay: 0
     SpreadType: 1
-    SpreadAngle: 15
+    SpreadAngle: 100
   OniMissile: {fileID: 4076441030341577732, guid: 3778b729acfa7884ebb99183c928449f, type: 3}
   MageIdle: {fileID: -3531795424091903597, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
   MageCharge: {fileID: -1791994660611087466, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
@@ -865,8 +865,29 @@ MonoBehaviour:
   TeleportOverCastChance: 0.5
   TeleportVFX: {fileID: 2836681573445707240}
   MageTeleportBounds: {fileID: 0}
-  KnightIdle: {fileID: 0}
-  FromKnight: {fileID: 0}
+  KnightIdle: {fileID: 4773888099049038824, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
+  FromKnight: {fileID: -2456112910366851704, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
+  KnightDash: {fileID: -4189508723422095748, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
+  KnightAttack1: {fileID: -8869822371521209232, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
+  KnightAttack2: {fileID: -6665869534157794048, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
+  KnightIdleTime: {x: 1.5, y: 2.5}
+  DashOverAttackChance: 0.7
+  AttackAfterDashChance: 0.5
+  AttackCount: {x: 1, y: 2}
+  KnightDashSpeed: 16
+  KnightMaxDashDistance: 7
+  KnightAttackRange: 2
+  KnightAttackBoxOffset: {x: 3, y: 2}
+  KnightAttackBoxSize: {x: 8, y: 6}
+  KnightAttackKnockback: {x: -30, y: -10}
+  KnightAttackDamage: 14
+  KnightDashSound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &2655372465272581033 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5998045481962464200, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}

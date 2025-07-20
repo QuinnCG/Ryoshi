@@ -4,8 +4,8 @@ namespace Quinn.MissileSystem.Behaviors
 {
 	public class MissileDirect : MissileBehavior
 	{
-		[SerializeField]
-		private float Speed = 8f;
+		[field: SerializeField]
+		public float Speed { get; set; } = 8f;
 
 		public override void OnUpdate()
 		{
