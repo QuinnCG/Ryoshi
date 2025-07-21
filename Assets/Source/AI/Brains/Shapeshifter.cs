@@ -69,6 +69,8 @@ namespace Quinn.AI.Brains
 		private VisualEffect TeleportVFX;
 		[SerializeField, Required, FoldoutGroup("Mage")]
 		private BoxCollider2D MageTeleportBounds;
+		[SerializeField, Required, FoldoutGroup("Mage")]
+		private EventReference MageTeleportSound, CastSound;
 
 		[SerializeField, Required, FoldoutGroup("Knight")]
 		private AnimationClip KnightIdle, FromKnight, KnightDash, KnightAttack1, KnightAttack2;
@@ -287,6 +289,8 @@ namespace Quinn.AI.Brains
 			FacePlayer();
 			yield return PlayAnimOnce(MageCharge);
 
+			Audio.Play(CastSound);
+
 			FacePlayer();
 			CastVFX.Play();
 			MissileManager.SpawnMissile(gameObject, MageMissile, TeamType.Enemy, CastVFX.transform.position, MageCastBehavior, DirectionToPlayer);
@@ -304,7 +308,9 @@ namespace Quinn.AI.Brains
 			float left = MageTeleportBounds.bounds.Left().x;
 			float right = MageTeleportBounds.bounds.Right().x;
 
-			float x = Random.Range(left, right);
+			Audio.Play(MageTeleportSound, transform.position);
+
+			float x = GetTPPos(left, right);
 			transform.position = new(x, transform.position.y);
 
 			TeleportVFX.Play();
@@ -318,6 +324,11 @@ namespace Quinn.AI.Brains
 			}
 
 			TransitionTo(MageIdleState);
+		}
+
+		private float GetTPPos(float left, float right)
+		{
+			return Random.Range(left, right);
 		}
 
 		private IEnumerator KnightIdleState()

@@ -1027,17 +1027,24 @@ MonoBehaviour:
     Delay: 0
     SpreadType: 0
     SpreadAngle: 0
-  TeleportOverCastChance: 0.5
+  TeleportOverCastChance: 0.3
   TeleportVFX: {fileID: 2836681573445707240}
   MageTeleportBounds: {fileID: 0}
+  MageTeleportSound:
+    Guid:
+      Data1: 1793017221
+      Data2: 1111974634
+      Data3: -1498849386
+      Data4: 879133427
+    Path: event:/Enemies/Shapeshifter/Teleport
   KnightIdle: {fileID: 4773888099049038824, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
   FromKnight: {fileID: -2456112910366851704, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
   KnightDash: {fileID: -4189508723422095748, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
   KnightAttack1: {fileID: -8869822371521209232, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
   KnightAttack2: {fileID: -6665869534157794048, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
   KnightIdleTime: {x: 1.5, y: 2.5}
-  DashOverAttackChance: 0.7
-  AttackAfterDashChance: 0.5
+  DashOverAttackChance: 0.6
+  AttackAfterDashChance: 0.6
   AttackCount: {x: 1, y: 2}
   KnightDashSpeed: 16
   KnightMaxDashDistance: 7
