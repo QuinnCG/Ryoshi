@@ -112,6 +112,7 @@ namespace Quinn.AI.Brains
 		private bool _isTransforming;
 		private bool _isJumping;
 		private bool _didJustJump;
+		private bool _didJustTP;
 
 		protected override void Awake()
 		{
@@ -209,6 +210,7 @@ namespace Quinn.AI.Brains
 
 			_isTransforming = true;
 			_didJustJump = false;
+			_didJustTP = false;
 
 			if (form == _form)
 			{
@@ -331,12 +333,14 @@ namespace Quinn.AI.Brains
 				yield return null;
 			}
 
-			if (Random.value < TeleportOverCastChance || DistanceToPlayer < 2.5f)
+			if ((Random.value < TeleportOverCastChance || DistanceToPlayer < 2.5f) && !_didJustTP)
 			{
+				_didJustTP = true;
 				TransitionTo(MageTeleportState);
 			}
 			else
 			{
+				_didJustTP = false;
 				TransitionTo(MageCastState);
 			}
 		}
@@ -358,7 +362,9 @@ namespace Quinn.AI.Brains
 
 		private IEnumerator MageTeleportState()
 		{
+			FacePlayer();
 			yield return PlayAnimOnce(MageCharge);
+			FacePlayer();
 
 			TeleportVFX.Play();
 
@@ -374,7 +380,7 @@ namespace Quinn.AI.Brains
 
 			Animator.PlayLooped(MageIdle, true);
 			
-			for (float t = 0f; t < 1f; t += Time.deltaTime)
+			for (float t = 0f; t < Random.Range(0.1f, 1f); t += Time.deltaTime)
 			{
 				FacePlayer();
 				yield return null;

@@ -777,7 +777,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 246501973113497856, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: Default
-      value: 550
+      value: 700
       objectReference: {fileID: 0}
     - target: {fileID: 748654900169410309, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -995,7 +995,7 @@ MonoBehaviour:
   - G- grrrandson...
   - C- come here...
   - P- put down your sword...
-  TransformHPInterval: 80
+  TransformHPInterval: 150
   Death: {fileID: -305431876807667559, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
   DeathBlood: {fileID: 2287081508255750537}
   GrandpaIdle: {fileID: 5161380805009862626, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
@@ -1018,7 +1018,7 @@ MonoBehaviour:
     SpreadType: 1
     SpreadAngle: 95
   OniMissile: {fileID: 4076441030341577732, guid: 3778b729acfa7884ebb99183c928449f, type: 3}
-  OniJumpOverThrowChance: 0.3
+  OniJumpOverThrowChance: 0.6
   OniJumpHeight: 4
   OniJumpDuration: 0.7
   OniJumpSound:
