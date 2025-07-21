@@ -4,6 +4,7 @@ using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
 namespace Quinn.AI
@@ -50,6 +51,16 @@ namespace Quinn.AI
 			Health.OnDeath += Death;
 
 			AgentManager.Instance.RegisterAgent(this);
+		}
+
+		private void LateUpdate()
+		{
+			var room = LockedRoom.Instance;
+
+			if (room != null && !room.IsConquered && room.HasBegun && room.Boss.gameObject != gameObject && DistanceToPlayer < 10f)
+			{
+				Health.Kill();
+			}
 		}
 
 		public void SetAgentStateDisplay(bool visible)
