@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Intensity: 0.1
   m_LightVolumeIntensity: 0.1
   m_LightVolumeEnabled: 1
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 000000002b1f20ad
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -759,7 +759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76caccf7eccef0b4c8a98eaf4548e15f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Default: 50
+  Default: 70
   HPBar: {fileID: 0}
   HurtSound:
     Guid:

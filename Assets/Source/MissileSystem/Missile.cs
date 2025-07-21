@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Quinn.CombatSystem;
 using Quinn.DamageSystem;
 using Quinn.MissileSystem.Behaviors;
 using Sirenix.OdinInspector;
@@ -147,6 +148,11 @@ namespace Quinn.MissileSystem
 						Knockback = Knockback,
 						TeamType = Team
 					}, out bool _);
+
+					if (!success && DestroyOnHit && other.TryGetComponent(out PlayerCombat player) && player.IsBlocking)
+					{
+						DestroyMissile();
+					}
 
 					// Only attempt destroying self if damage was actually applied.
 					if (success && DestroyOnHit && !damage.IsLowPriority())

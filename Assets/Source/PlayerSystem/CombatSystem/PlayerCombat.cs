@@ -199,6 +199,8 @@ namespace Quinn.CombatSystem
 
 					var vfxRotation = Quaternion.AngleAxis(angle - 45f, Vector3.forward);
 
+					float dmgFactor = Mathf.Lerp(0f, 2f, info.Damage / 20f);
+
 					// Block and stagger.
 					if (Time.time > _parryWindowEndTime)
 					{
@@ -212,6 +214,8 @@ namespace Quinn.CombatSystem
 
 						Unblock();
 						_animator.PlayOnce(StaggerAnim);
+
+						_movement.AddDecayingVelocity(14f * dmgFactor * info.Direction.normalized, 16f);
 					}
 					// Parry; do not stagger.
 					else
@@ -223,6 +227,8 @@ namespace Quinn.CombatSystem
 						_animator.PlayOnce(ParryAnim);
 
 						_riposteWindowEndTime = Time.time + RiposteWindow;
+
+						_movement.AddDecayingVelocity(14f * dmgFactor * info.Direction.normalized, 32f);
 					}
 
 					// Do not allow damage.
