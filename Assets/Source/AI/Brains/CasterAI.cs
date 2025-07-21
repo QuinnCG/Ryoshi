@@ -1,3 +1,4 @@
+using FMODUnity;
 using Quinn.MissileSystem;
 using Sirenix.OdinInspector;
 using System.Collections;
@@ -16,6 +17,8 @@ namespace Quinn.AI.Brains
 		private MissileSpawnBehavior MissileSpawnBehavior;
 		[SerializeField, ChildGameObjectsOnly]
 		private VisualEffect CastVFX;
+		[SerializeField]
+		private EventReference AlertSound;
 
 		[Space]
 
@@ -41,6 +44,9 @@ namespace Quinn.AI.Brains
 			TransitionTo(PatrolState, "Patrol");
 
 			yield return new WaitUntil(() => DistanceToPlayer < 6f);
+
+			Audio.Play(AlertSound, transform.position);
+
 			TransitionTo(IdleState, "Idle");
 		}
 

@@ -274,6 +274,10 @@ PrefabInstance:
       value: event:/Enemies/Skeleton/Hurt
       objectReference: {fileID: 0}
     - target: {fileID: 246501973113497856, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: DeathSound.Path
+      value: event:/Enemies/Skeleton/SkeletonDeath
+      objectReference: {fileID: 0}
+    - target: {fileID: 246501973113497856, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: HurtSound.Guid.Data1
       value: -98086382
       objectReference: {fileID: 0}
@@ -288,6 +292,22 @@ PrefabInstance:
     - target: {fileID: 246501973113497856, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: HurtSound.Guid.Data4
       value: -1074573542
+      objectReference: {fileID: 0}
+    - target: {fileID: 246501973113497856, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: DeathSound.Guid.Data1
+      value: 113374072
+      objectReference: {fileID: 0}
+    - target: {fileID: 246501973113497856, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: DeathSound.Guid.Data2
+      value: 1262412722
+      objectReference: {fileID: 0}
+    - target: {fileID: 246501973113497856, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: DeathSound.Guid.Data3
+      value: 717791885
+      objectReference: {fileID: 0}
+    - target: {fileID: 246501973113497856, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: DeathSound.Guid.Data4
+      value: -1511092614
       objectReference: {fileID: 0}
     - target: {fileID: 748654900169410309, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -458,6 +478,13 @@ MonoBehaviour:
   AttackKnockback: {x: 16, y: 6}
   AttackDashSpeed: 6
   RetreatChance: 0.3
+  AlertSound:
+    Guid:
+      Data1: 1681977321
+      Data2: 1314579554
+      Data3: 335980722
+      Data4: 484331680
+    Path: event:/Enemies/Skeleton/SkeletonAlert
   PlayMessageChance: 0.5
   RandomFirstMessage:
   - Ggr!

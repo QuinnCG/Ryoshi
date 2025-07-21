@@ -33,12 +33,32 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -8979603218701514631, guid: 22f1fa52f0c744c499c4dd97412f4259, type: 3}
     - target: {fileID: -1713577263120872133, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
+      propertyPath: AlertSound.Path
+      value: event:/Enemies/Skeleton/DarkSkeletonAlert
+      objectReference: {fileID: 0}
+    - target: {fileID: -1713577263120872133, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
       propertyPath: AttackKnockback.x
       value: -24
       objectReference: {fileID: 0}
     - target: {fileID: -1713577263120872133, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
       propertyPath: AttackKnockback.y
       value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: -1713577263120872133, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
+      propertyPath: AlertSound.Guid.Data1
+      value: 1929131983
+      objectReference: {fileID: 0}
+    - target: {fileID: -1713577263120872133, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
+      propertyPath: AlertSound.Guid.Data2
+      value: 1225753161
+      objectReference: {fileID: 0}
+    - target: {fileID: -1713577263120872133, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
+      propertyPath: AlertSound.Guid.Data3
+      value: 588536968
+      objectReference: {fileID: 0}
+    - target: {fileID: -1713577263120872133, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
+      propertyPath: AlertSound.Guid.Data4
+      value: -897531556
       objectReference: {fileID: 0}
     - target: {fileID: -1713577263120872133, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
       propertyPath: RandomFirstMessage.Array.size
@@ -147,6 +167,26 @@ PrefabInstance:
     - target: {fileID: 3409533354299597476, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
       propertyPath: Default
       value: 105
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409533354299597476, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
+      propertyPath: DeathSound.Path
+      value: event:/Enemies/Skeleton/DarkSkeletonDeath
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409533354299597476, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
+      propertyPath: DeathSound.Guid.Data1
+      value: 870369526
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409533354299597476, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
+      propertyPath: DeathSound.Guid.Data2
+      value: 1172471460
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409533354299597476, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
+      propertyPath: DeathSound.Guid.Data3
+      value: 219468933
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409533354299597476, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
+      propertyPath: DeathSound.Guid.Data4
+      value: -685786326
       objectReference: {fileID: 0}
     - target: {fileID: 4041642484639409416, guid: 7629a3dbc4e3a674ca5dcd73b6ea656f, type: 3}
       propertyPath: m_Sprite

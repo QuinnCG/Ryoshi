@@ -1,3 +1,4 @@
+using FMODUnity;
 using Sirenix.OdinInspector;
 using System.Collections;
 using UnityEngine;
@@ -21,6 +22,8 @@ namespace Quinn.AI.Brains
 		private float AttackDashSpeed = 6f;
 		[SerializeField]
 		private float RetreatChance = 0.3f;
+		[SerializeField]
+		private EventReference AlertSound;
 
 		[Space]
 
@@ -45,6 +48,8 @@ namespace Quinn.AI.Brains
 		{
 			TransitionTo(PatrolState, "Patrol");
 			yield return new WaitUntil(() => DistanceToPlayer < AggroDistance);
+
+			Audio.Play(AlertSound, transform.position);
 
 			if (Random.value < PlayMessageChance)
 			{

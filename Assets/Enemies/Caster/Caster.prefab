@@ -282,6 +282,26 @@ PrefabInstance:
       propertyPath: Default
       value: 36
       objectReference: {fileID: 0}
+    - target: {fileID: 246501973113497856, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: DeathSound.Path
+      value: event:/Enemies/Caster/CasterDeath
+      objectReference: {fileID: 0}
+    - target: {fileID: 246501973113497856, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: DeathSound.Guid.Data1
+      value: 2069191453
+      objectReference: {fileID: 0}
+    - target: {fileID: 246501973113497856, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: DeathSound.Guid.Data2
+      value: 1088741328
+      objectReference: {fileID: 0}
+    - target: {fileID: 246501973113497856, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: DeathSound.Guid.Data3
+      value: 1675791274
+      objectReference: {fileID: 0}
+    - target: {fileID: 246501973113497856, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
+      propertyPath: DeathSound.Guid.Data4
+      value: 1447907776
+      objectReference: {fileID: 0}
     - target: {fileID: 748654900169410309, guid: 5a226162ddd4428478fd4fb3ad6d6d5e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -495,6 +515,13 @@ MonoBehaviour:
     SpreadType: 0
     SpreadAngle: 0
   CastVFX: {fileID: 8400027033965627865}
+  AlertSound:
+    Guid:
+      Data1: -1611049957
+      Data2: 1167073528
+      Data3: -1771734871
+      Data4: -1861856010
+    Path: event:/Enemies/Caster/CasterAlert
   MinIdealDstToPlayer: 4
   MaxIdealDstToPlayer: 7
   ChargeDuration: {x: 0.5, y: 1}
