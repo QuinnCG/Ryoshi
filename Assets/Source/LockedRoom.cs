@@ -53,6 +53,7 @@ namespace Quinn.AI
 
 				Close();
 				Player.Instance.InLockedRoom = true;
+				Player.Instance.Health.FullHeal();
 
 				Instance = this;
 

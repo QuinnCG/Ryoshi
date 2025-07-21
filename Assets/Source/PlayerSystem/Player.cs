@@ -159,8 +159,6 @@ namespace Quinn
 
 		private async void OnDeath()
 		{
-			Log.Notice("Player Death!");
-
 			_movement.StopDash();
 			_movement.StopJump();
 			_animator.Stop();
@@ -174,7 +172,7 @@ namespace Quinn
 
 			_animator.PlayOnce(DeathAnim, true);
 
-			await TransitionManager.Instance.FadeToBlackAsync(2f);
+			await TransitionManager.Instance.FadeToBlackAsync(5f);
 			await SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
 		}
 

@@ -4,7 +4,6 @@ using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 
 namespace Quinn.AI
