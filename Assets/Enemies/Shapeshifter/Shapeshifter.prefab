@@ -1005,6 +1005,10 @@ MonoBehaviour:
   OniThrow: {fileID: 747534910195963912, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
   ToMage: {fileID: 466453818884786589, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
   ToKnight: {fileID: -151613565437553505, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
+  OniJump: {fileID: -3130236192303045767, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
+  OniJumping: {fileID: 6233868192552578381, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
+  OniFalling: {fileID: 4380957925210919317, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
+  OniLand: {fileID: 1438430177894919458, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
   OniIdleTime: {x: 0.5, y: 2}
   OniThrowSpawnPoint: {fileID: 8193903682740160398}
   OniCastBehavior:
@@ -1014,6 +1018,23 @@ MonoBehaviour:
     SpreadType: 1
     SpreadAngle: 95
   OniMissile: {fileID: 4076441030341577732, guid: 3778b729acfa7884ebb99183c928449f, type: 3}
+  OniJumpOverThrowChance: 0.3
+  OniJumpHeight: 4
+  OniJumpDuration: 0.7
+  OniJumpSound:
+    Guid:
+      Data1: -1558102269
+      Data2: 1172570970
+      Data3: 1310589326
+      Data4: 1308280653
+    Path: event:/Enemies/Shapeshifter/OniJump
+  OniLandSound:
+    Guid:
+      Data1: 745999362
+      Data2: 1104666737
+      Data3: -193892698
+      Data4: 1489227513
+    Path: event:/Enemies/Shapeshifter/OniLand
   MageIdle: {fileID: -3531795424091903597, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
   MageCharge: {fileID: -1791994660611087466, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
   MageCast: {fileID: 185158759256985032, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
@@ -1037,6 +1058,13 @@ MonoBehaviour:
       Data3: -1498849386
       Data4: 879133427
     Path: event:/Enemies/Shapeshifter/Teleport
+  CastSound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   KnightIdle: {fileID: 4773888099049038824, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
   FromKnight: {fileID: -2456112910366851704, guid: 508a6bd838ed907458b050489f8c1267, type: 3}
   KnightDash: {fileID: -4189508723422095748, guid: 508a6bd838ed907458b050489f8c1267, type: 3}

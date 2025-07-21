@@ -1,3 +1,4 @@
+using DG.Tweening;
 using FMODUnity;
 using Quinn.DamageSystem;
 using Quinn.MissileSystem;
@@ -43,7 +44,7 @@ namespace Quinn.AI.Brains
 		private VisualEffect TransformBlood;
 
 		[SerializeField, Required, FoldoutGroup("Oni")]
-		private AnimationClip OniIdle, OniThrow, ToMage, ToKnight;
+		private AnimationClip OniIdle, OniThrow, ToMage, ToKnight, OniJump, OniJumping, OniFalling, OniLand;
 		[SerializeField, FoldoutGroup("Oni")]
 		private Vector2 OniIdleTime = new(0.5f, 2f);
 		[SerializeField, Required, FoldoutGroup("Oni")]
@@ -52,6 +53,12 @@ namespace Quinn.AI.Brains
 		private MissileSpawnBehavior OniCastBehavior;
 		[SerializeField, Required, FoldoutGroup("Oni")]
 		private GameObject OniMissile;
+		[SerializeField, FoldoutGroup("Oni")]
+		private float OniJumpOverThrowChance = 0.5f;
+		[SerializeField, FoldoutGroup("Oni")]
+		private float OniJumpHeight = 2f, OniJumpDuration = 2f;
+		[SerializeField, FoldoutGroup("Oni"), Required]
+		private EventReference OniJumpSound, OniLandSound;
 
 		[SerializeField, Required, FoldoutGroup("Mage")]
 		private AnimationClip MageIdle, MageCharge, MageCast, FromMage;
@@ -103,6 +110,8 @@ namespace Quinn.AI.Brains
 
 		private bool _isPastFirstTransformation;
 		private bool _isTransforming;
+		private bool _isJumping;
+		private bool _didJustJump;
 
 		protected override void Awake()
 		{
@@ -145,8 +154,10 @@ namespace Quinn.AI.Brains
 			}
 		}
 
-		protected override void OnDeath()
+		protected override async void OnDeath()
 		{
+			await Wait.Until(() => !_isJumping);
+
 			StopAllCoroutines();
 			StartCoroutine(DeathSequence());
 		}
@@ -194,9 +205,10 @@ namespace Quinn.AI.Brains
 			if (_isTransforming)
 				yield break;
 
-			yield return new WaitUntil(() => !Animator.IsPlayingOneShot);
+			yield return new WaitUntil(() => !Animator.IsPlayingOneShot && !_isJumping);
 
 			_isTransforming = true;
+			_didJustJump = false;
 
 			if (form == _form)
 			{
@@ -246,7 +258,52 @@ namespace Quinn.AI.Brains
 				yield return null;
 			}
 
-			TransitionTo(OniThrowState);
+			if (Random.value < OniJumpOverThrowChance && !_didJustJump)
+			{
+				_didJustJump = true;
+				TransitionTo(OniJumpState);
+			}
+			else
+			{
+				_didJustJump = false;
+				TransitionTo(OniThrowState);
+			}
+		}
+
+		private IEnumerator OniJumpState()
+		{
+			FacePlayer();
+			yield return PlayAnimOnce(OniJump);
+			Audio.Play(OniJumpSound, transform.position);
+
+			float left = MageTeleportBounds.bounds.Left().x;
+			float right = MageTeleportBounds.bounds.Right().x;
+			var xPos = GetRandomArenaPos(left, right);
+
+			var destination = new Vector2(xPos, transform.position.y);
+
+			_isJumping = true;
+			Movement.enabled = false;
+
+			float halfwayPoint = Time.time + (OniJumpDuration / 2f);
+
+			transform.DOJump(destination, OniJumpHeight, 1, OniJumpDuration)
+				.SetEase(Ease.Linear)
+				.OnUpdate(() =>
+				{
+					FacePlayer();
+					Animator.PlayLooped((Time.time > halfwayPoint) ? OniFalling : OniJumping, true);
+				})
+				.OnComplete(() => _isJumping = false);
+
+			yield return new WaitUntil(() => !_isJumping);
+
+			Audio.Play(OniLandSound, transform.position);
+			yield return PlayAnimOnce(OniLand);
+			FacePlayer();
+
+			Movement.enabled = true;
+			TransitionTo(OniIdleState);
 		}
 
 		private IEnumerator OniThrowState()
@@ -310,7 +367,7 @@ namespace Quinn.AI.Brains
 
 			Audio.Play(MageTeleportSound, transform.position);
 
-			float x = GetTPPos(left, right);
+			float x = GetRandomArenaPos(left, right);
 			transform.position = new(x, transform.position.y);
 
 			TeleportVFX.Play();
@@ -326,8 +383,19 @@ namespace Quinn.AI.Brains
 			TransitionTo(MageIdleState);
 		}
 
-		private float GetTPPos(float left, float right)
+		private float GetRandomArenaPos(float left, float right)
 		{
+			// HACK: Hack way to do biased randomness.
+			for (int i = 0; i < 100; i++)
+			{
+				float x = Random.Range(left, right);
+
+				if (Mathf.Abs(x - transform.position.x) > 2f && Mathf.Abs(x - Player.position.x) > 4f)
+				{
+					return x;
+				}
+			}
+
 			return Random.Range(left, right);
 		}
 
