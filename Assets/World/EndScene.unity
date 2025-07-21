@@ -655,6 +655,7 @@ GameObject:
   - component: {fileID: 512250079}
   - component: {fileID: 512250078}
   - component: {fileID: 512250077}
+  - component: {fileID: 512250080}
   m_Layer: 5
   m_Name: Retry
   m_TagString: Untagged
@@ -776,6 +777,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 512250075}
   m_CullTransparentMesh: 1
+--- !u!114 &512250080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512250075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f4e2f5ad7758124b916a79b0f3690ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HoverSound:
+    Guid:
+      Data1: 131506880
+      Data2: 1320955691
+      Data3: -624416370
+      Data4: -593924478
+    Path: event:/ButtonHover
 --- !u!1 &661411545
 GameObject:
   m_ObjectHideFlags: 0
@@ -950,7 +970,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -110.97}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1004282171
@@ -1464,6 +1484,7 @@ GameObject:
   - component: {fileID: 2045661347}
   - component: {fileID: 2045661346}
   - component: {fileID: 2045661345}
+  - component: {fileID: 2045661348}
   m_Layer: 5
   m_Name: Quit (1)
   m_TagString: Untagged
@@ -1585,6 +1606,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2045661343}
   m_CullTransparentMesh: 1
+--- !u!114 &2045661348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045661343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f4e2f5ad7758124b916a79b0f3690ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HoverSound:
+    Guid:
+      Data1: 131506880
+      Data2: 1320955691
+      Data3: -624416370
+      Data4: -593924478
+    Path: event:/ButtonHover
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

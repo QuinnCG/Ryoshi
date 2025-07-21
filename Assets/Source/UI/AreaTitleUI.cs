@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace Quinn.UI
 {
+
 	public class AreaTitleUI : MonoBehaviour
 	{
 		[SerializeField]
