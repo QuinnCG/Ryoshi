@@ -88,6 +88,8 @@ namespace Quinn.CombatSystem
 		private float _attackPhaseEndTime;
 		private AnimationClip _attackAnim, _recoveryAnim;
 
+		private float _playerYAtAttackStart;
+
 		private void Awake()
 		{
 			_player = GetComponent<Player>();
@@ -136,6 +138,7 @@ namespace Quinn.CombatSystem
 
 			if (TrySearchForAttack(stance, out var attack))
 			{
+				_playerYAtAttackStart = transform.position.y;
 				ExecuteAttack(attack);
 			}
 		}
@@ -295,9 +298,11 @@ namespace Quinn.CombatSystem
 			var knockback = _attackDef.KnockbackVelocity;
 			knockback.x *= _movement.FacingDirection;
 
+			float heightDmgAddend = Mathf.Abs(transform.position.y - _playerYAtAttackStart) * _attackDef.HeightDamageAddendFactor;
+
 			var info = new DamageInfo()
 			{
-				Damage = _attackDef.Damage * DamageFactor,
+				Damage = (_attackDef.Damage * DamageFactor) + heightDmgAddend,
 				Direction = Vector2.right * _movement.FacingDirection,
 				TeamType = TeamType.Player,
 				Knockback = knockback

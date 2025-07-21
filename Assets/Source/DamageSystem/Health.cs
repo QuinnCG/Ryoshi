@@ -1,5 +1,4 @@
 using DG.Tweening;
-using FMOD.Studio;
 using FMODUnity;
 using Quinn.MovementSystem;
 using Sirenix.OdinInspector;
@@ -19,6 +18,8 @@ namespace Quinn.DamageSystem
 
 		[SerializeField, FoldoutGroup("SFX")]
 		private EventReference HurtSound, DeathSound;
+		[SerializeField, FoldoutGroup("SFX")]
+		private bool AssignDamageToHurtSoundAsParam;
 
 		[SerializeField, FoldoutGroup("VFX")]
 		private VisualEffect HurtVFX, DeathVFX;
@@ -97,6 +98,12 @@ namespace Quinn.DamageSystem
 				return false;
 			}
 
+			var sound = RuntimeManager.CreateInstance(HurtSound);
+			sound.setParameterByName("dmg-norm", Mathf.Max(0f, info.Damage / 50f));
+			sound.set3DAttributes(RuntimeUtils.To3DAttributes(transform.position));
+			sound.start();
+			sound.release();
+
 			// This is the first instance of damage.
 			if (Current == Max && HPBar != null)
 			{
@@ -107,8 +114,6 @@ namespace Quinn.DamageSystem
 
 			Current = Mathf.Clamp(Current - info.Damage, 0f, Max);
 			OnDamage?.Invoke(info);
-
-			Audio.Play(HurtSound, transform.position);
 
 			if (HurtVFX != null)
 			{

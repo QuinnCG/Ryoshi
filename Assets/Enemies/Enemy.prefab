@@ -861,6 +861,7 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
+  AssignDamageToHurtSoundAsParam: 1
   HurtVFX: {fileID: 1244148347713127447}
   DeathVFX: {fileID: 2476217390586819012}
   FlashOnHurt: {fileID: -7769812350432153940}

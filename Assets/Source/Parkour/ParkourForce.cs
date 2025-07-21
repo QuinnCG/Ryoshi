@@ -25,6 +25,8 @@ namespace Quinn.Parkour
 				movement.StopDash();
 				movement.StopJump();
 				movement.NegateAdditiveVelocities();
+
+				Audio.Play("event:/Player/Jump", transform.position);
 				
 				if ((movement.IsTouchingGround || !RequirePlayerGrounded) && !movement.IsTouchingCeiling)
 				{

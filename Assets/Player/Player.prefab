@@ -775,6 +775,7 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
+  AssignDamageToHurtSoundAsParam: 0
   HurtVFX: {fileID: 2424734284542404146}
   DeathVFX: {fileID: 7208889295033864611}
   FlashOnHurt: {fileID: 8317560686305092383}
@@ -836,6 +837,7 @@ MonoBehaviour:
     DamageBoxOffset: {x: 1, y: 0}
     DamageBoxSize: {x: 2, y: 2}
     Damage: 10
+    HeightDamageAddendFactor: 0
     KnockbackVelocity: {x: 10, y: 0}
     PushVelocity: {x: 16, y: 0}
     PushDecayRate: 32
@@ -857,6 +859,7 @@ MonoBehaviour:
     DamageBoxOffset: {x: 1, y: 0}
     DamageBoxSize: {x: 2, y: 1}
     Damage: 5
+    HeightDamageAddendFactor: 0
     KnockbackVelocity: {x: 5, y: 0}
     PushVelocity: {x: 18, y: 0}
     PushDecayRate: 32
@@ -878,6 +881,7 @@ MonoBehaviour:
     DamageBoxOffset: {x: 1, y: 0}
     DamageBoxSize: {x: 2, y: 1}
     Damage: 5
+    HeightDamageAddendFactor: 0
     KnockbackVelocity: {x: 5, y: 0}
     PushVelocity: {x: 12, y: 0}
     PushDecayRate: 32
@@ -898,7 +902,8 @@ MonoBehaviour:
     Cost: 2
     DamageBoxOffset: {x: 1.25, y: 0}
     DamageBoxSize: {x: 2.5, y: 2}
-    Damage: 25
+    Damage: 15
+    HeightDamageAddendFactor: 7
     KnockbackVelocity: {x: 16, y: -6}
     PushVelocity: {x: 12, y: -12}
     PushDecayRate: 32
@@ -920,6 +925,7 @@ MonoBehaviour:
     DamageBoxOffset: {x: 1, y: 0.5}
     DamageBoxSize: {x: 2, y: 3.5}
     Damage: 10
+    HeightDamageAddendFactor: 0
     KnockbackVelocity: {x: 18, y: 12}
     PushVelocity: {x: 24, y: 0}
     PushDecayRate: 64
@@ -941,6 +947,7 @@ MonoBehaviour:
     DamageBoxOffset: {x: 2, y: 0}
     DamageBoxSize: {x: 4, y: 1}
     Damage: 20
+    HeightDamageAddendFactor: 0
     KnockbackVelocity: {x: 20, y: 0}
     PushVelocity: {x: 12, y: 0}
     PushDecayRate: 32
@@ -962,6 +969,7 @@ MonoBehaviour:
     DamageBoxOffset: {x: 1, y: 0}
     DamageBoxSize: {x: 2, y: 2}
     Damage: 25
+    HeightDamageAddendFactor: 0
     KnockbackVelocity: {x: 18, y: 0}
     PushVelocity: {x: 24, y: 0}
     PushDecayRate: 32

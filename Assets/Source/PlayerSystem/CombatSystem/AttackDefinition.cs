@@ -52,6 +52,8 @@ namespace Quinn.CombatSystem
 		public Vector2 DamageBoxOffset, DamageBoxSize;
 		[FoldoutGroup("Data")]
 		public float Damage = 10f;
+		[FoldoutGroup("Data"), Tooltip("Every meter of height at the start of the attack will be added to the damage after being multiplied by this.")]
+		public float HeightDamageAddendFactor = 0f;
 		[FoldoutGroup("Data")]
 		public Vector2 KnockbackVelocity;
 

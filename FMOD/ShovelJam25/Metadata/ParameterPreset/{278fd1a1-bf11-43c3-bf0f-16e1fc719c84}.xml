@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{278fd1a1-bf11-43c3-bf0f-16e1fc719c84}">
+		<property name="name">
+			<value>dmg-norm</value>
+		</property>
+		<relationship name="folder">
+			<destination>{3c028cb2-bf65-4b32-bf88-7de2f71fb092}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{389f5c37-2364-4753-9833-318ac5e66c53}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{389f5c37-2364-4753-9833-318ac5e66c53}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
